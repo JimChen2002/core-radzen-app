@@ -1,0 +1,57 @@
+{
+  "cssFiles": [],
+  "dataSources": [
+    "CORE"
+  ],
+  "generator": "@radzen/blazor-server",
+  "https": true,
+  "ignore": [
+    "CustomAudienceTypesDropdown.cs"
+  ],
+  "javaScriptFiles": [],
+  "layouts": [
+    "Login",
+    "Main"
+  ],
+  "logo": "",
+  "name": "CoreRadzen",
+  "namespaces": [],
+  "navigation": [
+    "TblSpeaker",
+    "TblEvents"
+  ],
+  "pages": [
+    "Add Events",
+    "Edit Events",
+    "Unauthorized",
+    "TblSpeaker",
+    "Add TblSpeaker",
+    "Edit TblSpeaker",
+    "TblEvents",
+    "Add Tbl Core Attendance",
+    "Edit Tbl Core Attendance",
+    "Add Tbl Volunteer Speaker Request",
+    "Edit Tbl Volunteer Speaker Request"
+  ],
+  "port": 8000,
+  "security": {
+    "autoGeneratePages": true,
+    "callbackPath": "/signin-oidc",
+    "clientId": "9917053d-5b1e-4232-b16c-a1e9f75a98aa",
+    "domain": "core.org",
+    "instance": "https://login.microsoftonline.com/",
+    "layout": "Main",
+    "loginLayout": "Login",
+    "loginPage": "Login",
+    "overwriteExistingPages": false,
+    "provider": "azuread",
+    "tenantId": "d2044453-434b-4b75-8146-1a0b62a0131c"
+  },
+  "serverLang": "cs",
+  "serverPort": 5000,
+  "serverProject": true,
+  "serverVersion": "3",
+  "startPage": "Tbl Events",
+  "theme": "standard",
+  "title": "CoreRadzen"
+}

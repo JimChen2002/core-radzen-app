@@ -1,0 +1,370 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Add Events",
+          "type": "heading"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "EventDate",
+                              "name": "EventDateLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Event Date",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "EventDate",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "datepicker",
+                              "value": "${tblevent.EventDate}",
+                              "valueType": "DateTime"
+                            },
+                            {
+                              "component": "EventDate",
+                              "name": "EventDateRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "EventDate is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "StartTime",
+                              "name": "StartTimeLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Start Time",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "StartTime",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "timeOnly": true,
+                              "type": "datepicker",
+                              "value": "${tblevent.StartTime}",
+                              "valueType": "DateTime"
+                            },
+                            {
+                              "component": "StartTime",
+                              "name": "StartTimeRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "StartTime is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "EndTime",
+                              "name": "EndTimeLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "End Time",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "EndTime",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "timeOnly": true,
+                              "type": "datepicker",
+                              "value": "${tblevent.EndTime}",
+                              "valueType": "DateTime"
+                            },
+                            {
+                              "component": "EndTime",
+                              "name": "EndTimeRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "EndTime is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "HospitalID",
+                              "name": "HospitalIDLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Tbl Hospital",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getTblHospitalsForHospitalIDResult}",
+                              "name": "HospitalID",
+                              "placeholder": "Choose TblHospital",
+                              "showSearch": false,
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "textProperty": "HospitalName",
+                              "type": "dropdown-datagrid",
+                              "value": "${tblevent.HospitalID}",
+                              "valueProperty": "HospitalID",
+                              "valueType": "int"
+                            },
+                            {
+                              "component": "HospitalID",
+                              "defaultValue": "0",
+                              "name": "HospitalIDRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "HospitalID is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "events": {
+                                "click": [
+                                  {
+                                    "name": "CORE.getSpEventStartNewEvents",
+                                    "parameters": [
+                                      {
+                                        "name": "EventDate",
+                                        "value": "${tblevent.EventDate}"
+                                      },
+                                      {
+                                        "name": "StartTime",
+                                        "value": "${tblevent.StartTime}"
+                                      },
+                                      {
+                                        "name": "EndTime",
+                                        "value": "${tblevent.EndTime}"
+                                      },
+                                      {
+                                        "name": "HospitalID",
+                                        "value": "${tblevent.HospitalID}"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "returnedRecord",
+                                        "type": "set",
+                                        "value": "${result.First().scopeIdentityValue}",
+                                        "valueType": "decimal?"
+                                      },
+                                      {
+                                        "parameters": [
+                                          {
+                                            "name": "tblEvent_ID",
+                                            "value": "${returnedRecord}"
+                                          }
+                                        ],
+                                        "path": "edit-events",
+                                        "type": "navigate"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ]
+                              },
+                              "name": "button0",
+                              "text": "Create",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "path": "tbl-events",
+                                    "type": "navigate"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${tblevent}",
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new TblEvent!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "CORE.createTblEvent",
+                        "parameters": [
+                          {
+                            "name": "TblEvent",
+                            "value": "${tblevent}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "path": "tbl-events",
+                            "type": "navigate"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "CoreRadzen.Models.Core.TblEvent",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${tblevent != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "CORE.getTblHospitals",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblHospitalsForHospitalIDResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CoreRadzen.Models.Core.TblHospital>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "tblevent",
+        "type": "set",
+        "value": "new CoreRadzen.Models.Core.TblEvent(){}",
+        "valueType": "CoreRadzen.Models.Core.TblEvent"
+      },
+      {
+        "code": "${tblevent.EventDate}=DateTime.Now;${tblevent.StartTime}=DateTime.Now;${tblevent.EndTime}=DateTime.Now;",
+        "type": "execute"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Events"
+}

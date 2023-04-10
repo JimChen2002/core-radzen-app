@@ -1,0 +1,1683 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Edit Events",
+          "type": "heading"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "EventDate",
+                              "name": "EventDateLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Event Date",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "EventDate",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "datepicker",
+                              "value": "${tblevent.EventDate}",
+                              "valueType": "DateTime"
+                            },
+                            {
+                              "component": "EventDate",
+                              "name": "EventDateRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "EventDate is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "StartTime",
+                              "name": "StartTimeLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Start Time",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "StartTime",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "datepicker",
+                              "value": "${tblevent.StartTime}",
+                              "valueType": "DateTime"
+                            },
+                            {
+                              "component": "StartTime",
+                              "name": "StartTimeRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "StartTime is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "EndTime",
+                              "name": "EndTimeLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "End Time",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "EndTime",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "datepicker",
+                              "value": "${tblevent.EndTime}",
+                              "valueType": "DateTime"
+                            },
+                            {
+                              "component": "EndTime",
+                              "name": "EndTimeRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "EndTime is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "HospitalID",
+                              "name": "HospitalIDLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Tbl Hospital",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getTblHospitalsForHospitalIDResult}",
+                              "name": "HospitalID",
+                              "placeholder": "Choose TblHospital",
+                              "showSearch": false,
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "textProperty": "HospitalName",
+                              "type": "dropdown-datagrid",
+                              "value": "${tblevent.HospitalID}",
+                              "valueProperty": "HospitalID",
+                              "valueType": "int"
+                            },
+                            {
+                              "component": "HospitalID",
+                              "defaultValue": "0",
+                              "name": "HospitalIDRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "HospitalID is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "LocationDetails",
+                              "name": "LocationDetailsLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Location Details",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 500,
+                              "name": "LocationDetails",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.LocationDetails}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "LocationDetails",
+                              "name": "LocationDetailsRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "LocationDetails is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "EventType",
+                              "name": "EventTypeLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Event Type",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "EventType",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.EventType}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "EventType",
+                              "name": "EventTypeRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "EventType is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "EventDescription",
+                              "name": "EventDescriptionLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Event Description",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "EventDescription",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.EventDescription}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "EventDescription",
+                              "name": "EventDescriptionRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "EventDescription is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "EventDetails",
+                              "name": "EventDetailsLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Event Details",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 500,
+                              "name": "EventDetails",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.EventDetails}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "EventDetails",
+                              "name": "EventDetailsRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "EventDetails is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "SpeakerNeeds",
+                              "name": "SpeakerNeedsLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Speaker Needs",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 500,
+                              "name": "SpeakerNeeds",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.SpeakerNeeds}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "SpeakerNeeds",
+                              "name": "SpeakerNeedsRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "SpeakerNeeds is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "LeadershipSpeakerRequested",
+                              "name": "LeadershipSpeakerRequestedLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Leadership Speaker Requested",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "LeadershipSpeakerRequested",
+                              "type": "checkbox",
+                              "value": "${tblevent.LeadershipSpeakerRequested}",
+                              "valueType": "bool"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "LeadershipSpeaker",
+                              "name": "LeadershipSpeakerLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Leadership Speaker",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 500,
+                              "name": "LeadershipSpeaker",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.LeadershipSpeaker}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "LeadershipSpeechLength",
+                              "name": "LeadershipSpeechLengthLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Leadership Speech Length",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "LeadershipSpeechLength",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "numeric",
+                              "value": "${tblevent.LeadershipSpeechLength}",
+                              "valueType": "int?"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "LeadershipSpeechLength",
+                              "name": "label0",
+                              "style": {
+                                "width": "251.5px"
+                              },
+                              "text": "Volunteer Speakers Requested",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col3",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "disabled": "",
+                              "events": {
+                                "click": [
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "tblEvent_ID",
+                                        "value": "${parameters.tblEvent_ID}"
+                                      }
+                                    ],
+                                    "path": "add-tbl-volunteer-speaker-request",
+                                    "then": [
+                                      {
+                                        "code": "await grid2.Reload();",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "popup"
+                                  }
+                                ]
+                              },
+                              "icon": "add_circle_outline",
+                              "name": "TblVolunteerSpeakerRequestAddButton",
+                              "style": {
+                                "marginBottom": "10px"
+                              },
+                              "text": "Add",
+                              "type": "button"
+                            }
+                          ],
+                          "name": "col4",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row3",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [],
+                          "name": "col0",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "events": {
+                                "click": [
+                                  {
+                                    "path": "add-tbl-speaker",
+                                    "then": [
+                                      {
+                                        "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "popup"
+                                  }
+                                ]
+                              },
+                              "icon": "add_circle_outline",
+                              "name": "button0",
+                              "style": {
+                                "marginBottom": "10px"
+                              },
+                              "text": "Add New Speaker",
+                              "type": "button"
+                            }
+                          ],
+                          "name": "col1",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row1",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "allowFiltering": true,
+                          "allowPaging": true,
+                          "allowSorting": true,
+                          "columns": [
+                            {
+                              "property": "tblVolunteerSpeakerRequests_ID",
+                              "title": "Tbl Volunteer Speaker Requests ID"
+                            },
+                            {
+                              "filterProperty": "TblEvent.LocationDetails",
+                              "groupProperty": "TblEvent.LocationDetails",
+                              "property": "tblEvent_ID",
+                              "sortProperty": "TblEvent.LocationDetails",
+                              "template": "${data.TblEvent?.LocationDetails}",
+                              "title": "Tbl Event"
+                            },
+                            {
+                              "filterProperty": "TblSpeaker.Name",
+                              "groupProperty": "TblSpeaker.Name",
+                              "property": "tblSpeaker_ID",
+                              "sortProperty": "TblSpeaker.Name",
+                              "template": "${data.TblSpeaker?.Name}",
+                              "title": "Tbl Speaker"
+                            },
+                            {
+                              "filterable": false,
+                              "sortable": false,
+                              "template": [
+                                {
+                                  "attributes": [
+                                    {
+                                      "name": "@onclick:stopPropagation",
+                                      "value": true
+                                    }
+                                  ],
+                                  "buttonStyle": "danger",
+                                  "events": {
+                                    "click": [
+                                      {
+                                        "condition": "await DialogService.Confirm(\"Are you sure you want to delete this record?\") == true",
+                                        "error": [
+                                          {
+                                            "detail": "Unable to delete TblEvent",
+                                            "severity": "error",
+                                            "summary": "Error",
+                                            "type": "notify"
+                                          }
+                                        ],
+                                        "name": "CORE.deleteTblVolunteerSpeakerRequest",
+                                        "parameters": [
+                                          {
+                                            "name": "tblVolunteerSpeakerRequests_ID",
+                                            "value": "${data.tblVolunteerSpeakerRequests_ID}"
+                                          }
+                                        ],
+                                        "then": [
+                                          {
+                                            "code": "await grid2.Reload();",
+                                            "condition": "result != null",
+                                            "type": "execute"
+                                          }
+                                        ],
+                                        "type": "invoke"
+                                      }
+                                    ]
+                                  },
+                                  "icon": "close",
+                                  "name": "TblVolunteerSpeakerRequestDeleteButton",
+                                  "size": "sm",
+                                  "text": "",
+                                  "type": "button"
+                                }
+                              ],
+                              "textAlign": "center",
+                              "width": "70px"
+                            }
+                          ],
+                          "data": "${TblVolunteerSpeakerRequests}",
+                          "events": {
+                            "rowSelect": [
+                              {
+                                "parameters": [
+                                  {
+                                    "name": "tblVolunteerSpeakerRequests_ID",
+                                    "value": "${event.tblVolunteerSpeakerRequests_ID}"
+                                  }
+                                ],
+                                "path": "edit-tbl-volunteer-speaker-request",
+                                "then": [],
+                                "type": "navigate"
+                              }
+                            ]
+                          },
+                          "filterMode": "advanced",
+                          "itemType": "CoreRadzen.Models.Core.TblVolunteerSpeakerRequest",
+                          "name": "grid2",
+                          "type": "datagrid"
+                        }
+                      ],
+                      "name": "row0",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "VolunteerSpeechLength",
+                              "name": "VolunteerSpeechLengthLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Volunteer Speech Length",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "VolunteerSpeechLength",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "numeric",
+                              "value": "${tblevent.VolunteerSpeechLength}",
+                              "valueType": "int?"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "AudienceTypes",
+                              "name": "AudienceTypesLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Audience Types",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "chips": true,
+                              "data": "${audienceTypeList}",
+                              "events": {
+                                "change": [
+                                  {
+                                    "code": "${tblevent.AudienceTypes} = string.Join(';', ${selectedAudienceTypes});",
+                                    "type": "execute"
+                                  }
+                                ]
+                              },
+                              "multiple": true,
+                              "name": "dropdown0",
+                              "style": {
+                                "width": "607.4000244140625px"
+                              },
+                              "textProperty": "Id",
+                              "type": "dropdown",
+                              "value": "${selectedAudienceTypes}",
+                              "valueProperty": "Name",
+                              "valueType": "CoreRadzen.Pages.EditEventsComponent"
+                            },
+                            {
+                              "maxLength": 500,
+                              "name": "AudienceTypes",
+                              "style": {
+                                "display": "block",
+                                "width": "34.5px"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.AudienceTypes}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "AudienceTypes",
+                              "name": "AudienceTypesRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "AudienceTypes is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "EstimatedAttendees",
+                              "name": "EstimatedAttendeesLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Estimated Attendees",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "EstimatedAttendees",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.EstimatedAttendees}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "EstimatedAttendees",
+                              "name": "EstimatedAttendeesRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "EstimatedAttendees is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "SocialMediaOrVideoNeeds",
+                              "name": "SocialMediaOrVideoNeedsLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Social Media Or Video Needs",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 500,
+                              "name": "SocialMediaOrVideoNeeds",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.SocialMediaOrVideoNeeds}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "SocialMediaOrVideoNeeds",
+                              "name": "SocialMediaOrVideoNeedsRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "SocialMediaOrVideoNeeds is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "IsLegislatorsInvited",
+                              "name": "IsLegislatorsInvitedLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Is Legislators Invited",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "IsLegislatorsInvited",
+                              "type": "checkbox",
+                              "value": "${tblevent.IsLegislatorsInvited}",
+                              "valueType": "bool"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "IsLegislatorsAttending",
+                              "name": "IsLegislatorsAttendingLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Is Legislators Attending",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "IsLegislatorsAttending",
+                              "type": "checkbox",
+                              "value": "${tblevent.IsLegislatorsAttending}",
+                              "valueType": "bool"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "IsQuiltRequested",
+                              "name": "IsQuiltRequestedLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Is Quilt Requested",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "IsQuiltRequested",
+                              "type": "checkbox",
+                              "value": "${tblevent.IsQuiltRequested}",
+                              "valueType": "bool"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "QuiltNumber",
+                              "name": "QuiltNumberLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Quilt Number",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 500,
+                              "name": "QuiltNumber",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.QuiltNumber}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "QuiltCoordinator",
+                              "name": "QuiltCoordinatorLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Quilt Coordinator",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 500,
+                              "name": "QuiltCoordinator",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.QuiltCoordinator}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "IsVehicleRequested",
+                              "name": "IsVehicleRequestedLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Is Vehicle Requested",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "IsVehicleRequested",
+                              "type": "checkbox",
+                              "value": "${tblevent.IsVehicleRequested}",
+                              "valueType": "bool"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "IsVehicleReserved",
+                              "name": "IsVehicleReservedLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Is Vehicle Reserved",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "IsVehicleReserved",
+                              "triState": true,
+                              "type": "checkbox",
+                              "value": "${tblevent.IsVehicleReserved}",
+                              "valueType": "bool?"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "VehicleDriver",
+                              "name": "VehicleDriverLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Vehicle Driver",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 500,
+                              "name": "VehicleDriver",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.VehicleDriver}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "OnsiteContactName",
+                              "name": "OnsiteContactNameLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Onsite Contact Name",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 500,
+                              "name": "OnsiteContactName",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.OnsiteContactName}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "OnsiteContactPhone",
+                              "name": "OnsiteContactPhoneLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Onsite Contact Phone",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "OnsiteContactPhone",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.OnsiteContactPhone}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "OnsiteContactEmail",
+                              "name": "OnsiteContactEmailLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Onsite Contact Email",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 500,
+                              "name": "OnsiteContactEmail",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.OnsiteContactEmail}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "IsLocked",
+                              "name": "IsLockedLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Is Locked",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "IsLocked",
+                              "type": "checkbox",
+                              "value": "${tblevent.IsLocked}",
+                              "valueType": "bool"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "PlaceToMeet",
+                              "name": "PlaceToMeetLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Place To Meet",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 500,
+                              "name": "PlaceToMeet",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.PlaceToMeet}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "PlaceToMeet",
+                              "name": "PlaceToMeetRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "PlaceToMeet is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "AdditionalInformation",
+                              "name": "AdditionalInformationLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Additional Information",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 500,
+                              "name": "AdditionalInformation",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblevent.AdditionalInformation}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "path": "tbl-events",
+                                    "type": "navigate"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${tblevent}",
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblEvent",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "CORE.updateTblEvent",
+                        "parameters": [
+                          {
+                            "name": "tblEvent_ID",
+                            "value": "Convert.ChangeType(${parameters.tblEvent_ID}, Type.GetTypeCode(typeof(int)))"
+                          },
+                          {
+                            "name": "TblEvent",
+                            "value": "${tblevent}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "condition": "",
+                            "path": "tbl-events",
+                            "type": "navigate"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "CoreRadzen.Models.Core.TblEvent",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${tblevent != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "error": [],
+        "name": "CORE.getTblEventBytblEvent_ID",
+        "parameters": [
+          {
+            "name": "tblEvent_ID",
+            "value": "Convert.ChangeType(${parameters.tblEvent_ID}, Type.GetTypeCode(typeof(int)))"
+          }
+        ],
+        "then": [
+          {
+            "name": "tblevent",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "CoreRadzen.Models.Core.TblEvent"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "CORE.getTblHospitals",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblHospitalsForHospitalIDResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CoreRadzen.Models.Core.TblHospital>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "global": false,
+        "name": "audienceTypeList",
+        "type": "set",
+        "value": "new List<AudienceTypesDropDown>(){new AudienceTypesDropDown(){Id=1,Name=\"a\"}, new AudienceTypesDropDown(){Id=2,Name=\"b\"}}",
+        "valueType": "IEnumerable<AudienceTypesDropDown>"
+      },
+      {
+        "name": "selectedAudienceTypes",
+        "type": "set",
+        "value": "!string.IsNullOrEmpty(${tblevent.AudienceTypes}) ? ${tblevent.AudienceTypes}.Split(';') : Enumerable.Empty<string>();",
+        "valueType": "IEnumerable<string>"
+      },
+      {
+        "name": "CORE.getTblVolunteerSpeakerRequests",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "i => i.tblEvent_ID == ${parameters.tblEvent_ID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "TblVolunteerSpeakerRequests",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CoreRadzen.Models.Core.TblVolunteerSpeakerRequest>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Edit Events"
+}

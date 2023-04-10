@@ -1,0 +1,42 @@
+﻿@page "/edit-tbl-volunteer-speaker-request/{tblVolunteerSpeakerRequests_ID}"
+@layout MainLayout
+@inherits CoreRadzen.Pages.EditTblVolunteerSpeakerRequestComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using CoreRadzen.Models.Core
+@using CoreRadzen.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Data="@tblvolunteerspeakerrequest" Visible="@(tblvolunteerspeakerrequest != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="Tbl Speaker" Component="tblSpeaker_ID" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDown Data="@getTblSpeakersResult" TextProperty="Name" ValueProperty="tblSpeaker_ID" Placeholder="Choose TblSpeaker" style="display: block; width: 100%" @bind-Value="@(tblvolunteerspeakerrequest.tblSpeaker_ID)" Name="TblSpeaker_ID">
+                </RadzenDropDown>
+                <RadzenRequiredValidator Component="TblSpeaker_ID" Text="tblSpeaker_ID is required" style="position: absolute" DefaultValue="0">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Save" ButtonStyle="ButtonStyle.Primary">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

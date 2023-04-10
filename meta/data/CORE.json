@@ -1,0 +1,1885 @@
+{
+  "info": {
+    "title": "CORE",
+    "x-type": "odata",
+    "x-connector": "mssql",
+    "x-connector-version": 16,
+    "x-infer-aspnet": false,
+    "x-infer-tables": true,
+    "x-infer-relations": true,
+    "x-infer-views": true,
+    "x-infer-sps": true
+  },
+  "definitions": {
+    "SpEventStartNewEvent": {
+      "x-view": "sp",
+      "x-table": "dbo.sp_Event_StartNewEvent",
+      "x-parameters": [
+        {
+          "name": "EventDate",
+          "type": "string",
+          "format": "date-time",
+          "dbType": "date",
+          "size": 3
+        },
+        {
+          "name": "StartTime",
+          "type": "string",
+          "format": "date-time",
+          "dbType": "smalldatetime",
+          "size": 4
+        },
+        {
+          "name": "EndTime",
+          "type": "string",
+          "format": "date-time",
+          "dbType": "smalldatetime",
+          "size": 4
+        },
+        {
+          "name": "HospitalID",
+          "type": "integer",
+          "dbType": "int"
+        }
+      ],
+      "resource": "SpEventStartNewEvents",
+      "required": [],
+      "properties": {
+        "scopeIdentityValue": {
+          "x-computed": true,
+          "x-precision": 38,
+          "type": "number",
+          "format": "decimal",
+          "dbType": "numeric",
+          "x-key": true,
+          "x-virtual": true
+        }
+      }
+    },
+    "TblAdUser": {
+      "x-table": "dbo.tblADUsers",
+      "resource": "TblAdUsers",
+      "required": [
+        "UserName",
+        "Email",
+        "Department",
+        "Title",
+        "Manager",
+        "CreateDate",
+        "ModDate"
+      ],
+      "properties": {
+        "tblADUser_ID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int",
+          "x-navigation": [
+            {
+              "inversePropertyName": "TblAdUser",
+              "name": "TblSpeakers",
+              "type": "TblSpeaker"
+            },
+            {
+              "inversePropertyName": "TblAdUser",
+              "name": "TblCoreAttendances",
+              "type": "TblCoreAttendance"
+            }
+          ]
+        },
+        "UserName": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 250
+        },
+        "Email": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 250
+        },
+        "Department": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 250
+        },
+        "Title": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 250
+        },
+        "Manager": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "CreateDate": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time",
+          "dbType": "smalldatetime",
+          "x-datetime": "smalldatetime"
+        },
+        "ModDate": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time",
+          "dbType": "smalldatetime",
+          "x-datetime": "smalldatetime"
+        },
+        "Extension": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 50
+        },
+        "CellPhone": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 50
+        },
+        "HomePhone": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 50
+        },
+        "EmployeePhoto": {
+          "type": "string",
+          "format": "binary",
+          "dbType": "varbinary"
+        },
+        "EmployeePhotoString": {
+          "type": "string",
+          "dbType": "nvarchar"
+        },
+        "Company": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 150
+        },
+        "EmploymentStatus": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 150
+        },
+        "Leadership": {
+          "x-nullable": false,
+          "type": "boolean",
+          "dbType": "bit"
+        },
+        "LeadershipGroup": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 150
+        },
+        "AOC": {
+          "x-nullable": false,
+          "type": "boolean",
+          "dbType": "bit"
+        },
+        "TOC": {
+          "x-nullable": false,
+          "type": "boolean",
+          "dbType": "bit"
+        },
+        "Pager": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 50
+        },
+        "Fax": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 50
+        },
+        "NewEmployee": {
+          "x-nullable": false,
+          "type": "boolean",
+          "dbType": "bit"
+        },
+        "ServiceAccount": {
+          "x-nullable": false,
+          "type": "boolean",
+          "dbType": "bit"
+        },
+        "ViewInApp": {
+          "x-nullable": false,
+          "type": "boolean",
+          "dbType": "bit"
+        },
+        "DirectDial": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 50
+        },
+        "FirstName": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "LastName": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "GROUP": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "DN": {
+          "type": "string",
+          "dbType": "nvarchar"
+        },
+        "TblSpeakers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TblSpeaker"
+          }
+        },
+        "TblCoreAttendances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TblCoreAttendance"
+          }
+        }
+      }
+    },
+    "TblCoreAttendance": {
+      "x-table": "dbo.tblCOREAttendance",
+      "resource": "TblCoreAttendances",
+      "required": [
+        "tblEvent_ID",
+        "tblADUser_ID"
+      ],
+      "properties": {
+        "tblCOREAttendance_ID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int"
+        },
+        "TblEvent": {
+          "type": "object",
+          "$ref": "#/definitions/TblEvent"
+        },
+        "tblEvent_ID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int",
+          "x-foreignKey": {
+            "parentTable": "tblEvents",
+            "parentEntityType": "TblEvent",
+            "type": "TblEvent",
+            "principalKey": "tblEvent_ID",
+            "name": "TblEvent",
+            "textProperty": "LocationDetails",
+            "navigationProperty": "TblCoreAttendances"
+          }
+        },
+        "TblAdUser": {
+          "type": "object",
+          "$ref": "#/definitions/TblAdUser"
+        },
+        "tblADUser_ID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int",
+          "x-foreignKey": {
+            "parentTable": "tblADUsers",
+            "parentEntityType": "TblAdUser",
+            "type": "TblAdUser",
+            "principalKey": "tblADUser_ID",
+            "name": "TblAdUser",
+            "textProperty": "UserName",
+            "navigationProperty": "TblCoreAttendances"
+          }
+        }
+      }
+    },
+    "TblEvent": {
+      "x-table": "dbo.tblEvents",
+      "resource": "TblEvents",
+      "required": [
+        "EventDate",
+        "StartTime",
+        "EndTime",
+        "HospitalID",
+        "LocationDetails",
+        "EventType",
+        "EventDescription",
+        "EventDetails",
+        "SpeakerNeeds",
+        "SpeakerArrivalTime",
+        "AudienceTypes",
+        "EstimatedAttendees",
+        "SocialMediaOrVideoNeeds",
+        "PlaceToMeet"
+      ],
+      "properties": {
+        "tblEvent_ID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int",
+          "x-navigation": [
+            {
+              "inversePropertyName": "TblEvent",
+              "name": "TblCoreAttendances",
+              "type": "TblCoreAttendance"
+            },
+            {
+              "inversePropertyName": "TblEvent",
+              "name": "TblVolunteerSpeakerRequests",
+              "type": "TblVolunteerSpeakerRequest"
+            }
+          ]
+        },
+        "EventDate": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time",
+          "dbType": "date",
+          "x-datetime": "date"
+        },
+        "StartTime": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time",
+          "dbType": "smalldatetime",
+          "x-datetime": "smalldatetime"
+        },
+        "EndTime": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time",
+          "dbType": "smalldatetime",
+          "x-datetime": "smalldatetime"
+        },
+        "TblHospital": {
+          "type": "object",
+          "$ref": "#/definitions/TblHospital"
+        },
+        "HospitalID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int",
+          "x-foreignKey": {
+            "parentTable": "tblHospitals",
+            "parentEntityType": "TblHospital",
+            "type": "TblHospital",
+            "principalKey": "HospitalID",
+            "name": "TblHospital",
+            "textProperty": "HospitalName",
+            "navigationProperty": "TblEvents"
+          }
+        },
+        "LocationDetails": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "EventType": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 50
+        },
+        "EventDescription": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 50
+        },
+        "EventDetails": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "SpeakerNeeds": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "LeadershipSpeakerRequested": {
+          "x-nullable": false,
+          "type": "boolean",
+          "dbType": "bit"
+        },
+        "LeadershipSpeaker": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "LeadershipSpeechLength": {
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int"
+        },
+        "VolunteerSpeechLength": {
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int"
+        },
+        "SpeakerArrivalTime": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "binary",
+          "dbType": "timestamp",
+          "x-timestamp": true
+        },
+        "AudienceTypes": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "EstimatedAttendees": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 50
+        },
+        "SocialMediaOrVideoNeeds": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "IsLegislatorsInvited": {
+          "x-nullable": false,
+          "type": "boolean",
+          "dbType": "bit"
+        },
+        "IsLegislatorsAttending": {
+          "x-nullable": false,
+          "type": "boolean",
+          "dbType": "bit"
+        },
+        "IsQuiltRequested": {
+          "x-nullable": false,
+          "type": "boolean",
+          "dbType": "bit"
+        },
+        "QuiltNumber": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "QuiltCoordinator": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "IsVehicleRequested": {
+          "x-nullable": false,
+          "type": "boolean",
+          "dbType": "bit"
+        },
+        "IsVehicleReserved": {
+          "type": "boolean",
+          "dbType": "bit"
+        },
+        "VehicleDriver": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "OnsiteContactName": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "OnsiteContactPhone": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 50
+        },
+        "OnsiteContactEmail": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "IsLocked": {
+          "x-nullable": false,
+          "type": "boolean",
+          "dbType": "bit"
+        },
+        "PlaceToMeet": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "AdditionalInformation": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "TblCoreAttendances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TblCoreAttendance"
+          }
+        },
+        "TblVolunteerSpeakerRequests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TblVolunteerSpeakerRequest"
+          }
+        }
+      }
+    },
+    "TblHospital": {
+      "x-table": "dbo.tblHospitals",
+      "resource": "TblHospitals",
+      "required": [
+        "HospitalID"
+      ],
+      "properties": {
+        "HospitalID": {
+          "x-key": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int",
+          "x-navigation": [
+            {
+              "inversePropertyName": "TblHospital",
+              "name": "TblEvents",
+              "type": "TblEvent"
+            }
+          ]
+        },
+        "HospitalName": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "PGCode": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 5
+        },
+        "AgencyType": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "HospitalStatus": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 50
+        },
+        "HospitalAddress1": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "HospitalAddress2": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "HospitalCity": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "HospitalState": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 50
+        },
+        "HospitalZip": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 15
+        },
+        "HospitalCounty": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "PerDiem": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 5
+        },
+        "PSL": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "IsClosed": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 500
+        },
+        "TblEvents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TblEvent"
+          }
+        }
+      }
+    },
+    "TblSpeaker": {
+      "x-table": "dbo.tblSpeakers",
+      "resource": "TblSpeakers",
+      "required": [
+        "Name",
+        "PhoneNumber",
+        "Email",
+        "Connection",
+        "Background",
+        "AccessibilityRequirements"
+      ],
+      "properties": {
+        "tblSpeaker_ID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int",
+          "x-navigation": [
+            {
+              "inversePropertyName": "TblSpeaker",
+              "name": "TblVolunteerSpeakerRequests",
+              "type": "TblVolunteerSpeakerRequest"
+            }
+          ]
+        },
+        "Name": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 250
+        },
+        "PhoneNumber": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 50
+        },
+        "Email": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 250
+        },
+        "Connection": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 50
+        },
+        "Background": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 250
+        },
+        "AccessibilityRequirements": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 250
+        },
+        "Quote": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 250
+        },
+        "TblAdUser": {
+          "type": "object",
+          "$ref": "#/definitions/TblAdUser"
+        },
+        "tblADUser_ID": {
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int",
+          "x-foreignKey": {
+            "parentTable": "tblADUsers",
+            "parentEntityType": "TblAdUser",
+            "type": "TblAdUser",
+            "principalKey": "tblADUser_ID",
+            "name": "TblAdUser",
+            "textProperty": "UserName",
+            "navigationProperty": "TblSpeakers"
+          }
+        },
+        "TblVolunteerSpeakerRequests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TblVolunteerSpeakerRequest"
+          }
+        }
+      }
+    },
+    "TblVolunteerSpeakerRequest": {
+      "x-table": "dbo.tblVolunteerSpeakerRequests",
+      "resource": "TblVolunteerSpeakerRequests",
+      "required": [
+        "tblEvent_ID",
+        "tblSpeaker_ID"
+      ],
+      "properties": {
+        "tblVolunteerSpeakerRequests_ID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int"
+        },
+        "TblEvent": {
+          "type": "object",
+          "$ref": "#/definitions/TblEvent"
+        },
+        "tblEvent_ID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int",
+          "x-foreignKey": {
+            "parentTable": "tblEvents",
+            "parentEntityType": "TblEvent",
+            "type": "TblEvent",
+            "principalKey": "tblEvent_ID",
+            "name": "TblEvent",
+            "textProperty": "LocationDetails",
+            "navigationProperty": "TblVolunteerSpeakerRequests"
+          }
+        },
+        "TblSpeaker": {
+          "type": "object",
+          "$ref": "#/definitions/TblSpeaker"
+        },
+        "tblSpeaker_ID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int",
+          "x-foreignKey": {
+            "parentTable": "tblSpeakers",
+            "parentEntityType": "TblSpeaker",
+            "type": "TblSpeaker",
+            "principalKey": "tblSpeaker_ID",
+            "name": "TblSpeaker",
+            "textProperty": "Name",
+            "navigationProperty": "TblVolunteerSpeakerRequests"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/SpEventStartNewEventsFunc(EventDate='{EventDate}',StartTime='{StartTime}',EndTime='{EndTime}',HospitalID={HospitalID})": {
+      "get": {
+        "operationId": "getSpEventStartNewEvents",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "EventDate",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "StartTime",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "EndTime",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "HospitalID",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/SpEventStartNewEvent"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblAdUsers": {
+      "get": {
+        "operationId": "getTblAdUsers",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/TblAdUser"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTblAdUser",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblAdUser",
+            "schema": {
+              "$ref": "#/definitions/TblAdUser"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/TblAdUser"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblCoreAttendances": {
+      "get": {
+        "operationId": "getTblCoreAttendances",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/TblCoreAttendance"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTblCoreAttendance",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblCoreAttendance",
+            "schema": {
+              "$ref": "#/definitions/TblCoreAttendance"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/TblCoreAttendance"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblEvents": {
+      "get": {
+        "operationId": "getTblEvents",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/TblEvent"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTblEvent",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblEvent",
+            "schema": {
+              "$ref": "#/definitions/TblEvent"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/TblEvent"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblHospitals": {
+      "get": {
+        "operationId": "getTblHospitals",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/TblHospital"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTblHospital",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblHospital",
+            "schema": {
+              "$ref": "#/definitions/TblHospital"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/TblHospital"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblSpeakers": {
+      "get": {
+        "operationId": "getTblSpeakers",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/TblSpeaker"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTblSpeaker",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblSpeaker",
+            "schema": {
+              "$ref": "#/definitions/TblSpeaker"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/TblSpeaker"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblVolunteerSpeakerRequests": {
+      "get": {
+        "operationId": "getTblVolunteerSpeakerRequests",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/TblVolunteerSpeakerRequest"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTblVolunteerSpeakerRequest",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblVolunteerSpeakerRequest",
+            "schema": {
+              "$ref": "#/definitions/TblVolunteerSpeakerRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/TblVolunteerSpeakerRequest"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblAdUsers({tblADUser_ID})": {
+      "delete": {
+        "operationId": "deleteTblAdUser",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblADUser_ID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTblAdUserBytblADUser_ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblADUser_ID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TblAdUser"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTblAdUser",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblADUser_ID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "TblAdUser",
+            "schema": {
+              "$ref": "#/definitions/TblAdUser"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelTblAdUserChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblAdUser",
+            "schema": {
+              "$ref": "#/definitions/TblAdUser"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblCoreAttendances({tblCOREAttendance_ID})": {
+      "delete": {
+        "operationId": "deleteTblCoreAttendance",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblCOREAttendance_ID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTblCoreAttendanceBytblCOREAttendance_ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblCOREAttendance_ID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TblCoreAttendance"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTblCoreAttendance",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblCOREAttendance_ID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "TblCoreAttendance",
+            "schema": {
+              "$ref": "#/definitions/TblCoreAttendance"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelTblCoreAttendanceChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblCoreAttendance",
+            "schema": {
+              "$ref": "#/definitions/TblCoreAttendance"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblEvents({tblEvent_ID})": {
+      "delete": {
+        "operationId": "deleteTblEvent",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblEvent_ID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTblEventBytblEvent_ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblEvent_ID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TblEvent"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTblEvent",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblEvent_ID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "TblEvent",
+            "schema": {
+              "$ref": "#/definitions/TblEvent"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelTblEventChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblEvent",
+            "schema": {
+              "$ref": "#/definitions/TblEvent"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblHospitals({HospitalID})": {
+      "delete": {
+        "operationId": "deleteTblHospital",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "HospitalID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTblHospitalByHospitalID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "HospitalID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TblHospital"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTblHospital",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "HospitalID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "TblHospital",
+            "schema": {
+              "$ref": "#/definitions/TblHospital"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelTblHospitalChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblHospital",
+            "schema": {
+              "$ref": "#/definitions/TblHospital"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblSpeakers({tblSpeaker_ID})": {
+      "delete": {
+        "operationId": "deleteTblSpeaker",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblSpeaker_ID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTblSpeakerBytblSpeaker_ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblSpeaker_ID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TblSpeaker"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTblSpeaker",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblSpeaker_ID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "TblSpeaker",
+            "schema": {
+              "$ref": "#/definitions/TblSpeaker"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelTblSpeakerChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblSpeaker",
+            "schema": {
+              "$ref": "#/definitions/TblSpeaker"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblVolunteerSpeakerRequests({tblVolunteerSpeakerRequests_ID})": {
+      "delete": {
+        "operationId": "deleteTblVolunteerSpeakerRequest",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblVolunteerSpeakerRequests_ID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTblVolunteerSpeakerRequestBytblVolunteerSpeakerRequests_ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblVolunteerSpeakerRequests_ID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TblVolunteerSpeakerRequest"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTblVolunteerSpeakerRequest",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tblVolunteerSpeakerRequests_ID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "TblVolunteerSpeakerRequest",
+            "schema": {
+              "$ref": "#/definitions/TblVolunteerSpeakerRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelTblVolunteerSpeakerRequestChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblVolunteerSpeakerRequest",
+            "schema": {
+              "$ref": "#/definitions/TblVolunteerSpeakerRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "basePath": "/odata/CORE",
+  "host": "localhost:5000",
+  "schemes": [
+    "http"
+  ]
+}

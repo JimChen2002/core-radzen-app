@@ -1,0 +1,80 @@
+﻿@page "/add-events"
+@layout MainLayout
+@inherits CoreRadzen.Pages.AddEventsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using CoreRadzen.Models.Core
+@using CoreRadzen.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Add Events">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@tblevent" TItem="CoreRadzen.Models.Core.TblEvent" Visible="@(tblevent != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="EventDate" style="width: 100%" Text="Event Date">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker style="display: block; width: 100%" @bind-Value="@(tblevent.EventDate)" Name="EventDate">
+                </RadzenDatePicker>
+                <RadzenRequiredValidator Component="EventDate" style="position: absolute" Text="EventDate is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="StartTime" style="width: 100%" Text="Start Time">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker style="display: block; width: 100%" TimeOnly="true" @bind-Value="@(tblevent.StartTime)" Name="StartTime">
+                </RadzenDatePicker>
+                <RadzenRequiredValidator Component="StartTime" style="position: absolute" Text="StartTime is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="EndTime" style="width: 100%" Text="End Time">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker style="display: block; width: 100%" TimeOnly="true" @bind-Value="@(tblevent.EndTime)" Name="EndTime">
+                </RadzenDatePicker>
+                <RadzenRequiredValidator Component="EndTime" style="position: absolute" Text="EndTime is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="HospitalID" style="width: 100%" Text="Tbl Hospital">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDownDataGrid Data="@getTblHospitalsForHospitalIDResult" Placeholder="Choose TblHospital" ShowSearch="false" style="display: block; width: 100%" TextProperty="HospitalName" @bind-Value="@(tblevent.HospitalID)" ValueProperty="HospitalID" Name="HospitalID">
+                </RadzenDropDownDataGrid>
+                <RadzenRequiredValidator Component="HospitalID" DefaultValue="0" style="position: absolute" Text="HospitalID is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton Text="Create" Click="@Button0Click">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

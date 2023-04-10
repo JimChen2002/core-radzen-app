@@ -1,0 +1,188 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "type": "template-form",
+                  "name": "form0",
+                  "components": [
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Tbl Speaker",
+                              "component": "tblSpeaker_ID",
+                              "name": "tblSpeaker_IDLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getTblSpeakersResult}",
+                              "textProperty": "Name",
+                              "valueProperty": "tblSpeaker_ID",
+                              "placeholder": "Choose TblSpeaker",
+                              "valueType": "int",
+                              "type": "dropdown",
+                              "name": "tblSpeaker_ID",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${tblvolunteerspeakerrequest.tblSpeaker_ID}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "tblSpeaker_IDRequiredValidator",
+                              "component": "tblSpeaker_ID",
+                              "text": "tblSpeaker_ID is required",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "defaultValue": "0"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "type": "button",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "buttonStyle": "primary"
+                            },
+                            {
+                              "type": "button",
+                              "buttonStyle": "light",
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblVolunteerSpeakerRequest",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "CORE.updateTblVolunteerSpeakerRequest",
+                        "parameters": [
+                          {
+                            "name": "tblVolunteerSpeakerRequests_ID",
+                            "value": "${parameters.tblVolunteerSpeakerRequests_ID}"
+                          },
+                          {
+                            "name": "TblVolunteerSpeakerRequest",
+                            "value": "${tblvolunteerspeakerrequest}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblvolunteerspeakerrequest}",
+                            "condition": ""
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "CoreRadzen.Models.Core.TblVolunteerSpeakerRequest",
+                  "data": "${tblvolunteerspeakerrequest}",
+                  "visible": "${tblvolunteerspeakerrequest != null}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "CORE.getTblVolunteerSpeakerRequestBytblVolunteerSpeakerRequests_ID",
+        "parameters": [
+          {
+            "name": "tblVolunteerSpeakerRequests_ID",
+            "value": "${parameters.tblVolunteerSpeakerRequests_ID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tblvolunteerspeakerrequest",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "CoreRadzen.Models.Core.TblVolunteerSpeakerRequest"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
+      },
+      {
+        "name": "CORE.getTblSpeakers",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblSpeakersResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CoreRadzen.Models.Core.TblSpeaker>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Tbl Volunteer Speaker Request",
+  "access": "Authenticated",
+  "layout": "Main"
+}

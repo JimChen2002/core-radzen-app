@@ -1,0 +1,402 @@
+﻿@page "/edit-events/{tblEvent_ID}"
+@layout MainLayout
+@inherits CoreRadzen.Pages.EditEventsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using CoreRadzen.Models.Core
+@using CoreRadzen.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Edit Events">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@tblevent" TItem="CoreRadzen.Models.Core.TblEvent" Visible="@(tblevent != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="EventDate" style="width: 100%" Text="Event Date">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker style="display: block; width: 100%" @bind-Value="@(tblevent.EventDate)" Name="EventDate">
+                </RadzenDatePicker>
+                <RadzenRequiredValidator Component="EventDate" style="position: absolute" Text="EventDate is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="StartTime" style="width: 100%" Text="Start Time">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker style="display: block; width: 100%" @bind-Value="@(tblevent.StartTime)" Name="StartTime">
+                </RadzenDatePicker>
+                <RadzenRequiredValidator Component="StartTime" style="position: absolute" Text="StartTime is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="EndTime" style="width: 100%" Text="End Time">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker style="display: block; width: 100%" @bind-Value="@(tblevent.EndTime)" Name="EndTime">
+                </RadzenDatePicker>
+                <RadzenRequiredValidator Component="EndTime" style="position: absolute" Text="EndTime is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="HospitalID" style="width: 100%" Text="Tbl Hospital">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDownDataGrid Data="@getTblHospitalsForHospitalIDResult" Placeholder="Choose TblHospital" ShowSearch="false" style="display: block; width: 100%" TextProperty="HospitalName" @bind-Value="@(tblevent.HospitalID)" ValueProperty="HospitalID" Name="HospitalID">
+                </RadzenDropDownDataGrid>
+                <RadzenRequiredValidator Component="HospitalID" DefaultValue="0" style="position: absolute" Text="HospitalID is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="LocationDetails" style="width: 100%" Text="Location Details">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="500" style="display: block; width: 100%" @bind-Value="@(tblevent.LocationDetails)" Name="LocationDetails">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="LocationDetails" style="position: absolute" Text="LocationDetails is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="EventType" style="width: 100%" Text="Event Type">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="display: block; width: 100%" @bind-Value="@(tblevent.EventType)" Name="EventType">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="EventType" style="position: absolute" Text="EventType is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="EventDescription" style="width: 100%" Text="Event Description">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="display: block; width: 100%" @bind-Value="@(tblevent.EventDescription)" Name="EventDescription">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="EventDescription" style="position: absolute" Text="EventDescription is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="EventDetails" style="width: 100%" Text="Event Details">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="500" style="display: block; width: 100%" @bind-Value="@(tblevent.EventDetails)" Name="EventDetails">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="EventDetails" style="position: absolute" Text="EventDetails is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="SpeakerNeeds" style="width: 100%" Text="Speaker Needs">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="500" style="display: block; width: 100%" @bind-Value="@(tblevent.SpeakerNeeds)" Name="SpeakerNeeds">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="SpeakerNeeds" style="position: absolute" Text="SpeakerNeeds is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="LeadershipSpeakerRequested" style="width: 100%" Text="Leadership Speaker Requested">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenCheckBox @bind-Value="@(tblevent.LeadershipSpeakerRequested)" Name="LeadershipSpeakerRequested">
+                </RadzenCheckBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="LeadershipSpeaker" style="width: 100%" Text="Leadership Speaker">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="500" style="width: 100%" @bind-Value="@(tblevent.LeadershipSpeaker)" Name="LeadershipSpeaker">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="LeadershipSpeechLength" style="width: 100%" Text="Leadership Speech Length">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblevent.LeadershipSpeechLength)" Name="LeadershipSpeechLength">
+                </RadzenNumeric>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="LeadershipSpeechLength" style="width: 251.5px" Text="Volunteer Speakers Requested">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@TblVolunteerSpeakerRequestAddButtonClick">
+                </RadzenButton>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+              </div>
+              <div class="col-md-9">
+                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add New Speaker" Click="@Button0Click">
+                </RadzenButton>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <RadzenDataGrid @ref="grid2" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblVolunteerSpeakerRequests" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" RowSelect="@Grid2RowSelect">
+                <Columns>
+                  <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="tblVolunteerSpeakerRequests_ID" Title="Tbl Volunteer Speaker Requests ID">
+                  </RadzenDataGridColumn>
+                  <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" FilterProperty="TblEvent.LocationDetails" GroupProperty="TblEvent.LocationDetails" Property="tblEvent_ID" SortProperty="TblEvent.LocationDetails" Title="Tbl Event">
+                    <Template Context="data">
+                    @(data.TblEvent?.LocationDetails)
+                    </Template>
+                  </RadzenDataGridColumn>
+                  <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" FilterProperty="TblSpeaker.Name" GroupProperty="TblSpeaker.Name" Property="tblSpeaker_ID" SortProperty="TblSpeaker.Name" Title="Tbl Speaker">
+                    <Template Context="data">
+                    @(data.TblSpeaker?.Name)
+                    </Template>
+                  </RadzenDataGridColumn>
+                  <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+                    <Template Context="coreRadzenModelsCoreTblVolunteerSpeakerRequest">
+                      <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>TblVolunteerSpeakerRequestDeleteButtonClick(args, coreRadzenModelsCoreTblVolunteerSpeakerRequest))" @onclick:stopPropagation="true">
+                      </RadzenButton>
+                    </Template>
+                  </RadzenDataGridColumn>
+                </Columns>
+              </RadzenDataGrid>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="VolunteerSpeechLength" style="width: 100%" Text="Volunteer Speech Length">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblevent.VolunteerSpeechLength)" Name="VolunteerSpeechLength">
+                </RadzenNumeric>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="AudienceTypes" style="width: 100%" Text="Audience Types">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDown Chips="true" Data="@audienceTypeList" Multiple="true" style="width: 607.4000244140625px" TextProperty="Id" @bind-Value="@selectedAudienceTypes" ValueProperty="Name" Name="Dropdown0" Change="@Dropdown0Change">
+                </RadzenDropDown>
+                <RadzenTextBox MaxLength="500" style="display: block; width: 34.5px" @bind-Value="@(tblevent.AudienceTypes)" Name="AudienceTypes">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="AudienceTypes" style="position: absolute" Text="AudienceTypes is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="EstimatedAttendees" style="width: 100%" Text="Estimated Attendees">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="display: block; width: 100%" @bind-Value="@(tblevent.EstimatedAttendees)" Name="EstimatedAttendees">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="EstimatedAttendees" style="position: absolute" Text="EstimatedAttendees is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="SocialMediaOrVideoNeeds" style="width: 100%" Text="Social Media Or Video Needs">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="500" style="display: block; width: 100%" @bind-Value="@(tblevent.SocialMediaOrVideoNeeds)" Name="SocialMediaOrVideoNeeds">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="SocialMediaOrVideoNeeds" style="position: absolute" Text="SocialMediaOrVideoNeeds is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="IsLegislatorsInvited" style="width: 100%" Text="Is Legislators Invited">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenCheckBox @bind-Value="@(tblevent.IsLegislatorsInvited)" Name="IsLegislatorsInvited">
+                </RadzenCheckBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="IsLegislatorsAttending" style="width: 100%" Text="Is Legislators Attending">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenCheckBox @bind-Value="@(tblevent.IsLegislatorsAttending)" Name="IsLegislatorsAttending">
+                </RadzenCheckBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="IsQuiltRequested" style="width: 100%" Text="Is Quilt Requested">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenCheckBox @bind-Value="@(tblevent.IsQuiltRequested)" Name="IsQuiltRequested">
+                </RadzenCheckBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="QuiltNumber" style="width: 100%" Text="Quilt Number">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="500" style="width: 100%" @bind-Value="@(tblevent.QuiltNumber)" Name="QuiltNumber">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="QuiltCoordinator" style="width: 100%" Text="Quilt Coordinator">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="500" style="width: 100%" @bind-Value="@(tblevent.QuiltCoordinator)" Name="QuiltCoordinator">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="IsVehicleRequested" style="width: 100%" Text="Is Vehicle Requested">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenCheckBox @bind-Value="@(tblevent.IsVehicleRequested)" Name="IsVehicleRequested">
+                </RadzenCheckBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="IsVehicleReserved" style="width: 100%" Text="Is Vehicle Reserved">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenCheckBox TriState="true" @bind-Value="@(tblevent.IsVehicleReserved)" Name="IsVehicleReserved">
+                </RadzenCheckBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="VehicleDriver" style="width: 100%" Text="Vehicle Driver">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="500" style="width: 100%" @bind-Value="@(tblevent.VehicleDriver)" Name="VehicleDriver">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="OnsiteContactName" style="width: 100%" Text="Onsite Contact Name">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="500" style="width: 100%" @bind-Value="@(tblevent.OnsiteContactName)" Name="OnsiteContactName">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="OnsiteContactPhone" style="width: 100%" Text="Onsite Contact Phone">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblevent.OnsiteContactPhone)" Name="OnsiteContactPhone">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="OnsiteContactEmail" style="width: 100%" Text="Onsite Contact Email">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="500" style="width: 100%" @bind-Value="@(tblevent.OnsiteContactEmail)" Name="OnsiteContactEmail">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="IsLocked" style="width: 100%" Text="Is Locked">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenCheckBox @bind-Value="@(tblevent.IsLocked)" Name="IsLocked">
+                </RadzenCheckBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="PlaceToMeet" style="width: 100%" Text="Place To Meet">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="500" style="display: block; width: 100%" @bind-Value="@(tblevent.PlaceToMeet)" Name="PlaceToMeet">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="PlaceToMeet" style="position: absolute" Text="PlaceToMeet is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="AdditionalInformation" style="width: 100%" Text="Additional Information">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="500" style="width: 100%" @bind-Value="@(tblevent.AdditionalInformation)" Name="AdditionalInformation">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@Button4Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

@@ -1,0 +1,65 @@
+﻿@inherits CoreRadzen.Layouts.MainLayoutComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using CoreRadzen.Models.Core
+@using CoreRadzen.Models
+@using CoreRadzen.Pages
+<RadzenDialog />
+<RadzenNotification />
+<RadzenTooltip />
+<RadzenContextMenu />
+
+<RadzenLayout>
+  <ChildContent>
+    <RadzenHeader>
+      <ChildContent>
+        <div class="row justify-content-start align-items-center">
+          <div class="col-6 d-flex align-items-center">
+            <RadzenSidebarToggle Click="@SidebarToggle0Click">
+            </RadzenSidebarToggle>
+            <RadzenLabel Text="CoreRadzen">
+            </RadzenLabel>
+          </div>
+          <div class="col-6 text-right">
+            <RadzenProfileMenu Visible="@(Security.IsAuthenticated())" Click="@Profilemenu0Click">
+              <ChildContent>
+                <RadzenProfileMenuItem Text="Logout" Value="Logout" Icon="power_settings_new">
+                </RadzenProfileMenuItem>
+              </ChildContent>
+              <Template>
+                <RadzenLabel Text="@($"{(Security.User?.Name)}")">
+                </RadzenLabel>
+              </Template>
+            </RadzenProfileMenu>
+          </div>
+        </div>
+      </ChildContent>
+    </RadzenHeader>
+    <RadzenBody @ref="body0">
+      <ChildContent>
+        <RadzenContentContainer Name="main">
+        @Body
+        </RadzenContentContainer>
+      </ChildContent>
+    </RadzenBody>
+    <RadzenSidebar @ref="sidebar0">
+      <ChildContent>
+        <RadzenPanelMenu style="height: 100%">
+          <ChildContent>
+            <RadzenPanelMenuItem Text="TblSpeaker" Path="tbl-speaker" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="TblEvents" Path="tbl-events" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+            </RadzenPanelMenuItem>
+          </ChildContent>
+        </RadzenPanelMenu>
+      </ChildContent>
+    </RadzenSidebar>
+    <RadzenFooter>
+      <ChildContent>
+        <RadzenLabel Text="CoreRadzen, Copyright Ⓒ 2023">
+        </RadzenLabel>
+      </ChildContent>
+    </RadzenFooter>
+  </ChildContent>
+</RadzenLayout>

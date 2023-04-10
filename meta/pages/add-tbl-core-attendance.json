@@ -1,0 +1,174 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "type": "template-form",
+                  "name": "form0",
+                  "components": [
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Tbl Ad User",
+                              "component": "tblADUser_ID",
+                              "name": "tblADUser_IDLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getTblAdUsersResult}",
+                              "textProperty": "UserName",
+                              "valueProperty": "tblADUser_ID",
+                              "placeholder": "Choose TblAdUser",
+                              "valueType": "int",
+                              "type": "dropdown",
+                              "name": "tblADUser_ID",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${tblcoreattendance.tblADUser_ID}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "tblADUser_IDRequiredValidator",
+                              "component": "tblADUser_ID",
+                              "text": "tblADUser_ID is required",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "defaultValue": "0"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "type": "button",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "buttonStyle": "primary"
+                            },
+                            {
+                              "type": "button",
+                              "buttonStyle": "light",
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "type": "execute",
+                        "code": "tblcoreattendance.tblEvent_ID = int.Parse($\"{tblEvent_ID}\");"
+                      },
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new TblCoreAttendance!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "CORE.createTblCoreAttendance",
+                        "parameters": [
+                          {
+                            "name": "TblCoreAttendance",
+                            "value": "${tblcoreattendance}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblcoreattendance}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "data": "${tblcoreattendance}",
+                  "visible": "${tblcoreattendance != null}",
+                  "itemType": "CoreRadzen.Models.Core.TblCoreAttendance"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "CORE.getTblAdUsers",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblAdUsersResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CoreRadzen.Models.Core.TblAdUser>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "tblcoreattendance",
+        "type": "set",
+        "value": "new CoreRadzen.Models.Core.TblCoreAttendance(){}",
+        "valueType": "CoreRadzen.Models.Core.TblCoreAttendance"
+      }
+    ]
+  },
+  "name": "Add Tbl Core Attendance",
+  "access": "Authenticated",
+  "layout": "Main"
+}
