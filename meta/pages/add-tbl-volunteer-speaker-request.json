@@ -1,112 +1,111 @@
 {
+  "access": "Authenticated",
   "components": [
     {
-      "type": "content",
-      "container": "main",
       "components": [
         {
-          "type": "row",
           "components": [
             {
-              "type": "col",
               "class": "col-md-12",
               "components": [
                 {
-                  "type": "template-form",
-                  "name": "form0",
                   "components": [
                     {
-                      "type": "row",
-                      "style": {
-                        "marginBottom": "1rem"
-                      },
                       "components": [
                         {
-                          "type": "col",
-                          "class": "col-md-3",
+                          "class": "col-md-2",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Tbl Speaker",
                               "component": "tblSpeaker_ID",
                               "name": "tblSpeaker_IDLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Volunteer Speaker",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "style": {
+                            "paddingRight": "1px"
+                          },
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
                               "data": "${getTblSpeakersResult}",
-                              "textProperty": "Name",
-                              "valueProperty": "tblSpeaker_ID",
-                              "placeholder": "Choose TblSpeaker",
-                              "valueType": "int",
-                              "type": "dropdown",
                               "name": "tblSpeaker_ID",
+                              "placeholder": "Choose Speaker",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${tblvolunteerspeakerrequest.tblSpeaker_ID}"
+                              "textProperty": "Name",
+                              "type": "dropdown",
+                              "value": "${tblvolunteerspeakerrequest.tblSpeaker_ID}",
+                              "valueProperty": "tblSpeaker_ID",
+                              "valueType": "int"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "tblSpeaker_IDRequiredValidator",
                               "component": "tblSpeaker_ID",
-                              "text": "tblSpeaker_ID is required",
+                              "defaultValue": "0",
+                              "name": "tblSpeaker_IDRequiredValidator",
                               "style": {
                                 "position": "absolute"
                               },
-                              "defaultValue": "0"
+                              "text": "Speaker is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
                     },
                     {
-                      "type": "row",
                       "components": [
                         {
-                          "type": "col",
                           "class": "col offset-sm-3",
                           "components": [
                             {
-                              "type": "button",
+                              "buttonStyle": "primary",
                               "buttonType": "submit",
                               "icon": "save",
                               "text": "Save",
-                              "buttonStyle": "primary"
+                              "type": "button"
                             },
                             {
-                              "type": "button",
                               "buttonStyle": "light",
-                              "style": {
-                                "marginLeft": "1rem"
-                              },
-                              "text": "Cancel",
                               "events": {
                                 "click": [
                                   {
                                     "type": "close-popup"
                                   }
                                 ]
-                              }
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "type": "button"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
+                      ],
+                      "type": "row"
                     }
                   ],
+                  "data": "${tblvolunteerspeakerrequest}",
                   "events": {
                     "submit": [
                       {
-                        "type": "execute",
-                        "code": "tblvolunteerspeakerrequest.tblEvent_ID = int.Parse($\"{tblEvent_ID}\");"
+                        "code": "tblvolunteerspeakerrequest.tblEvent_ID = int.Parse($\"{tblEvent_ID}\");",
+                        "type": "execute"
                       },
                       {
                         "error": [
@@ -126,23 +125,28 @@
                         ],
                         "then": [
                           {
-                            "type": "close-popup",
-                            "result": "${tblvolunteerspeakerrequest}"
+                            "result": "${tblvolunteerspeakerrequest}",
+                            "type": "close-popup"
                           }
                         ],
                         "type": "invoke"
                       }
                     ]
                   },
-                  "data": "${tblvolunteerspeakerrequest}",
-                  "visible": "${tblvolunteerspeakerrequest != null}",
-                  "itemType": "CoreRadzen.Models.Core.TblVolunteerSpeakerRequest"
+                  "itemType": "CoreRadzen.Models.Core.TblVolunteerSpeakerRequest",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${tblvolunteerspeakerrequest != null}"
                 }
-              ]
+              ],
+              "type": "col"
             }
-          ]
+          ],
+          "type": "row"
         }
-      ]
+      ],
+      "container": "main",
+      "type": "content"
     }
   ],
   "events": {
@@ -168,7 +172,6 @@
       }
     ]
   },
-  "name": "Add Tbl Volunteer Speaker Request",
-  "access": "Authenticated",
-  "layout": "Main"
+  "layout": "Main",
+  "name": "Add Tbl Volunteer Speaker Request"
 }

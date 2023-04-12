@@ -10,57 +10,57 @@
 @attribute [Authorize]
 <RadzenContent Container="main">
   <ChildContent>
-    <RadzenHeading Size="H1" Text="Add Events">
+    <RadzenHeading Size="H1"  Text="Add Events">
     </RadzenHeading>
     <div class="row">
-      <div class="col-md-12">
-        <RadzenTemplateForm Data="@tblevent" TItem="CoreRadzen.Models.Core.TblEvent" Visible="@(tblevent != null)" Submit="@Form0Submit">
+      <div class="col-md-12" style="display: block; float: none; visibility: visible">
+        <RadzenTemplateForm Data="@tblevent" TItem="CoreRadzen.Models.Core.TblEvent" style="display: block; float: none; right: 0; vertical-align: baseline" Visible="@(tblevent != null)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
-              <div class="col-md-3">
-                <RadzenLabel Component="EventDate" style="width: 100%" Text="Event Date">
+              <div class="col-md-2" style="padding-right: 1px">
+                <RadzenLabel Component="EventDate" style="width: 100%" Text="Date">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDatePicker style="display: block; width: 100%" @bind-Value="@(tblevent.EventDate)" Name="EventDate">
+                <RadzenDatePicker DateFormat="MM/dd/yyyy" HourFormat="12" ShowTime="false" ShowTimeOkButton="false" style="display: block; float: none; width: 100%" @bind-Value="@(tblevent.EventDate)" Name="EventDate">
                 </RadzenDatePicker>
-                <RadzenRequiredValidator Component="EventDate" style="position: absolute" Text="EventDate is required">
+                <RadzenRequiredValidator Component="EventDate" style="position: absolute" Text="Event date is required">
                 </RadzenRequiredValidator>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
-              <div class="col-md-3">
+              <div class="col-md-2" style="padding-right: 1px">
                 <RadzenLabel Component="StartTime" style="width: 100%" Text="Start Time">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDatePicker style="display: block; width: 100%" TimeOnly="true" @bind-Value="@(tblevent.StartTime)" Name="StartTime">
+                <RadzenDatePicker DateFormat="hh:mm tt" HourFormat="12" ShowTime="true" style="display: block; width: 100%" TimeOnly="true" @bind-Value="@(tblevent.StartTime)" Name="StartTime">
                 </RadzenDatePicker>
-                <RadzenRequiredValidator Component="StartTime" style="position: absolute" Text="StartTime is required">
+                <RadzenRequiredValidator Component="StartTime" style="position: absolute" Text="Start time is required">
                 </RadzenRequiredValidator>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
-              <div class="col-md-3">
+              <div class="col-md-2" style="padding-right: 1px">
                 <RadzenLabel Component="EndTime" style="width: 100%" Text="End Time">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDatePicker style="display: block; width: 100%" TimeOnly="true" @bind-Value="@(tblevent.EndTime)" Name="EndTime">
+                <RadzenDatePicker DateFormat="hh:mm tt" HourFormat="12" ShowTime="true" style="display: block; width: 100%" TimeOnly="true" @bind-Value="@(tblevent.EndTime)" Name="EndTime">
                 </RadzenDatePicker>
-                <RadzenRequiredValidator Component="EndTime" style="position: absolute" Text="EndTime is required">
+                <RadzenRequiredValidator Component="EndTime" style="position: absolute" Text="End time is required">
                 </RadzenRequiredValidator>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
-              <div class="col-md-3">
-                <RadzenLabel Component="HospitalID" style="width: 100%" Text="Tbl Hospital">
+              <div class="col-md-2" style="padding-right: 1px">
+                <RadzenLabel Component="HospitalID" style="width: 100%" Text="Hospital">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDownDataGrid Data="@getTblHospitalsForHospitalIDResult" Placeholder="Choose TblHospital" ShowSearch="false" style="display: block; width: 100%" TextProperty="HospitalName" @bind-Value="@(tblevent.HospitalID)" ValueProperty="HospitalID" Name="HospitalID">
+                <RadzenDropDownDataGrid Data="@getTblHospitalsForHospitalIDResult" Placeholder="Choose Hospital" ShowSearch="false" style="display: block; width: 100%" TextProperty="HospitalName" @bind-Value="@(tblevent.HospitalID)" ValueProperty="HospitalID" Name="HospitalID">
                 </RadzenDropDownDataGrid>
-                <RadzenRequiredValidator Component="HospitalID" DefaultValue="0" style="position: absolute" Text="HospitalID is required">
+                <RadzenRequiredValidator Component="HospitalID" DefaultValue="0" style="position: absolute" Text="Hospital is required">
                 </RadzenRequiredValidator>
               </div>
             </div>

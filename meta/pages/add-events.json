@@ -6,6 +6,7 @@
         {
           "name": "pageTitle",
           "size": "H1",
+          "style": {},
           "text": "Add Events",
           "type": "heading"
         },
@@ -19,7 +20,8 @@
                     {
                       "components": [
                         {
-                          "class": "col-md-3",
+                          "attributes": [],
+                          "class": "col-md-2",
                           "components": [
                             {
                               "component": "EventDate",
@@ -27,19 +29,27 @@
                               "style": {
                                 "width": "100%"
                               },
-                              "text": "Event Date",
+                              "text": "Date",
                               "type": "label"
                             }
                           ],
+                          "style": {
+                            "paddingRight": "1px"
+                          },
                           "type": "col"
                         },
                         {
                           "class": "col-md-9",
                           "components": [
                             {
+                              "dateFormat": "MM/dd/yyyy",
+                              "hourFormat": 12,
                               "name": "EventDate",
+                              "showTime": false,
+                              "showTimeOkButton": false,
                               "style": {
                                 "display": "block",
+                                "float": "none",
                                 "width": "100%"
                               },
                               "type": "datepicker",
@@ -52,7 +62,7 @@
                               "style": {
                                 "position": "absolute"
                               },
-                              "text": "EventDate is required",
+                              "text": "Event date is required",
                               "type": "required-validator"
                             }
                           ],
@@ -67,7 +77,7 @@
                     {
                       "components": [
                         {
-                          "class": "col-md-3",
+                          "class": "col-md-2",
                           "components": [
                             {
                               "component": "StartTime",
@@ -79,13 +89,19 @@
                               "type": "label"
                             }
                           ],
+                          "style": {
+                            "paddingRight": "1px"
+                          },
                           "type": "col"
                         },
                         {
                           "class": "col-md-9",
                           "components": [
                             {
+                              "dateFormat": "hh:mm tt",
+                              "hourFormat": 12,
                               "name": "StartTime",
+                              "showTime": true,
                               "style": {
                                 "display": "block",
                                 "width": "100%"
@@ -101,7 +117,7 @@
                               "style": {
                                 "position": "absolute"
                               },
-                              "text": "StartTime is required",
+                              "text": "Start time is required",
                               "type": "required-validator"
                             }
                           ],
@@ -116,7 +132,7 @@
                     {
                       "components": [
                         {
-                          "class": "col-md-3",
+                          "class": "col-md-2",
                           "components": [
                             {
                               "component": "EndTime",
@@ -128,13 +144,19 @@
                               "type": "label"
                             }
                           ],
+                          "style": {
+                            "paddingRight": "1px"
+                          },
                           "type": "col"
                         },
                         {
                           "class": "col-md-9",
                           "components": [
                             {
+                              "dateFormat": "hh:mm tt",
+                              "hourFormat": 12,
                               "name": "EndTime",
+                              "showTime": true,
                               "style": {
                                 "display": "block",
                                 "width": "100%"
@@ -150,7 +172,7 @@
                               "style": {
                                 "position": "absolute"
                               },
-                              "text": "EndTime is required",
+                              "text": "End time is required",
                               "type": "required-validator"
                             }
                           ],
@@ -165,7 +187,7 @@
                     {
                       "components": [
                         {
-                          "class": "col-md-3",
+                          "class": "col-md-2",
                           "components": [
                             {
                               "component": "HospitalID",
@@ -173,10 +195,13 @@
                               "style": {
                                 "width": "100%"
                               },
-                              "text": "Tbl Hospital",
+                              "text": "Hospital",
                               "type": "label"
                             }
                           ],
+                          "style": {
+                            "paddingRight": "1px"
+                          },
                           "type": "col"
                         },
                         {
@@ -185,7 +210,7 @@
                             {
                               "data": "${getTblHospitalsForHospitalIDResult}",
                               "name": "HospitalID",
-                              "placeholder": "Choose TblHospital",
+                              "placeholder": "Choose Hospital",
                               "showSearch": false,
                               "style": {
                                 "display": "block",
@@ -204,7 +229,7 @@
                               "style": {
                                 "position": "absolute"
                               },
-                              "text": "HospitalID is required",
+                              "text": "Hospital is required",
                               "type": "required-validator"
                             }
                           ],
@@ -217,6 +242,7 @@
                       "type": "row"
                     },
                     {
+                      "class": "",
                       "components": [
                         {
                           "class": "col offset-sm-3",
@@ -324,10 +350,21 @@
                   },
                   "itemType": "CoreRadzen.Models.Core.TblEvent",
                   "name": "form0",
+                  "style": {
+                    "display": "block",
+                    "float": "none",
+                    "right": "0",
+                    "verticalAlign": "baseline"
+                  },
                   "type": "template-form",
                   "visible": "${tblevent != null}"
                 }
               ],
+              "style": {
+                "display": "block",
+                "float": "none",
+                "visibility": "visible"
+              },
               "type": "col"
             }
           ],
