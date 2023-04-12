@@ -742,14 +742,6 @@
                                   "visible": false
                                 },
                                 {
-                                  "filterProperty": "TblSpeaker.Name",
-                                  "groupProperty": "TblSpeaker.Name",
-                                  "property": "tblSpeaker_ID",
-                                  "sortProperty": "TblSpeaker.Name",
-                                  "template": "${data.TblSpeaker?.Name}",
-                                  "title": "Tbl Speaker"
-                                },
-                                {
                                   "filterable": false,
                                   "sortable": false,
                                   "template": [
@@ -800,6 +792,14 @@
                                   ],
                                   "textAlign": "center",
                                   "width": "70px"
+                                },
+                                {
+                                  "filterProperty": "TblSpeaker.Name",
+                                  "groupProperty": "TblSpeaker.Name",
+                                  "property": "tblSpeaker_ID",
+                                  "sortProperty": "TblSpeaker.Name",
+                                  "template": "${data.TblSpeaker?.Name}",
+                                  "title": "Speakers"
                                 }
                               ],
                               "data": "${TblVolunteerSpeakerRequests}",
@@ -1607,7 +1607,7 @@
                                   "property": "tblADUser_ID",
                                   "sortProperty": "TblAdUser.UserName",
                                   "template": "${data.TblAdUser?.UserName}",
-                                  "title": "Tbl Ad User"
+                                  "title": "CORE Team Members"
                                 },
                                 {
                                   "filterable": false,
@@ -1853,7 +1853,7 @@
                               "events": {
                                 "click": [
                                   {
-                                    "path": "tbl-events",
+                                    "path": "events",
                                     "type": "navigate"
                                   }
                                 ]
@@ -1902,7 +1902,7 @@
                         "then": [
                           {
                             "condition": "",
-                            "path": "tbl-events",
+                            "path": "events",
                             "type": "navigate"
                           }
                         ],
@@ -1997,6 +1997,12 @@
       },
       {
         "name": "CORE.getTblCoreAttendances",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "i => i.tblEvent_ID == ${parameters.tblEvent_ID}"
+          }
+        ],
         "then": [
           {
             "name": "TblCoreAttendances",

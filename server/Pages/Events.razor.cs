@@ -7,7 +7,7 @@ using Radzen.Blazor;
 
 namespace CoreRadzen.Pages
 {
-    public partial class TblEventsComponent
+    public partial class EventsComponent
     {
 
     }

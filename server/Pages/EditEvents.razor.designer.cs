@@ -214,7 +214,7 @@ namespace CoreRadzen.Pages
 
             tblevent.IsLocked = false;
 
-            var coreGetTblCoreAttendancesResult = await Core.GetTblCoreAttendances();
+            var coreGetTblCoreAttendancesResult = await Core.GetTblCoreAttendances(new Query() { Filter = $@"i => i.tblEvent_ID == {tblEvent_ID}" });
             TblCoreAttendances = coreGetTblCoreAttendancesResult;
         }
 
@@ -223,7 +223,7 @@ namespace CoreRadzen.Pages
             try
             {
                 var coreUpdateTblEventResult = await Core.UpdateTblEvent(Convert.ChangeType(tblEvent_ID, Type.GetTypeCode(typeof(int))), tblevent);
-                UriHelper.NavigateTo("tbl-events");
+                UriHelper.NavigateTo("events");
             }
             catch (System.Exception coreUpdateTblEventException)
             {
@@ -305,7 +305,7 @@ namespace CoreRadzen.Pages
 
         protected async System.Threading.Tasks.Task Button5Click(MouseEventArgs args)
         {
-            UriHelper.NavigateTo("tbl-events");
+            UriHelper.NavigateTo("events");
         }
     }
 }

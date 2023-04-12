@@ -47,9 +47,9 @@
       <ChildContent>
         <RadzenPanelMenu style="height: 100%">
           <ChildContent>
-            <RadzenPanelMenuItem Text="TblSpeaker" Path="tbl-speaker" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+            <RadzenPanelMenuItem Path="events" Selected="true" Target="_self" Text="Events" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
             </RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Text="TblEvents" Path="tbl-events" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+            <RadzenPanelMenuItem Path="volunteer-speakers" Target="_self" Text="Volunteer Speakers" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
             </RadzenPanelMenuItem>
           </ChildContent>
         </RadzenPanelMenu>

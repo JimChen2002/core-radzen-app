@@ -14,7 +14,7 @@ using CoreRadzen.Models;
 
 namespace CoreRadzen.Pages
 {
-    public partial class TblEventsComponent : ComponentBase
+    public partial class EventsComponent : ComponentBase
     {
         [Parameter(CaptureUnmatchedValues = true)]
         public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
@@ -55,8 +55,8 @@ namespace CoreRadzen.Pages
         [Inject]
         protected CoreService Core { get; set; }
         protected RadzenDataGrid<CoreRadzen.Models.Core.TblEvent> grid0;
-        protected RadzenDataGrid<CoreRadzen.Models.Core.TblCoreAttendance> grid1;
         protected RadzenDataGrid<CoreRadzen.Models.Core.TblVolunteerSpeakerRequest> grid2;
+        protected RadzenDataGrid<CoreRadzen.Models.Core.TblCoreAttendance> grid1;
 
         string _search;
         protected string search
@@ -273,37 +273,6 @@ namespace CoreRadzen.Pages
             }
         }
 
-        protected async System.Threading.Tasks.Task TblCoreAttendanceAddButtonClick(MouseEventArgs args)
-        {
-            var dialogResult = await DialogService.OpenAsync<AddTblCoreAttendance>("Add Tbl Core Attendance", new Dictionary<string, object>() { {"tblEvent_ID", master.tblEvent_ID} });
-            await grid1.Reload();
-        }
-
-        protected async System.Threading.Tasks.Task Grid1RowSelect(CoreRadzen.Models.Core.TblCoreAttendance args)
-        {
-            var dialogResult = await DialogService.OpenAsync<EditTblCoreAttendance>("Edit Tbl Core Attendance", new Dictionary<string, object>() { {"tblCOREAttendance_ID", args.tblCOREAttendance_ID} });
-            await grid1.Reload();
-        }
-
-        protected async System.Threading.Tasks.Task TblCoreAttendanceDeleteButtonClick(MouseEventArgs args, dynamic data)
-        {
-            try
-            {
-                if (await DialogService.Confirm("Are you sure you want to delete this record?") == true)
-                {
-                    var coreDeleteTblCoreAttendanceResult = await Core.DeleteTblCoreAttendance(data.tblCOREAttendance_ID);
-                    if (coreDeleteTblCoreAttendanceResult != null)
-                    {
-                        await grid1.Reload();
-                    }
-                }
-            }
-            catch (System.Exception coreDeleteTblCoreAttendanceException)
-            {
-                NotificationService.Notify(new NotificationMessage(){ Severity = NotificationSeverity.Error,Summary = $"Error",Detail = $"Unable to delete TblEvent" });
-            }
-        }
-
         protected async System.Threading.Tasks.Task TblVolunteerSpeakerRequestAddButtonClick(MouseEventArgs args)
         {
             var dialogResult = await DialogService.OpenAsync<AddTblVolunteerSpeakerRequest>("Add Tbl Volunteer Speaker Request", new Dictionary<string, object>() { {"tblEvent_ID", master.tblEvent_ID} });
@@ -333,6 +302,18 @@ namespace CoreRadzen.Pages
             {
                 NotificationService.Notify(new NotificationMessage(){ Severity = NotificationSeverity.Error,Summary = $"Error",Detail = $"Unable to delete TblEvent" });
             }
+        }
+
+        protected async System.Threading.Tasks.Task TblCoreAttendanceAddButtonClick(MouseEventArgs args)
+        {
+            var dialogResult = await DialogService.OpenAsync<AddTblCoreAttendance>("Add Tbl Core Attendance", new Dictionary<string, object>() { {"tblEvent_ID", master.tblEvent_ID} });
+            await grid1.Reload();
+        }
+
+        protected async System.Threading.Tasks.Task Grid1RowSelect(CoreRadzen.Models.Core.TblCoreAttendance args)
+        {
+            var dialogResult = await DialogService.OpenAsync<EditTblCoreAttendance>("Edit Tbl Core Attendance", new Dictionary<string, object>() { {"tblCOREAttendance_ID", args.tblCOREAttendance_ID} });
+            await grid1.Reload();
         }
     }
 }

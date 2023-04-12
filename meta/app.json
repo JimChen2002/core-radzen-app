@@ -17,17 +17,17 @@
   "name": "CoreRadzen",
   "namespaces": [],
   "navigation": [
-    "TblSpeaker",
-    "TblEvents"
+    "Volunteer Speakers",
+    "Events"
   ],
   "pages": [
     "Add Events",
     "Edit Events",
     "Unauthorized",
-    "TblSpeaker",
+    "Volunteer Speakers",
     "Add TblSpeaker",
     "Edit TblSpeaker",
-    "TblEvents",
+    "Events",
     "Add Tbl Core Attendance",
     "Edit Tbl Core Attendance",
     "Add Tbl Volunteer Speaker Request",
@@ -51,7 +51,7 @@
   "serverPort": 5000,
   "serverProject": true,
   "serverVersion": "3",
-  "startPage": "TblSpeaker",
+  "startPage": "Events",
   "theme": "default",
   "themeSettings": {
     "$accordion-border-radius": "4px",

@@ -139,7 +139,7 @@ namespace CoreRadzen.Pages
             try
             {
                 var coreCreateTblEventResult = await Core.CreateTblEvent(tblevent);
-                UriHelper.NavigateTo("tbl-events");
+                UriHelper.NavigateTo("events");
             }
             catch (System.Exception coreCreateTblEventException)
             {
@@ -157,7 +157,7 @@ namespace CoreRadzen.Pages
 
         protected async System.Threading.Tasks.Task Button2Click(MouseEventArgs args)
         {
-            UriHelper.NavigateTo("tbl-events");
+            UriHelper.NavigateTo("events");
         }
     }
 }

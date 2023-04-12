@@ -301,7 +301,7 @@
                               "events": {
                                 "click": [
                                   {
-                                    "path": "tbl-events",
+                                    "path": "events",
                                     "type": "navigate"
                                   }
                                 ]
@@ -340,7 +340,7 @@
                         ],
                         "then": [
                           {
-                            "path": "tbl-events",
+                            "path": "events",
                             "type": "navigate"
                           }
                         ],

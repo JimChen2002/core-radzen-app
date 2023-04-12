@@ -14,7 +14,7 @@ using CoreRadzen.Models;
 
 namespace CoreRadzen.Pages
 {
-    public partial class TblSpeakerComponent : ComponentBase
+    public partial class VolunteerSpeakersComponent : ComponentBase
     {
         [Parameter(CaptureUnmatchedValues = true)]
         public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }

@@ -1,35 +1,24 @@
 {
+  "access": "Authenticated",
   "components": [
     {
-      "type": "content",
-      "container": "main",
       "components": [
         {
-          "type": "heading",
           "name": "pageTitle",
           "size": "H1",
-          "text": "TblSpeaker"
+          "text": "Volunteer Speakers",
+          "type": "heading"
         },
         {
-          "type": "row",
           "components": [
             {
-              "type": "col",
               "class": "col-md-12",
               "components": [
                 {
-                  "icon": "add_circle_outline",
-                  "name": "button0",
-                  "style": {
-                    "marginBottom": "10px"
-                  },
-                  "text": "Add",
-                  "type": "button",
                   "events": {
                     "click": [
                       {
                         "path": "add-tbl-speaker",
-                        "type": "popup",
                         "then": [
                           {
                             "code": "await grid0.Reload();",
@@ -39,10 +28,18 @@
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
                             "type": "execute"
                           }
-                        ]
+                        ],
+                        "type": "popup"
                       }
                     ]
-                  }
+                  },
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button"
                 },
                 {
                   "events": {
@@ -113,8 +110,8 @@
                   ],
                   "name": "splitbutton0",
                   "style": {
-                    "marginLeft": "10px",
-                    "marginBottom": "10px"
+                    "marginBottom": "10px",
+                    "marginLeft": "10px"
                   },
                   "text": "Export",
                   "type": "splitbutton"
@@ -137,43 +134,10 @@
                   "value": ""
                 },
                 {
-                  "name": "grid0",
                   "allowFiltering": true,
-                  "filterMode": "advanced",
                   "allowPaging": true,
                   "allowSorting": true,
-                  "data": "${getTblSpeakersResult}",
-                  "events": {
-                    "loadData": [],
-                    "rowDoubleClick": [
-                      {
-                        "parameters": [
-                          {
-                            "name": "tblSpeaker_ID",
-                            "value": "${event.Data.tblSpeaker_ID}"
-                          }
-                        ],
-                        "path": "edit-tbl-speaker",
-                        "type": "popup",
-                        "then": [
-                          {
-                            "code": "await grid0.Reload();",
-                            "type": "execute"
-                          },
-                          {
-                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
-                            "type": "execute"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  "title": "",
                   "columns": [
-                    {
-                      "property": "tblSpeaker_ID",
-                      "title": "Tbl Speaker ID"
-                    },
                     {
                       "property": "Name",
                       "title": "Name"
@@ -203,18 +167,8 @@
                       "title": "Quote"
                     },
                     {
-                      "property": "tblADUser_ID",
-                      "sortProperty": "TblAdUser.UserName",
-                      "groupProperty": "TblAdUser.UserName",
-                      "filterProperty": "TblAdUser.UserName",
-                      "template": "${data.TblAdUser?.UserName}",
-                      "title": "Tbl Ad User"
-                    },
-                    {
                       "filterable": false,
                       "sortable": false,
-                      "width": "70px",
-                      "textAlign": "center",
                       "template": [
                         {
                           "attributes": [
@@ -224,11 +178,6 @@
                             }
                           ],
                           "buttonStyle": "danger",
-                          "icon": "close",
-                          "name": "gridDeleteButton",
-                          "text": "",
-                          "size": "sm",
-                          "type": "button",
                           "events": {
                             "click": [
                               {
@@ -258,19 +207,59 @@
                                 "type": "invoke"
                               }
                             ]
-                          }
+                          },
+                          "icon": "close",
+                          "name": "gridDeleteButton",
+                          "size": "sm",
+                          "text": "",
+                          "type": "button"
                         }
-                      ]
+                      ],
+                      "textAlign": "center",
+                      "width": "70px"
                     }
                   ],
-                  "type": "datagrid",
-                  "itemType": "CoreRadzen.Models.Core.TblSpeaker"
+                  "data": "${getTblSpeakersResult}",
+                  "events": {
+                    "loadData": [],
+                    "rowDoubleClick": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "tblSpeaker_ID",
+                            "value": "${event.Data.tblSpeaker_ID}"
+                          }
+                        ],
+                        "path": "edit-tbl-speaker",
+                        "then": [
+                          {
+                            "code": "await grid0.Reload();",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "popup"
+                      }
+                    ]
+                  },
+                  "filterMode": "advanced",
+                  "itemType": "CoreRadzen.Models.Core.TblSpeaker",
+                  "name": "grid0",
+                  "title": "",
+                  "type": "datagrid"
                 }
-              ]
+              ],
+              "type": "col"
             }
-          ]
+          ],
+          "type": "row"
         }
-      ]
+      ],
+      "container": "main",
+      "type": "content"
     }
   ],
   "events": {
@@ -346,7 +335,6 @@
       }
     ]
   },
-  "name": "TblSpeaker",
-  "access": "Authenticated",
-  "layout": "Main"
+  "layout": "Main",
+  "name": "Volunteer Speakers"
 }

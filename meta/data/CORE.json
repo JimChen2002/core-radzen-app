@@ -3,7 +3,7 @@
     "title": "CORE",
     "x-type": "odata",
     "x-connector": "mssql",
-    "x-connector-version": 16,
+    "x-connector-version": 12,
     "x-infer-aspnet": false,
     "x-infer-tables": true,
     "x-infer-relations": true,

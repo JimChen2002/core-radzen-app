@@ -6,7 +6,7 @@
         {
           "name": "pageTitle",
           "size": "H1",
-          "text": "TblEvents",
+          "text": "Events",
           "type": "heading"
         },
         {
@@ -129,135 +129,30 @@
                   "allowSorting": true,
                   "columns": [
                     {
-                      "property": "tblEvent_ID",
-                      "title": "Tbl Event ID"
-                    },
-                    {
+                      "format": "date-time",
                       "formatString": "{0:d}",
                       "property": "EventDate",
-                      "title": "Event Date"
+                      "title": "Date",
+                      "type": "string"
                     },
                     {
                       "formatString": "{0:d}",
                       "property": "StartTime",
-                      "title": "Start Time"
+                      "title": "Time"
                     },
                     {
-                      "formatString": "{0:d}",
-                      "property": "EndTime",
-                      "title": "End Time"
-                    },
-                    {
-                      "filterProperty": "TblHospital.HospitalName",
-                      "groupProperty": "TblHospital.HospitalName",
-                      "property": "HospitalID",
-                      "sortProperty": "TblHospital.HospitalName",
-                      "template": "${data.TblHospital?.HospitalName}",
-                      "title": "Tbl Hospital"
-                    },
-                    {
-                      "property": "LocationDetails",
-                      "title": "Location Details"
-                    },
-                    {
-                      "property": "EventType",
-                      "title": "Event Type"
-                    },
-                    {
-                      "property": "EventDescription",
-                      "title": "Event Description"
-                    },
-                    {
-                      "property": "EventDetails",
-                      "title": "Event Details"
-                    },
-                    {
-                      "property": "SpeakerNeeds",
-                      "title": "Speaker Needs"
-                    },
-                    {
-                      "property": "LeadershipSpeakerRequested",
-                      "title": "Leadership Speaker Requested"
-                    },
-                    {
-                      "property": "LeadershipSpeaker",
-                      "title": "Leadership Speaker"
-                    },
-                    {
-                      "property": "LeadershipSpeechLength",
-                      "title": "Leadership Speech Length"
-                    },
-                    {
-                      "property": "VolunteerSpeechLength",
-                      "title": "Volunteer Speech Length"
-                    },
-                    {
-                      "property": "AudienceTypes",
-                      "title": "Audience Types"
-                    },
-                    {
-                      "property": "EstimatedAttendees",
-                      "title": "Estimated Attendees"
-                    },
-                    {
-                      "property": "SocialMediaOrVideoNeeds",
-                      "title": "Social Media Or Video Needs"
-                    },
-                    {
-                      "property": "IsLegislatorsInvited",
-                      "title": "Is Legislators Invited"
-                    },
-                    {
-                      "property": "IsLegislatorsAttending",
-                      "title": "Is Legislators Attending"
-                    },
-                    {
-                      "property": "IsQuiltRequested",
-                      "title": "Is Quilt Requested"
-                    },
-                    {
-                      "property": "QuiltNumber",
-                      "title": "Quilt Number"
-                    },
-                    {
-                      "property": "QuiltCoordinator",
-                      "title": "Quilt Coordinator"
-                    },
-                    {
-                      "property": "IsVehicleRequested",
-                      "title": "Is Vehicle Requested"
-                    },
-                    {
-                      "property": "IsVehicleReserved",
-                      "title": "Is Vehicle Reserved"
-                    },
-                    {
-                      "property": "VehicleDriver",
-                      "title": "Vehicle Driver"
+                      "format": "",
+                      "property": "TblHospital.HospitalName",
+                      "title": "Hospital Name",
+                      "type": "string"
                     },
                     {
                       "property": "OnsiteContactName",
                       "title": "Onsite Contact Name"
                     },
                     {
-                      "property": "OnsiteContactPhone",
-                      "title": "Onsite Contact Phone"
-                    },
-                    {
-                      "property": "OnsiteContactEmail",
-                      "title": "Onsite Contact Email"
-                    },
-                    {
                       "property": "IsLocked",
                       "title": "Is Locked"
-                    },
-                    {
-                      "property": "PlaceToMeet",
-                      "title": "Place To Meet"
-                    },
-                    {
-                      "property": "AdditionalInformation",
-                      "title": "Additional Information"
                     },
                     {
                       "filterable": false,
@@ -409,150 +304,9 @@
                   "type": "datagrid"
                 },
                 {
-                  "name": "heading1",
-                  "size": "H1",
-                  "text": "TblCoreAttendances",
-                  "type": "heading"
-                },
-                {
-                  "disabled": "${this.master == null}",
-                  "events": {
-                    "click": [
-                      {
-                        "parameters": [
-                          {
-                            "name": "tblEvent_ID",
-                            "type": "integer",
-                            "value": "${master.tblEvent_ID}"
-                          }
-                        ],
-                        "path": "add-tbl-core-attendance",
-                        "then": [
-                          {
-                            "code": "await grid1.Reload();",
-                            "type": "execute"
-                          }
-                        ],
-                        "type": "popup"
-                      }
-                    ]
-                  },
-                  "icon": "add_circle_outline",
-                  "name": "TblCoreAttendanceAddButton",
-                  "style": {
-                    "marginBottom": "10px"
-                  },
-                  "text": "Add",
-                  "type": "button"
-                },
-                {
-                  "allowFiltering": true,
-                  "allowPaging": true,
-                  "allowSorting": true,
-                  "columns": [
-                    {
-                      "property": "tblCOREAttendance_ID",
-                      "title": "Tbl CORE Attendance ID"
-                    },
-                    {
-                      "filterProperty": "TblEvent.LocationDetails",
-                      "groupProperty": "TblEvent.LocationDetails",
-                      "property": "tblEvent_ID",
-                      "sortProperty": "TblEvent.LocationDetails",
-                      "template": "${data.TblEvent?.LocationDetails}",
-                      "title": "Tbl Event"
-                    },
-                    {
-                      "filterProperty": "TblAdUser.UserName",
-                      "groupProperty": "TblAdUser.UserName",
-                      "property": "tblADUser_ID",
-                      "sortProperty": "TblAdUser.UserName",
-                      "template": "${data.TblAdUser?.UserName}",
-                      "title": "Tbl Ad User"
-                    },
-                    {
-                      "filterable": false,
-                      "sortable": false,
-                      "template": [
-                        {
-                          "attributes": [
-                            {
-                              "name": "@onclick:stopPropagation",
-                              "value": true
-                            }
-                          ],
-                          "buttonStyle": "danger",
-                          "events": {
-                            "click": [
-                              {
-                                "condition": "await DialogService.Confirm(\"Are you sure you want to delete this record?\") == true",
-                                "error": [
-                                  {
-                                    "detail": "Unable to delete TblEvent",
-                                    "severity": "error",
-                                    "summary": "Error",
-                                    "type": "notify"
-                                  }
-                                ],
-                                "name": "CORE.deleteTblCoreAttendance",
-                                "parameters": [
-                                  {
-                                    "name": "tblCOREAttendance_ID",
-                                    "value": "${data.tblCOREAttendance_ID}"
-                                  }
-                                ],
-                                "then": [
-                                  {
-                                    "code": "await grid1.Reload();",
-                                    "condition": "result != null",
-                                    "type": "execute"
-                                  }
-                                ],
-                                "type": "invoke"
-                              }
-                            ]
-                          },
-                          "icon": "close",
-                          "name": "TblCoreAttendanceDeleteButton",
-                          "size": "sm",
-                          "text": "",
-                          "type": "button"
-                        }
-                      ],
-                      "textAlign": "center",
-                      "width": "70px"
-                    }
-                  ],
-                  "data": "${TblCoreAttendances}",
-                  "events": {
-                    "rowSelect": [
-                      {
-                        "parameters": [
-                          {
-                            "name": "tblCOREAttendance_ID",
-                            "value": "${event.tblCOREAttendance_ID}"
-                          }
-                        ],
-                        "path": "edit-tbl-core-attendance",
-                        "then": [
-                          {
-                            "code": "await grid1.Reload();",
-                            "type": "execute"
-                          }
-                        ],
-                        "type": "popup"
-                      }
-                    ]
-                  },
-                  "filterMode": "advanced",
-                  "itemType": "CoreRadzen.Models.Core.TblCoreAttendance",
-                  "name": "grid1",
-                  "type": "datagrid"
-                },
-                {
                   "name": "heading2",
                   "size": "H1",
-                  "text": "TblVolunteerSpeakerRequests",
+                  "text": "Volunteer Speaker Requests",
                   "type": "heading"
                 },
                 {
@@ -592,24 +346,36 @@
                   "allowSorting": true,
                   "columns": [
                     {
-                      "property": "tblVolunteerSpeakerRequests_ID",
-                      "title": "Tbl Volunteer Speaker Requests ID"
+                      "format": "date-time",
+                      "formatString": "{0:d}",
+                      "property": "TblEvent.EventDate",
+                      "title": "Date",
+                      "type": "string"
                     },
                     {
-                      "filterProperty": "TblEvent.LocationDetails",
-                      "groupProperty": "TblEvent.LocationDetails",
-                      "property": "tblEvent_ID",
-                      "sortProperty": "TblEvent.LocationDetails",
-                      "template": "${data.TblEvent?.LocationDetails}",
-                      "title": "Tbl Event"
+                      "format": "date-time",
+                      "formatString": "{0:d}",
+                      "property": "TblEvent.StartTime",
+                      "title": "Time",
+                      "type": "string"
                     },
                     {
-                      "filterProperty": "TblSpeaker.Name",
-                      "groupProperty": "TblSpeaker.Name",
-                      "property": "tblSpeaker_ID",
-                      "sortProperty": "TblSpeaker.Name",
-                      "template": "${data.TblSpeaker?.Name}",
-                      "title": "Tbl Speaker"
+                      "format": "",
+                      "property": "TblEvent.TblHospital.HospitalName",
+                      "title": "Hospital Name",
+                      "type": "string"
+                    },
+                    {
+                      "format": "",
+                      "property": "TblSpeaker.Name",
+                      "title": "Volunteer Speaker",
+                      "type": "string"
+                    },
+                    {
+                      "format": "",
+                      "property": "TblEvent.LeadershipSpeaker",
+                      "title": "Leadership Speaker",
+                      "type": "string"
                     },
                     {
                       "filterable": false,
@@ -688,6 +454,100 @@
                   "filterMode": "advanced",
                   "itemType": "CoreRadzen.Models.Core.TblVolunteerSpeakerRequest",
                   "name": "grid2",
+                  "type": "datagrid"
+                },
+                {
+                  "name": "heading1",
+                  "size": "H1",
+                  "text": "CORE Attendance",
+                  "type": "heading"
+                },
+                {
+                  "disabled": "${this.master == null}",
+                  "events": {
+                    "click": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "tblEvent_ID",
+                            "type": "integer",
+                            "value": "${master.tblEvent_ID}"
+                          }
+                        ],
+                        "path": "add-tbl-core-attendance",
+                        "then": [
+                          {
+                            "code": "await grid1.Reload();",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "popup"
+                      }
+                    ]
+                  },
+                  "icon": "add_circle_outline",
+                  "name": "TblCoreAttendanceAddButton",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button"
+                },
+                {
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "columns": [
+                    {
+                      "format": "date-time",
+                      "formatString": "{0:d}",
+                      "property": "TblEvent.EventDate",
+                      "title": "Date",
+                      "type": "string"
+                    },
+                    {
+                      "format": "",
+                      "property": "TblEvent.TblHospital.HospitalName",
+                      "title": "Hospital Name",
+                      "type": "string"
+                    },
+                    {
+                      "format": "",
+                      "property": "TblAdUser.FirstName",
+                      "title": "First Name",
+                      "type": "string"
+                    },
+                    {
+                      "format": "",
+                      "property": "TblAdUser.LastName",
+                      "title": "Last Name",
+                      "type": "string"
+                    }
+                  ],
+                  "data": "${TblCoreAttendances}",
+                  "events": {
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "tblCOREAttendance_ID",
+                            "value": "${event.tblCOREAttendance_ID}"
+                          }
+                        ],
+                        "path": "edit-tbl-core-attendance",
+                        "then": [
+                          {
+                            "code": "await grid1.Reload();",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "popup"
+                      }
+                    ]
+                  },
+                  "filterMode": "advanced",
+                  "itemType": "CoreRadzen.Models.Core.TblCoreAttendance",
+                  "name": "grid1",
                   "type": "datagrid"
                 }
               ],
@@ -835,5 +695,5 @@
     ]
   },
   "layout": "Main",
-  "name": "TblEvents"
+  "name": "Events"
 }

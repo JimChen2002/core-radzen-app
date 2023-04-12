@@ -1,7 +1,6 @@
-﻿@page "/"
-@page "/tbl-speaker"
+﻿@page "/volunteer-speakers"
 @layout MainLayout
-@inherits CoreRadzen.Pages.TblSpeakerComponent
+@inherits CoreRadzen.Pages.VolunteerSpeakersComponent
 
 @using Radzen
 @using Radzen.Blazor
@@ -11,13 +10,13 @@
 @attribute [Authorize]
 <RadzenContent Container="main">
   <ChildContent>
-    <RadzenHeading Size="H1" Text="TblSpeaker">
+    <RadzenHeading Size="H1" Text="Volunteer Speakers">
     </RadzenHeading>
     <div class="row">
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenSplitButton Icon="get_app" style="margin-left: 10px; margin-bottom: 10px" Text="Export" Click="@Splitbutton0Click">
+        <RadzenSplitButton Icon="get_app" style="margin-bottom: 10px; margin-left: 10px" Text="Export" Click="@Splitbutton0Click">
           <ChildContent>
             <RadzenSplitButtonItem Text="Excel" Value="xlsx">
             </RadzenSplitButtonItem>
@@ -27,10 +26,8 @@
         </RadzenSplitButton>
         <RadzenTextBox Placeholder="Search ..." style="display: block; margin-bottom: 10px; width: 100%" Name="Textbox0" @oninput="@(async(args) => {search = $"{args.Value}";await grid0.GoToPage(0);await Load();})">
         </RadzenTextBox>
-        <RadzenDataGrid @ref="grid0" AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" Data="@getTblSpeakersResult" TItem="CoreRadzen.Models.Core.TblSpeaker" RowDoubleClick="@Grid0RowDoubleClick">
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getTblSpeakersResult" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblSpeaker" RowDoubleClick="@Grid0RowDoubleClick">
           <Columns>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblSpeaker" Property="tblSpeaker_ID" Title="Tbl Speaker ID">
-            </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblSpeaker" Property="Name" Title="Name">
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblSpeaker" Property="PhoneNumber" Title="Phone Number">
@@ -45,12 +42,7 @@
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblSpeaker" Property="Quote" Title="Quote">
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblSpeaker" Property="tblADUser_ID" SortProperty="TblAdUser.UserName" GroupProperty="TblAdUser.UserName" FilterProperty="TblAdUser.UserName" Title="Tbl Ad User">
-              <Template Context="data">
-              @(data.TblAdUser?.UserName)
-              </Template>
-            </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblSpeaker" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblSpeaker" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
               <Template Context="coreRadzenModelsCoreTblSpeaker">
                 <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, coreRadzenModelsCoreTblSpeaker))" @onclick:stopPropagation="true">
                 </RadzenButton>

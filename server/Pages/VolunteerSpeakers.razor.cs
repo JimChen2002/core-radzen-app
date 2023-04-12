@@ -7,7 +7,7 @@ using Radzen.Blazor;
 
 namespace CoreRadzen.Pages
 {
-    public partial class TblSpeakerComponent
+    public partial class VolunteerSpeakersComponent
     {
 
     }
