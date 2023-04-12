@@ -12,83 +12,83 @@
   <ChildContent>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm TItem="CoreRadzen.Models.Core.TblSpeaker" Data="@tblspeaker" Visible="@(tblspeaker != null)" Submit="@Form0Submit">
+        <RadzenTemplateForm Data="@tblspeaker" TItem="CoreRadzen.Models.Core.TblSpeaker" Visible="@(tblspeaker != null)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Text="Name" Component="Name" style="width: 100%">
+                <RadzenLabel Component="Name" style="width: 100%" Text="Name">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
                 <RadzenTextBox MaxLength="250" style="display: block; width: 100%" @bind-Value="@(tblspeaker.Name)" Name="Name">
                 </RadzenTextBox>
-                <RadzenRequiredValidator Component="Name" Text="Name is required" style="position: absolute">
+                <RadzenRequiredValidator Component="Name" style="position: absolute" Text="Name is required">
                 </RadzenRequiredValidator>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Text="Phone Number" Component="PhoneNumber" style="width: 100%">
+                <RadzenLabel Component="PhoneNumber" style="width: 100%" Text="Phone Number">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
                 <RadzenTextBox MaxLength="50" style="display: block; width: 100%" @bind-Value="@(tblspeaker.PhoneNumber)" Name="PhoneNumber">
                 </RadzenTextBox>
-                <RadzenRequiredValidator Component="PhoneNumber" Text="PhoneNumber is required" style="position: absolute">
+                <RadzenRequiredValidator Component="PhoneNumber" style="position: absolute" Text="Phone number is required">
                 </RadzenRequiredValidator>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Text="Email" Component="Email" style="width: 100%">
+                <RadzenLabel Component="Email" style="width: 100%" Text="Email">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
                 <RadzenTextBox MaxLength="250" style="display: block; width: 100%" @bind-Value="@(tblspeaker.Email)" Name="Email">
                 </RadzenTextBox>
-                <RadzenRequiredValidator Component="Email" Text="Email is required" style="position: absolute">
+                <RadzenRequiredValidator Component="Email" style="position: absolute" Text="Email is required">
                 </RadzenRequiredValidator>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Text="Connection" Component="Connection" style="width: 100%">
+                <RadzenLabel Component="Connection" style="width: 100%" Text="Connection">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
                 <RadzenTextBox MaxLength="50" style="display: block; width: 100%" @bind-Value="@(tblspeaker.Connection)" Name="Connection">
                 </RadzenTextBox>
-                <RadzenRequiredValidator Component="Connection" Text="Connection is required" style="position: absolute">
+                <RadzenRequiredValidator Component="Connection" style="position: absolute" Text="Connection is required">
                 </RadzenRequiredValidator>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Text="Background" Component="Background" style="width: 100%">
+                <RadzenLabel Component="Background" style="width: 100%" Text="Background">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
                 <RadzenTextBox MaxLength="250" style="display: block; width: 100%" @bind-Value="@(tblspeaker.Background)" Name="Background">
                 </RadzenTextBox>
-                <RadzenRequiredValidator Component="Background" Text="Background is required" style="position: absolute">
+                <RadzenRequiredValidator Component="Background" style="position: absolute" Text="Background is required">
                 </RadzenRequiredValidator>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Text="Accessibility Requirements" Component="AccessibilityRequirements" style="width: 100%">
+                <RadzenLabel Component="AccessibilityRequirements" style="width: 100%" Text="Accessibility Requirements">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
                 <RadzenTextBox MaxLength="250" style="display: block; width: 100%" @bind-Value="@(tblspeaker.AccessibilityRequirements)" Name="AccessibilityRequirements">
                 </RadzenTextBox>
-                <RadzenRequiredValidator Component="AccessibilityRequirements" Text="AccessibilityRequirements is required" style="position: absolute">
+                <RadzenRequiredValidator Component="AccessibilityRequirements" style="position: absolute" Text="Accessibility requirements is required">
                 </RadzenRequiredValidator>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Text="Quote" Component="Quote" style="width: 100%">
+                <RadzenLabel Component="Quote" style="width: 100%" Text="Quote">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
@@ -98,17 +98,17 @@
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Text="Tbl Ad User" Component="tblADUser_ID" style="width: 100%">
+                <RadzenLabel Component="tblADUser_ID" style="width: 100%" Text="ADUser">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDownDataGrid Data="@(getTblAdUsersFortblADUser_IDResult)" TextProperty="UserName" ValueProperty="tblADUser_ID" Placeholder="Choose TblAdUser" ShowSearch="false" style="width: 100%" @bind-Value="@(tblspeaker.tblADUser_ID)" Name="TblADUser_ID">
+                <RadzenDropDownDataGrid Data="@(getTblAdUsersFortblADUser_IDResult)" Placeholder="Choose User" ShowSearch="false" style="width: 100%" TextProperty="UserName" @bind-Value="@(tblspeaker.tblADUser_ID)" ValueProperty="tblADUser_ID" Name="TblADUser_ID">
                 </RadzenDropDownDataGrid>
               </div>
             </div>
             <div class="row">
               <div class="col offset-sm-3">
-                <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Save" ButtonStyle="ButtonStyle.Primary">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
                 </RadzenButton>
                 <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@Button2Click">
                 </RadzenButton>

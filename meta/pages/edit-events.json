@@ -646,82 +646,6 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "disabled": "",
-                              "events": {
-                                "click": [
-                                  {
-                                    "parameters": [
-                                      {
-                                        "name": "tblEvent_ID",
-                                        "value": "${parameters.tblEvent_ID}"
-                                      }
-                                    ],
-                                    "path": "add-tbl-volunteer-speaker-request",
-                                    "then": [
-                                      {
-                                        "code": "await grid2.Reload();",
-                                        "type": "execute"
-                                      }
-                                    ],
-                                    "type": "popup"
-                                  }
-                                ]
-                              },
-                              "icon": "add_circle_outline",
-                              "name": "TblVolunteerSpeakerRequestAddButton",
-                              "style": {
-                                "marginBottom": "10px",
-                                "marginRight": "25px"
-                              },
-                              "text": "Add",
-                              "type": "button"
-                            },
-                            {
-                              "events": {
-                                "click": [
-                                  {
-                                    "path": "add-tbl-speaker",
-                                    "then": [
-                                      {
-                                        "code": "await InvokeAsync(() => { StateHasChanged(); });",
-                                        "type": "execute"
-                                      }
-                                    ],
-                                    "type": "popup"
-                                  }
-                                ]
-                              },
-                              "icon": "add_circle_outline",
-                              "name": "button0",
-                              "size": "ButtonSize.Medium",
-                              "style": {
-                                "marginBottom": "10px"
-                              },
-                              "text": "Add New Speaker",
-                              "type": "button"
-                            }
-                          ],
-                          "name": "col4",
-                          "type": "col"
-                        }
-                      ],
-                      "name": "row3",
-                      "style": {
-                        "marginBottom": "1rem"
-                      },
-                      "type": "row"
-                    },
-                    {
-                      "components": [
-                        {
-                          "class": "col-md-2",
-                          "name": "col0",
-                          "type": "col"
-                        },
-                        {
-                          "class": "col-md-9",
-                          "components": [
-                            {
                               "allowFiltering": true,
                               "allowPaging": true,
                               "allowSorting": true,
@@ -738,8 +662,16 @@
                                   "property": "tblEvent_ID",
                                   "sortProperty": "TblEvent.LocationDetails",
                                   "template": "${data.TblEvent?.LocationDetails}",
-                                  "title": "Tbl Event",
+                                  "title": "Event",
                                   "visible": false
+                                },
+                                {
+                                  "filterProperty": "TblSpeaker.Name",
+                                  "groupProperty": "TblSpeaker.Name",
+                                  "property": "tblSpeaker_ID",
+                                  "sortProperty": "TblSpeaker.Name",
+                                  "template": "${data.TblSpeaker?.Name}",
+                                  "title": "Speakers"
                                 },
                                 {
                                   "filterable": false,
@@ -792,14 +724,6 @@
                                   ],
                                   "textAlign": "center",
                                   "width": "70px"
-                                },
-                                {
-                                  "filterProperty": "TblSpeaker.Name",
-                                  "groupProperty": "TblSpeaker.Name",
-                                  "property": "tblSpeaker_ID",
-                                  "sortProperty": "TblSpeaker.Name",
-                                  "template": "${data.TblSpeaker?.Name}",
-                                  "title": "Speakers"
                                 }
                               ],
                               "data": "${TblVolunteerSpeakerRequests}",
@@ -826,6 +750,83 @@
                                 "display": "flex"
                               },
                               "type": "datagrid"
+                            }
+                          ],
+                          "name": "col4",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row3",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-2",
+                          "name": "col0",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "disabled": "",
+                              "events": {
+                                "click": [
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "tblEvent_ID",
+                                        "value": "${parameters.tblEvent_ID}"
+                                      }
+                                    ],
+                                    "path": "add-tbl-volunteer-speaker-request",
+                                    "then": [
+                                      {
+                                        "code": "await grid2.Reload();",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "popup"
+                                  }
+                                ]
+                              },
+                              "icon": "add_circle_outline",
+                              "name": "button0",
+                              "style": {
+                                "marginBottom": "10px",
+                                "marginRight": "10px",
+                                "marginTop": "10px"
+                              },
+                              "text": "Add",
+                              "type": "button"
+                            },
+                            {
+                              "events": {
+                                "click": [
+                                  {
+                                    "path": "add-tbl-speaker",
+                                    "then": [
+                                      {
+                                        "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "popup"
+                                  }
+                                ]
+                              },
+                              "icon": "add_circle_outline",
+                              "name": "button3",
+                              "size": "ButtonSize.Medium",
+                              "style": {
+                                "marginBottom": "10px"
+                              },
+                              "text": "Add New Speaker",
+                              "type": "button"
                             }
                           ],
                           "name": "col8",
@@ -1149,7 +1150,7 @@
                               "style": {
                                 "width": "100%"
                               },
-                              "text": "Is Quilt Requested",
+                              "text": "Is Quilt Requested?",
                               "type": "label"
                             }
                           ],

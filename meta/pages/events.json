@@ -127,6 +127,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "columnWidth": "",
                   "columns": [
                     {
                       "format": "date-time",
@@ -136,7 +137,7 @@
                       "type": "string"
                     },
                     {
-                      "formatString": "{0:d}",
+                      "formatString": "{0:t}",
                       "property": "StartTime",
                       "title": "Time"
                     },
@@ -300,6 +301,7 @@
                   "filterMode": "advanced",
                   "itemType": "CoreRadzen.Models.Core.TblEvent",
                   "name": "grid0",
+                  "responsive": true,
                   "title": "",
                   "type": "datagrid"
                 },
@@ -354,7 +356,7 @@
                     },
                     {
                       "format": "date-time",
-                      "formatString": "{0:d}",
+                      "formatString": "{0:t}",
                       "property": "TblEvent.StartTime",
                       "title": "Time",
                       "type": "string"
@@ -454,6 +456,7 @@
                   "filterMode": "advanced",
                   "itemType": "CoreRadzen.Models.Core.TblVolunteerSpeakerRequest",
                   "name": "grid2",
+                  "responsive": true,
                   "type": "datagrid"
                 },
                 {
@@ -548,6 +551,7 @@
                   "filterMode": "advanced",
                   "itemType": "CoreRadzen.Models.Core.TblCoreAttendance",
                   "name": "grid1",
+                  "responsive": true,
                   "type": "datagrid"
                 }
               ],

@@ -4,13 +4,6 @@
     {
       "components": [
         {
-          "name": "pageTitle",
-          "size": "H1",
-          "style": {},
-          "text": "Add Events",
-          "type": "heading"
-        },
-        {
           "components": [
             {
               "class": "col-md-12",

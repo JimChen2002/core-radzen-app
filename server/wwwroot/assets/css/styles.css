@@ -2,7 +2,7 @@
   You can add custom CSS rules or import files here.
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
 /* Import the Radzen CSS files */
 @import './styles-generated.css';
-

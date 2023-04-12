@@ -10,8 +10,6 @@
 @attribute [Authorize]
 <RadzenContent Container="main">
   <ChildContent>
-    <RadzenHeading Size="H1"  Text="Add Events">
-    </RadzenHeading>
     <div class="row">
       <div class="col-md-12" style="display: block; float: none; visibility: visible">
         <RadzenTemplateForm Data="@tblevent" TItem="CoreRadzen.Models.Core.TblEvent" style="display: block; float: none; right: 0; vertical-align: baseline" Visible="@(tblevent != null)" Submit="@Form0Submit">

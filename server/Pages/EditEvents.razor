@@ -160,23 +160,18 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-right: 25px" Text="Add" Click="@TblVolunteerSpeakerRequestAddButtonClick">
-                </RadzenButton>
-                <RadzenButton Icon="add_circle_outline" Size="ButtonSize.Medium" style="margin-bottom: 10px" Text="Add New Speaker" Click="@Button0Click">
-                </RadzenButton>
-              </div>
-            </div>
-            <div style="margin-bottom: 1rem" class="row">
-              <div class="col-md-2">
-              </div>
-              <div class="col-md-9">
                 <RadzenDataGrid @ref="grid2" AllowFiltering="true" AllowPaging="true" AllowSorting="true" ColumnWidth="auto" Data="@TblVolunteerSpeakerRequests" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Responsive="true" style="display: flex" RowSelect="@Grid2RowSelect">
                   <Columns>
                     <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="tblVolunteerSpeakerRequests_ID" Title="Tbl Volunteer Speaker Requests ID" Visible="false">
                     </RadzenDataGridColumn>
-                    <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" FilterProperty="TblEvent.LocationDetails" GroupProperty="TblEvent.LocationDetails" Property="tblEvent_ID" SortProperty="TblEvent.LocationDetails" Title="Tbl Event" Visible="false">
+                    <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" FilterProperty="TblEvent.LocationDetails" GroupProperty="TblEvent.LocationDetails" Property="tblEvent_ID" SortProperty="TblEvent.LocationDetails" Title="Event" Visible="false">
                       <Template Context="data">
                       @(data.TblEvent?.LocationDetails)
+                      </Template>
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" FilterProperty="TblSpeaker.Name" GroupProperty="TblSpeaker.Name" Property="tblSpeaker_ID" SortProperty="TblSpeaker.Name" Title="Speakers">
+                      <Template Context="data">
+                      @(data.TblSpeaker?.Name)
                       </Template>
                     </RadzenDataGridColumn>
                     <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
@@ -185,13 +180,18 @@
                         </RadzenButton>
                       </Template>
                     </RadzenDataGridColumn>
-                    <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" FilterProperty="TblSpeaker.Name" GroupProperty="TblSpeaker.Name" Property="tblSpeaker_ID" SortProperty="TblSpeaker.Name" Title="Speakers">
-                      <Template Context="data">
-                      @(data.TblSpeaker?.Name)
-                      </Template>
-                    </RadzenDataGridColumn>
                   </Columns>
                 </RadzenDataGrid>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-2">
+              </div>
+              <div class="col-md-9">
+                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-right: 10px; margin-top: 10px" Text="Add" Click="@Button0Click">
+                </RadzenButton>
+                <RadzenButton Icon="add_circle_outline" Size="ButtonSize.Medium" style="margin-bottom: 10px" Text="Add New Speaker" Click="@Button3Click">
+                </RadzenButton>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
@@ -264,7 +264,7 @@
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-2" style="padding-right: 1px">
-                <RadzenLabel Component="IsQuiltRequested" style="width: 100%" Text="Is Quilt Requested">
+                <RadzenLabel Component="IsQuiltRequested" style="width: 100%" Text="Is Quilt Requested?">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">

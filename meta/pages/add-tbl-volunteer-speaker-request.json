@@ -19,6 +19,7 @@
                               "component": "tblSpeaker_ID",
                               "name": "tblSpeaker_IDLabel",
                               "style": {
+                                "paddingRight": "1px",
                                 "width": "100%"
                               },
                               "text": "Volunteer Speaker",

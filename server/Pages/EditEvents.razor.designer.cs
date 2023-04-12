@@ -231,18 +231,6 @@ namespace CoreRadzen.Pages
             }
         }
 
-        protected async System.Threading.Tasks.Task TblVolunteerSpeakerRequestAddButtonClick(MouseEventArgs args)
-        {
-            var dialogResult = await DialogService.OpenAsync<AddTblVolunteerSpeakerRequest>("Add Tbl Volunteer Speaker Request", new Dictionary<string, object>() { {"tblEvent_ID", tblEvent_ID} });
-            await grid2.Reload();
-        }
-
-        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
-        {
-            var dialogResult = await DialogService.OpenAsync<AddTblSpeaker>("Add Tbl Speaker", null);
-            await InvokeAsync(() => { StateHasChanged(); });
-        }
-
         protected async System.Threading.Tasks.Task Grid2RowSelect(CoreRadzen.Models.Core.TblVolunteerSpeakerRequest args)
         {
             UriHelper.NavigateTo($"edit-tbl-volunteer-speaker-request/{args.tblVolunteerSpeakerRequests_ID}");
@@ -265,6 +253,18 @@ namespace CoreRadzen.Pages
             {
                 NotificationService.Notify(new NotificationMessage(){ Severity = NotificationSeverity.Error,Summary = $"Error",Detail = $"Unable to delete TblEvent" });
             }
+        }
+
+        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
+        {
+            var dialogResult = await DialogService.OpenAsync<AddTblVolunteerSpeakerRequest>("Add Tbl Volunteer Speaker Request", new Dictionary<string, object>() { {"tblEvent_ID", tblEvent_ID} });
+            await grid2.Reload();
+        }
+
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
+        {
+            var dialogResult = await DialogService.OpenAsync<AddTblSpeaker>("Add Tbl Speaker", null);
+            await InvokeAsync(() => { StateHasChanged(); });
         }
 
         protected async System.Threading.Tasks.Task Dropdown0Change(dynamic args)

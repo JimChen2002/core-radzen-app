@@ -26,7 +26,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-sans-serif: "Montserrat";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -128,7 +128,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Montserrat";
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
@@ -15326,7 +15326,7 @@ p-button[type] {
   --rz-input-height: 2.25rem;
   --rz-input-line-height: 1.429;
   --rz-input-padding: 0.4375rem;
-  --rz-input-value-color: #3a474d;
+  --rz-input-value-color: #656a6c;
   --rz-input-placeholder-color: #77858b;
   --rz-input-background-color: #ffffff;
   --rz-input-border: 1px solid #dadfe2;
@@ -18355,10 +18355,10 @@ ul.rz-profile-menu .rz-navigation-menu .rz-fileupload-row .rz-paginator-element 
   --rz-grid-header-line-height: 1rem;
   --rz-grid-header-font-weight: 600;
   --rz-grid-header-text-transform: uppercase;
-  --rz-grid-header-color: #3a474d;
+  --rz-grid-header-color: #000000;
   --rz-grid-header-cell-padding: 0.625rem 0;
   --rz-grid-header-title-padding: 0 0 0 0.5rem;
-  --rz-grid-header-sorted-background-color: #dadfe2;
+  --rz-grid-header-sorted-background-color: #00713D;
   --rz-grid-header-padding: 1rem;
   --rz-grid-foot-cell-color: #3a474d;
   --rz-grid-foot-background-color: #e9edf0;

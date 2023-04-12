@@ -27,11 +27,11 @@
         </RadzenSplitButton>
         <RadzenTextBox Placeholder="Search ..." style="display: block; margin-bottom: 10px; width: 100%" Name="Textbox0" @oninput="@(async(args) => {search = $"{args.Value}";await grid0.GoToPage(0);await Load();})">
         </RadzenTextBox>
-        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getTblEventsResult" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblEvent" Render="@Grid0Render" RowDoubleClick="@Grid0RowDoubleClick" RowSelect="@Grid0RowSelect">
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getTblEventsResult" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblEvent" Responsive="true" Render="@Grid0Render" RowDoubleClick="@Grid0RowDoubleClick" RowSelect="@Grid0RowSelect">
           <Columns>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" FormatString="{0:d}" Property="EventDate" Title="Date">
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" FormatString="{0:d}" Property="StartTime" Title="Time">
+            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" FormatString="{0:t}" Property="StartTime" Title="Time">
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" Property="TblHospital.HospitalName" Title="Hospital Name">
             </RadzenDataGridColumn>
@@ -51,11 +51,11 @@
         </RadzenHeading>
         <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@TblVolunteerSpeakerRequestAddButtonClick">
         </RadzenButton>
-        <RadzenDataGrid @ref="grid2" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblVolunteerSpeakerRequests" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" RowSelect="@Grid2RowSelect">
+        <RadzenDataGrid @ref="grid2" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblVolunteerSpeakerRequests" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Responsive="true" RowSelect="@Grid2RowSelect">
           <Columns>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" FormatString="{0:d}" Property="TblEvent.EventDate" Title="Date">
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" FormatString="{0:d}" Property="TblEvent.StartTime" Title="Time">
+            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" FormatString="{0:t}" Property="TblEvent.StartTime" Title="Time">
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="TblEvent.TblHospital.HospitalName" Title="Hospital Name">
             </RadzenDataGridColumn>
@@ -75,7 +75,7 @@
         </RadzenHeading>
         <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@TblCoreAttendanceAddButtonClick">
         </RadzenButton>
-        <RadzenDataGrid @ref="grid1" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblCoreAttendances" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblCoreAttendance" RowSelect="@Grid1RowSelect">
+        <RadzenDataGrid @ref="grid1" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblCoreAttendances" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblCoreAttendance" Responsive="true" RowSelect="@Grid1RowSelect">
           <Columns>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" FormatString="{0:d}" Property="TblEvent.EventDate" Title="Date">
             </RadzenDataGridColumn>

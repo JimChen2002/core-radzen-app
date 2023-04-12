@@ -1,430 +1,426 @@
 {
+  "access": "Authenticated",
   "components": [
     {
-      "type": "content",
-      "container": "main",
       "components": [
         {
-          "type": "row",
           "components": [
             {
-              "type": "col",
               "class": "col-md-12",
               "components": [
                 {
-                  "type": "template-form",
-                  "name": "form0",
                   "components": [
                     {
-                      "type": "row",
-                      "style": {
-                        "marginBottom": "1rem"
-                      },
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Name",
                               "component": "Name",
                               "name": "NameLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Name",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 250,
-                              "type": "textbox",
                               "name": "Name",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${tblspeaker.Name}"
+                              "type": "textbox",
+                              "value": "${tblspeaker.Name}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "NameRequiredValidator",
                               "component": "Name",
-                              "text": "Name is required",
+                              "name": "NameRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Name is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Phone Number",
                               "component": "PhoneNumber",
                               "name": "PhoneNumberLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Phone Number",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 50,
-                              "type": "textbox",
                               "name": "PhoneNumber",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${tblspeaker.PhoneNumber}"
+                              "type": "textbox",
+                              "value": "${tblspeaker.PhoneNumber}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "PhoneNumberRequiredValidator",
                               "component": "PhoneNumber",
-                              "text": "PhoneNumber is required",
+                              "name": "PhoneNumberRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Phone number is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Email",
                               "component": "Email",
                               "name": "EmailLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Email",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 250,
-                              "type": "textbox",
                               "name": "Email",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${tblspeaker.Email}"
+                              "type": "textbox",
+                              "value": "${tblspeaker.Email}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "EmailRequiredValidator",
                               "component": "Email",
-                              "text": "Email is required",
+                              "name": "EmailRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Email is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Connection",
                               "component": "Connection",
                               "name": "ConnectionLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Connection",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 50,
-                              "type": "textbox",
                               "name": "Connection",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${tblspeaker.Connection}"
+                              "type": "textbox",
+                              "value": "${tblspeaker.Connection}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "ConnectionRequiredValidator",
                               "component": "Connection",
-                              "text": "Connection is required",
+                              "name": "ConnectionRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Connection is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Background",
                               "component": "Background",
                               "name": "BackgroundLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Background",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 250,
-                              "type": "textbox",
                               "name": "Background",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${tblspeaker.Background}"
+                              "type": "textbox",
+                              "value": "${tblspeaker.Background}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "BackgroundRequiredValidator",
                               "component": "Background",
-                              "text": "Background is required",
+                              "name": "BackgroundRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Background is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Accessibility Requirements",
                               "component": "AccessibilityRequirements",
                               "name": "AccessibilityRequirementsLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Accessibility Requirements",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 250,
-                              "type": "textbox",
                               "name": "AccessibilityRequirements",
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${tblspeaker.AccessibilityRequirements}"
+                              "type": "textbox",
+                              "value": "${tblspeaker.AccessibilityRequirements}",
+                              "valueType": "string"
                             },
                             {
-                              "type": "required-validator",
-                              "name": "AccessibilityRequirementsRequiredValidator",
                               "component": "AccessibilityRequirements",
-                              "text": "AccessibilityRequirements is required",
+                              "name": "AccessibilityRequirementsRequiredValidator",
                               "style": {
                                 "position": "absolute"
-                              }
+                              },
+                              "text": "Accessibility requirements is required",
+                              "type": "required-validator"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Quote",
                               "component": "Quote",
                               "name": "QuoteLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Quote",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
-                              "valueType": "string",
                               "maxLength": 250,
-                              "type": "textbox",
                               "name": "Quote",
                               "style": {
                                 "width": "100%"
                               },
-                              "value": "${tblspeaker.Quote}"
+                              "type": "textbox",
+                              "value": "${tblspeaker.Quote}",
+                              "valueType": "string"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Tbl Ad User",
                               "component": "tblADUser_ID",
                               "name": "tblADUser_IDLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "ADUser",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
                               "data": "${getTblAdUsersFortblADUser_IDResult}",
-                              "textProperty": "UserName",
-                              "valueProperty": "tblADUser_ID",
-                              "placeholder": "Choose TblAdUser",
-                              "valueType": "int?",
-                              "showSearch": false,
-                              "type": "dropdown-datagrid",
                               "name": "tblADUser_ID",
+                              "placeholder": "Choose User",
+                              "showSearch": false,
                               "style": {
                                 "width": "100%"
                               },
-                              "value": "${tblspeaker.tblADUser_ID}"
+                              "textProperty": "UserName",
+                              "type": "dropdown-datagrid",
+                              "value": "${tblspeaker.tblADUser_ID}",
+                              "valueProperty": "tblADUser_ID",
+                              "valueType": "int?"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
                     },
                     {
-                      "type": "row",
                       "components": [
                         {
-                          "type": "col",
                           "class": "col offset-sm-3",
                           "components": [
                             {
-                              "type": "button",
+                              "buttonStyle": "primary",
                               "buttonType": "submit",
                               "icon": "save",
                               "text": "Save",
-                              "buttonStyle": "primary"
+                              "type": "button"
                             },
                             {
-                              "type": "button",
                               "buttonStyle": "light",
-                              "style": {
-                                "marginLeft": "1rem"
-                              },
-                              "text": "Cancel",
                               "events": {
                                 "click": [
                                   {
                                     "type": "close-popup"
                                   }
                                 ]
-                              }
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "type": "button"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
+                      ],
+                      "type": "row"
                     }
                   ],
+                  "data": "${tblspeaker}",
                   "events": {
                     "submit": [
                       {
@@ -449,9 +445,9 @@
                         ],
                         "then": [
                           {
-                            "type": "close-popup",
+                            "condition": "",
                             "result": "${tblspeaker}",
-                            "condition": ""
+                            "type": "close-popup"
                           }
                         ],
                         "type": "invoke"
@@ -459,19 +455,25 @@
                     ]
                   },
                   "itemType": "CoreRadzen.Models.Core.TblSpeaker",
-                  "data": "${tblspeaker}",
+                  "name": "form0",
+                  "type": "template-form",
                   "visible": "${tblspeaker != null}"
                 }
-              ]
+              ],
+              "type": "col"
             }
-          ]
+          ],
+          "type": "row"
         }
-      ]
+      ],
+      "container": "main",
+      "type": "content"
     }
   ],
   "events": {
     "load": [
       {
+        "error": [],
         "name": "CORE.getTblSpeakerBytblSpeaker_ID",
         "parameters": [
           {
@@ -487,7 +489,6 @@
             "valueType": "CoreRadzen.Models.Core.TblSpeaker"
           }
         ],
-        "error": [],
         "type": "invoke"
       },
       {
@@ -505,7 +506,6 @@
       }
     ]
   },
-  "name": "Edit Tbl Speaker",
-  "access": "Authenticated",
-  "layout": "Main"
+  "layout": "Main",
+  "name": "Edit Tbl Speaker"
 }
