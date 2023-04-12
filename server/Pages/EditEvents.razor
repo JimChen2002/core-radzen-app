@@ -22,7 +22,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDatePicker style="display: block; width: 100%" @bind-Value="@(tblevent.EventDate)" Name="EventDate">
+                <RadzenDatePicker DateFormat="MM/dd/yyyy" HourFormat="12" ShowTimeOkButton="false" style="display: block; width: 100%" @bind-Value="@(tblevent.EventDate)" Name="EventDate">
                 </RadzenDatePicker>
                 <RadzenRequiredValidator Component="EventDate" style="position: absolute" Text="Event date is required">
                 </RadzenRequiredValidator>
@@ -34,7 +34,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDatePicker style="display: block; width: 100%" @bind-Value="@(tblevent.StartTime)" Name="StartTime">
+                <RadzenDatePicker DateFormat="hh:mm tt" HourFormat="12" ShowTime="true" style="display: block; width: 100%" TimeOnly="true" @bind-Value="@(tblevent.StartTime)" Name="StartTime">
                 </RadzenDatePicker>
                 <RadzenRequiredValidator Component="StartTime" style="position: absolute" Text="Start time is required">
                 </RadzenRequiredValidator>
@@ -46,7 +46,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDatePicker style="display: block; width: 100%" @bind-Value="@(tblevent.EndTime)" Name="EndTime">
+                <RadzenDatePicker DateFormat="hh:mm tt" HourFormat="12" ShowTime="true" style="display: block; width: 100%" TimeOnly="true" @bind-Value="@(tblevent.EndTime)" Name="EndTime">
                 </RadzenDatePicker>
                 <RadzenRequiredValidator Component="EndTime" style="position: absolute" Text="End time is required">
                 </RadzenRequiredValidator>
@@ -160,7 +160,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@TblVolunteerSpeakerRequestAddButtonClick">
+                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-right: 25px" Text="Add" Click="@TblVolunteerSpeakerRequestAddButtonClick">
                 </RadzenButton>
                 <RadzenButton Icon="add_circle_outline" Size="ButtonSize.Medium" style="margin-bottom: 10px" Text="Add New Speaker" Click="@Button0Click">
                 </RadzenButton>
@@ -170,7 +170,7 @@
               <div class="col-md-2">
               </div>
               <div class="col-md-9">
-                <RadzenDataGrid @ref="grid2" AllowFiltering="true" AllowPaging="true" AllowSorting="true" ColumnWidth="auto" Data="@TblVolunteerSpeakerRequests" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Responsive="true"  RowSelect="@Grid2RowSelect">
+                <RadzenDataGrid @ref="grid2" AllowFiltering="true" AllowPaging="true" AllowSorting="true" ColumnWidth="auto" Data="@TblVolunteerSpeakerRequests" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Responsive="true" style="display: flex" RowSelect="@Grid2RowSelect">
                   <Columns>
                     <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="tblVolunteerSpeakerRequests_ID" Title="Tbl Volunteer Speaker Requests ID" Visible="false">
                     </RadzenDataGridColumn>
@@ -244,7 +244,7 @@
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-2" style="padding-right: 1px">
-                <RadzenLabel Component="IsLegislatorsInvited" style="width: 100%" Text="Are Legislators Invited">
+                <RadzenLabel Component="IsLegislatorsInvited" style="width: 100%" Text="Are Legislators Invited?">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
@@ -363,28 +363,32 @@
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
-              <RadzenDataGrid @ref="grid1" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblCoreAttendances" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblCoreAttendance" RowSelect="@Grid1RowSelect">
-                <Columns>
-                  <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Property="tblCOREAttendance_ID" Title="Tbl CORE Attendance ID">
-                  </RadzenDataGridColumn>
-                  <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" FilterProperty="TblEvent.LocationDetails" GroupProperty="TblEvent.LocationDetails" Property="tblEvent_ID" SortProperty="TblEvent.LocationDetails" Title="Tbl Event">
-                    <Template Context="data">
-                    @(data.TblEvent?.LocationDetails)
-                    </Template>
-                  </RadzenDataGridColumn>
-                  <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" FilterProperty="TblAdUser.UserName" GroupProperty="TblAdUser.UserName" Property="tblADUser_ID" SortProperty="TblAdUser.UserName" Title="Tbl Ad User">
-                    <Template Context="data">
-                    @(data.TblAdUser?.UserName)
-                    </Template>
-                  </RadzenDataGridColumn>
-                  <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
-                    <Template Context="coreRadzenModelsCoreTblCoreAttendance">
-                      <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>TblCoreAttendanceDeleteButtonClick(args, coreRadzenModelsCoreTblCoreAttendance))" @onclick:stopPropagation="true">
-                      </RadzenButton>
-                    </Template>
-                  </RadzenDataGridColumn>
-                </Columns>
-              </RadzenDataGrid>
+              <div class="col-md-2">
+              </div>
+              <div class="col-md-9">
+                <RadzenDataGrid @ref="grid1" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblCoreAttendances" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblCoreAttendance" RowSelect="@Grid1RowSelect">
+                  <Columns>
+                    <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Property="tblCOREAttendance_ID" Title="Tbl CORE Attendance ID" Visible="false">
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" FilterProperty="TblEvent.LocationDetails" GroupProperty="TblEvent.LocationDetails" Property="tblEvent_ID" SortProperty="TblEvent.LocationDetails" Title="Tbl Event" Visible="false">
+                      <Template Context="data">
+                      @(data.TblEvent?.LocationDetails)
+                      </Template>
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" FilterProperty="TblAdUser.UserName" GroupProperty="TblAdUser.UserName" Property="tblADUser_ID" SortProperty="TblAdUser.UserName" Title="Tbl Ad User">
+                      <Template Context="data">
+                      @(data.TblAdUser?.UserName)
+                      </Template>
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+                      <Template Context="coreRadzenModelsCoreTblCoreAttendance">
+                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>TblCoreAttendanceDeleteButtonClick(args, coreRadzenModelsCoreTblCoreAttendance))" @onclick:stopPropagation="true">
+                        </RadzenButton>
+                      </Template>
+                    </RadzenDataGridColumn>
+                  </Columns>
+                </RadzenDataGrid>
+              </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-2" style="margin-right: 1px; padding-right: 1px">
@@ -404,7 +408,7 @@
               <div class="col-md-9">
                 <RadzenTextBox MaxLength="500" style="display: block; width: 100%" @bind-Value="@(tblevent.PlaceToMeet)" Name="PlaceToMeet">
                 </RadzenTextBox>
-                <RadzenRequiredValidator Component="PlaceToMeet" style="position: absolute" Text="PlaceToMeet is required">
+                <RadzenRequiredValidator Component="PlaceToMeet" style="position: absolute" Text="Place to meet is required">
                 </RadzenRequiredValidator>
               </div>
             </div>

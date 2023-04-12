@@ -40,7 +40,10 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "dateFormat": "MM/dd/yyyy",
+                              "hourFormat": 12,
                               "name": "EventDate",
+                              "showTimeOkButton": false,
                               "style": {
                                 "display": "block",
                                 "width": "100%"
@@ -91,11 +94,15 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "dateFormat": "hh:mm tt",
+                              "hourFormat": 12,
                               "name": "StartTime",
+                              "showTime": true,
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
+                              "timeOnly": true,
                               "type": "datepicker",
                               "value": "${tblevent.StartTime}",
                               "valueType": "DateTime"
@@ -142,11 +149,15 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "dateFormat": "hh:mm tt",
+                              "hourFormat": 12,
                               "name": "EndTime",
+                              "showTime": true,
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
+                              "timeOnly": true,
                               "type": "datepicker",
                               "value": "${tblevent.EndTime}",
                               "valueType": "DateTime"
@@ -659,7 +670,8 @@
                               "icon": "add_circle_outline",
                               "name": "TblVolunteerSpeakerRequestAddButton",
                               "style": {
-                                "marginBottom": "10px"
+                                "marginBottom": "10px",
+                                "marginRight": "25px"
                               },
                               "text": "Add",
                               "type": "button"
@@ -810,7 +822,9 @@
                               "itemType": "CoreRadzen.Models.Core.TblVolunteerSpeakerRequest",
                               "name": "grid2",
                               "responsive": true,
-                              "style": {},
+                              "style": {
+                                "display": "flex"
+                              },
                               "type": "datagrid"
                             }
                           ],
@@ -1059,7 +1073,7 @@
                               "style": {
                                 "width": "100%"
                               },
-                              "text": "Are Legislators Invited",
+                              "text": "Are Legislators Invited?",
                               "type": "label"
                             }
                           ],
@@ -1561,108 +1575,122 @@
                     {
                       "components": [
                         {
-                          "allowFiltering": true,
-                          "allowPaging": true,
-                          "allowSorting": true,
-                          "columns": [
+                          "class": "col-md-2",
+                          "name": "col9",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
                             {
-                              "property": "tblCOREAttendance_ID",
-                              "title": "Tbl CORE Attendance ID"
-                            },
-                            {
-                              "filterProperty": "TblEvent.LocationDetails",
-                              "groupProperty": "TblEvent.LocationDetails",
-                              "property": "tblEvent_ID",
-                              "sortProperty": "TblEvent.LocationDetails",
-                              "template": "${data.TblEvent?.LocationDetails}",
-                              "title": "Tbl Event"
-                            },
-                            {
-                              "filterProperty": "TblAdUser.UserName",
-                              "groupProperty": "TblAdUser.UserName",
-                              "property": "tblADUser_ID",
-                              "sortProperty": "TblAdUser.UserName",
-                              "template": "${data.TblAdUser?.UserName}",
-                              "title": "Tbl Ad User"
-                            },
-                            {
-                              "filterable": false,
-                              "sortable": false,
-                              "template": [
+                              "allowFiltering": true,
+                              "allowPaging": true,
+                              "allowSorting": true,
+                              "columns": [
                                 {
-                                  "attributes": [
+                                  "property": "tblCOREAttendance_ID",
+                                  "title": "Tbl CORE Attendance ID",
+                                  "visible": false
+                                },
+                                {
+                                  "filterProperty": "TblEvent.LocationDetails",
+                                  "groupProperty": "TblEvent.LocationDetails",
+                                  "property": "tblEvent_ID",
+                                  "sortProperty": "TblEvent.LocationDetails",
+                                  "template": "${data.TblEvent?.LocationDetails}",
+                                  "title": "Tbl Event",
+                                  "visible": false
+                                },
+                                {
+                                  "filterProperty": "TblAdUser.UserName",
+                                  "groupProperty": "TblAdUser.UserName",
+                                  "property": "tblADUser_ID",
+                                  "sortProperty": "TblAdUser.UserName",
+                                  "template": "${data.TblAdUser?.UserName}",
+                                  "title": "Tbl Ad User"
+                                },
+                                {
+                                  "filterable": false,
+                                  "sortable": false,
+                                  "template": [
                                     {
-                                      "name": "@onclick:stopPropagation",
-                                      "value": true
+                                      "attributes": [
+                                        {
+                                          "name": "@onclick:stopPropagation",
+                                          "value": true
+                                        }
+                                      ],
+                                      "buttonStyle": "danger",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "condition": "await DialogService.Confirm(\"Are you sure you want to delete this record?\") == true",
+                                            "error": [
+                                              {
+                                                "detail": "Unable to delete TblEvent",
+                                                "severity": "error",
+                                                "summary": "Error",
+                                                "type": "notify"
+                                              }
+                                            ],
+                                            "name": "CORE.deleteTblCoreAttendance",
+                                            "parameters": [
+                                              {
+                                                "name": "tblCOREAttendance_ID",
+                                                "value": "${data.tblCOREAttendance_ID}"
+                                              }
+                                            ],
+                                            "then": [
+                                              {
+                                                "code": "await grid1.Reload();",
+                                                "condition": "result != null",
+                                                "type": "execute"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "close",
+                                      "name": "TblCoreAttendanceDeleteButton",
+                                      "size": "sm",
+                                      "text": "",
+                                      "type": "button"
                                     }
                                   ],
-                                  "buttonStyle": "danger",
-                                  "events": {
-                                    "click": [
-                                      {
-                                        "condition": "await DialogService.Confirm(\"Are you sure you want to delete this record?\") == true",
-                                        "error": [
-                                          {
-                                            "detail": "Unable to delete TblEvent",
-                                            "severity": "error",
-                                            "summary": "Error",
-                                            "type": "notify"
-                                          }
-                                        ],
-                                        "name": "CORE.deleteTblCoreAttendance",
-                                        "parameters": [
-                                          {
-                                            "name": "tblCOREAttendance_ID",
-                                            "value": "${data.tblCOREAttendance_ID}"
-                                          }
-                                        ],
-                                        "then": [
-                                          {
-                                            "code": "await grid1.Reload();",
-                                            "condition": "result != null",
-                                            "type": "execute"
-                                          }
-                                        ],
-                                        "type": "invoke"
-                                      }
-                                    ]
-                                  },
-                                  "icon": "close",
-                                  "name": "TblCoreAttendanceDeleteButton",
-                                  "size": "sm",
-                                  "text": "",
-                                  "type": "button"
+                                  "textAlign": "center",
+                                  "width": "70px"
                                 }
                               ],
-                              "textAlign": "center",
-                              "width": "70px"
+                              "data": "${TblCoreAttendances}",
+                              "events": {
+                                "rowSelect": [
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "tblCOREAttendance_ID",
+                                        "value": "${event.tblCOREAttendance_ID}"
+                                      }
+                                    ],
+                                    "path": "edit-tbl-core-attendance",
+                                    "then": [
+                                      {
+                                        "code": "await grid1.Reload();",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "popup"
+                                  }
+                                ]
+                              },
+                              "filterMode": "advanced",
+                              "itemType": "CoreRadzen.Models.Core.TblCoreAttendance",
+                              "name": "grid1",
+                              "type": "datagrid"
                             }
                           ],
-                          "data": "${TblCoreAttendances}",
-                          "events": {
-                            "rowSelect": [
-                              {
-                                "parameters": [
-                                  {
-                                    "name": "tblCOREAttendance_ID",
-                                    "value": "${event.tblCOREAttendance_ID}"
-                                  }
-                                ],
-                                "path": "edit-tbl-core-attendance",
-                                "then": [
-                                  {
-                                    "code": "await grid1.Reload();",
-                                    "type": "execute"
-                                  }
-                                ],
-                                "type": "popup"
-                              }
-                            ]
-                          },
-                          "filterMode": "advanced",
-                          "itemType": "CoreRadzen.Models.Core.TblCoreAttendance",
-                          "name": "grid1",
-                          "type": "datagrid"
+                          "name": "col10",
+                          "type": "col"
                         }
                       ],
                       "name": "row6",
@@ -1753,7 +1781,7 @@
                               "style": {
                                 "position": "absolute"
                               },
-                              "text": "PlaceToMeet is required",
+                              "text": "Place to meet is required",
                               "type": "required-validator"
                             }
                           ],
