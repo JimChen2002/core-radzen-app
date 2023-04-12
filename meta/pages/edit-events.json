@@ -858,24 +858,26 @@
                               "multiple": true,
                               "name": "dropdown0",
                               "style": {
-                                "width": "607.4000244140625px"
+                                "width": "100%"
                               },
-                              "textProperty": "Id",
+                              "textProperty": "Name",
                               "type": "dropdown",
                               "value": "${selectedAudienceTypes}",
-                              "valueProperty": "Name",
+                              "valueProperty": "Id",
                               "valueType": "CoreRadzen.Pages.EditEventsComponent"
                             },
                             {
-                              "maxLength": 500,
+                              "maxLength": 50,
                               "name": "AudienceTypes",
                               "style": {
                                 "display": "block",
-                                "width": "34.5px"
+                                "height": "18px",
+                                "width": "17.5px"
                               },
                               "type": "textbox",
                               "value": "${tblevent.AudienceTypes}",
-                              "valueType": "string"
+                              "valueType": "string",
+                              "visible": false
                             },
                             {
                               "component": "AudienceTypes",
@@ -902,7 +904,7 @@
                           "components": [
                             {
                               "component": "EstimatedAttendees",
-                              "name": "EstimatedAttendeesLabel",
+                              "name": "label1",
                               "style": {
                                 "width": "100%"
                               },
@@ -910,6 +912,7 @@
                               "type": "label"
                             }
                           ],
+                          "name": "col2",
                           "type": "col"
                         },
                         {
@@ -928,7 +931,7 @@
                             },
                             {
                               "component": "EstimatedAttendees",
-                              "name": "EstimatedAttendeesRequiredValidator",
+                              "name": "requiredValidator0",
                               "style": {
                                 "position": "absolute"
                               },
@@ -936,9 +939,11 @@
                               "type": "required-validator"
                             }
                           ],
+                          "name": "col5",
                           "type": "col"
                         }
                       ],
+                      "name": "row2",
                       "style": {
                         "marginBottom": "1rem"
                       },
@@ -1409,13 +1414,190 @@
                           "class": "col-md-3",
                           "components": [
                             {
+                              "component": "OnsiteContactEmail",
+                              "name": "label2",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "CORE Team Members Attending",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col6",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "disabled": "",
+                              "events": {
+                                "click": [
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "tblEvent_ID",
+                                        "type": "integer",
+                                        "value": "${parameters.tblEvent_ID}"
+                                      }
+                                    ],
+                                    "path": "add-tbl-core-attendance",
+                                    "then": [
+                                      {
+                                        "code": "await grid1.Reload();",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "popup"
+                                  }
+                                ]
+                              },
+                              "icon": "add_circle_outline",
+                              "name": "TblCoreAttendanceAddButton",
+                              "style": {
+                                "marginBottom": "10px"
+                              },
+                              "text": "Add",
+                              "type": "button"
+                            }
+                          ],
+                          "name": "col7",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row4",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "allowFiltering": true,
+                          "allowPaging": true,
+                          "allowSorting": true,
+                          "columns": [
+                            {
+                              "property": "tblCOREAttendance_ID",
+                              "title": "Tbl CORE Attendance ID"
+                            },
+                            {
+                              "filterProperty": "TblEvent.LocationDetails",
+                              "groupProperty": "TblEvent.LocationDetails",
+                              "property": "tblEvent_ID",
+                              "sortProperty": "TblEvent.LocationDetails",
+                              "template": "${data.TblEvent?.LocationDetails}",
+                              "title": "Tbl Event"
+                            },
+                            {
+                              "filterProperty": "TblAdUser.UserName",
+                              "groupProperty": "TblAdUser.UserName",
+                              "property": "tblADUser_ID",
+                              "sortProperty": "TblAdUser.UserName",
+                              "template": "${data.TblAdUser?.UserName}",
+                              "title": "Tbl Ad User"
+                            },
+                            {
+                              "filterable": false,
+                              "sortable": false,
+                              "template": [
+                                {
+                                  "attributes": [
+                                    {
+                                      "name": "@onclick:stopPropagation",
+                                      "value": true
+                                    }
+                                  ],
+                                  "buttonStyle": "danger",
+                                  "events": {
+                                    "click": [
+                                      {
+                                        "condition": "await DialogService.Confirm(\"Are you sure you want to delete this record?\") == true",
+                                        "error": [
+                                          {
+                                            "detail": "Unable to delete TblEvent",
+                                            "severity": "error",
+                                            "summary": "Error",
+                                            "type": "notify"
+                                          }
+                                        ],
+                                        "name": "CORE.deleteTblCoreAttendance",
+                                        "parameters": [
+                                          {
+                                            "name": "tblCOREAttendance_ID",
+                                            "value": "${data.tblCOREAttendance_ID}"
+                                          }
+                                        ],
+                                        "then": [
+                                          {
+                                            "code": "await grid1.Reload();",
+                                            "condition": "result != null",
+                                            "type": "execute"
+                                          }
+                                        ],
+                                        "type": "invoke"
+                                      }
+                                    ]
+                                  },
+                                  "icon": "close",
+                                  "name": "TblCoreAttendanceDeleteButton",
+                                  "size": "sm",
+                                  "text": "",
+                                  "type": "button"
+                                }
+                              ],
+                              "textAlign": "center",
+                              "width": "70px"
+                            }
+                          ],
+                          "data": "${TblCoreAttendances}",
+                          "events": {
+                            "rowSelect": [
+                              {
+                                "parameters": [
+                                  {
+                                    "name": "tblCOREAttendance_ID",
+                                    "value": "${event.tblCOREAttendance_ID}"
+                                  }
+                                ],
+                                "path": "edit-tbl-core-attendance",
+                                "then": [
+                                  {
+                                    "code": "await grid1.Reload();",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "type": "popup"
+                              }
+                            ]
+                          },
+                          "filterMode": "advanced",
+                          "itemType": "CoreRadzen.Models.Core.TblCoreAttendance",
+                          "name": "grid1",
+                          "type": "datagrid"
+                        }
+                      ],
+                      "name": "row6",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
                               "component": "IsLocked",
                               "name": "IsLockedLabel",
                               "style": {
                                 "width": "100%"
                               },
                               "text": "Is Locked",
-                              "type": "label"
+                              "type": "label",
+                              "visible": false
                             }
                           ],
                           "type": "col"
@@ -1427,7 +1609,8 @@
                               "name": "IsLocked",
                               "type": "checkbox",
                               "value": "${tblevent.IsLocked}",
-                              "valueType": "bool"
+                              "valueType": "bool",
+                              "visible": false
                             }
                           ],
                           "type": "col"
@@ -1649,8 +1832,8 @@
         "global": false,
         "name": "audienceTypeList",
         "type": "set",
-        "value": "new List<AudienceTypesDropDown>(){new AudienceTypesDropDown(){Id=1,Name=\"a\"}, new AudienceTypesDropDown(){Id=2,Name=\"b\"}}",
-        "valueType": "IEnumerable<AudienceTypesDropDown>"
+        "value": "new List<AudienceTypesDropDown>(){\n    new AudienceTypesDropDown(){Id=\"1\",Name=\"Clinical (Physicians/Nurses)\"},\n    new AudienceTypesDropDown(){Id=\"2\",Name=\"Hospital Administration\"},\n    new AudienceTypesDropDown(){Id=\"3\",Name=\"Students - High School, University or Trade School\"},\n    new AudienceTypesDropDown(){Id=\"4\",Name=\"Students - Graduate Level\"},\n    new AudienceTypesDropDown(){Id=\"5\",Name=\"Legislative\"},\n    new AudienceTypesDropDown(){Id=\"6\",Name=\"Funeral Directors/Mortuary Students\"},\n    new AudienceTypesDropDown(){Id=\"7\",Name=\"Municipal/Community Leaders\"},\n    new AudienceTypesDropDown(){Id=\"8\",Name=\"Faith-based/Multicultural\"},\n    new AudienceTypesDropDown(){Id=\"9\",Name=\"General Public\"},\n    new AudienceTypesDropDown(){Id=\"10\",Name=\"Info Table Only\"}\n}",
+        "valueType": "IEnumerable<CoreRadzen.Models.Core.AudienceTypesDropDown>"
       },
       {
         "name": "selectedAudienceTypes",
@@ -1672,6 +1855,22 @@
             "type": "set",
             "value": "${result}",
             "valueType": "IEnumerable<CoreRadzen.Models.Core.TblVolunteerSpeakerRequest>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "code": "${tblevent.IsLocked} = false;",
+        "type": "execute"
+      },
+      {
+        "name": "CORE.getTblCoreAttendances",
+        "then": [
+          {
+            "name": "TblCoreAttendances",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CoreRadzen.Models.Core.TblCoreAttendance>"
           }
         ],
         "type": "invoke"

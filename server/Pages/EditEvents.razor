@@ -212,9 +212,9 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Chips="true" Data="@audienceTypeList" Multiple="true" style="width: 607.4000244140625px" TextProperty="Id" @bind-Value="@selectedAudienceTypes" ValueProperty="Name" Name="Dropdown0" Change="@Dropdown0Change">
+                <RadzenDropDown Chips="true" Data="@audienceTypeList" Multiple="true" style="width: 100%" TextProperty="Name" @bind-Value="@selectedAudienceTypes" ValueProperty="Id" Name="Dropdown0" Change="@Dropdown0Change">
                 </RadzenDropDown>
-                <RadzenTextBox MaxLength="500" style="display: block; width: 34.5px" @bind-Value="@(tblevent.AudienceTypes)" Name="AudienceTypes">
+                <RadzenTextBox MaxLength="50" style="display: block; height: 18px; width: 17.5px" @bind-Value="@(tblevent.AudienceTypes)" Visible="false" Name="AudienceTypes">
                 </RadzenTextBox>
                 <RadzenRequiredValidator Component="AudienceTypes" style="position: absolute" Text="AudienceTypes is required">
                 </RadzenRequiredValidator>
@@ -356,11 +356,45 @@
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="IsLocked" style="width: 100%" Text="Is Locked">
+                <RadzenLabel Component="OnsiteContactEmail" style="width: 100%" Text="CORE Team Members Attending">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenCheckBox @bind-Value="@(tblevent.IsLocked)" Name="IsLocked">
+                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@TblCoreAttendanceAddButtonClick">
+                </RadzenButton>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <RadzenDataGrid @ref="grid1" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblCoreAttendances" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblCoreAttendance" RowSelect="@Grid1RowSelect">
+                <Columns>
+                  <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Property="tblCOREAttendance_ID" Title="Tbl CORE Attendance ID">
+                  </RadzenDataGridColumn>
+                  <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" FilterProperty="TblEvent.LocationDetails" GroupProperty="TblEvent.LocationDetails" Property="tblEvent_ID" SortProperty="TblEvent.LocationDetails" Title="Tbl Event">
+                    <Template Context="data">
+                    @(data.TblEvent?.LocationDetails)
+                    </Template>
+                  </RadzenDataGridColumn>
+                  <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" FilterProperty="TblAdUser.UserName" GroupProperty="TblAdUser.UserName" Property="tblADUser_ID" SortProperty="TblAdUser.UserName" Title="Tbl Ad User">
+                    <Template Context="data">
+                    @(data.TblAdUser?.UserName)
+                    </Template>
+                  </RadzenDataGridColumn>
+                  <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+                    <Template Context="coreRadzenModelsCoreTblCoreAttendance">
+                      <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>TblCoreAttendanceDeleteButtonClick(args, coreRadzenModelsCoreTblCoreAttendance))" @onclick:stopPropagation="true">
+                      </RadzenButton>
+                    </Template>
+                  </RadzenDataGridColumn>
+                </Columns>
+              </RadzenDataGrid>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="IsLocked" style="width: 100%" Text="Is Locked" Visible="false">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenCheckBox @bind-Value="@(tblevent.IsLocked)" Visible="false" Name="IsLocked">
                 </RadzenCheckBox>
               </div>
             </div>
@@ -390,7 +424,7 @@
               <div class="col offset-sm-3">
                 <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
                 </RadzenButton>
-                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@Button4Click">
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@Button5Click">
                 </RadzenButton>
               </div>
             </div>

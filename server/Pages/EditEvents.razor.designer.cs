@@ -58,6 +58,7 @@ namespace CoreRadzen.Pages
         [Parameter]
         public dynamic tblEvent_ID { get; set; }
         protected RadzenDataGrid<CoreRadzen.Models.Core.TblVolunteerSpeakerRequest> grid2;
+        protected RadzenDataGrid<CoreRadzen.Models.Core.TblCoreAttendance> grid1;
 
         CoreRadzen.Models.Core.TblEvent _tblevent;
         protected CoreRadzen.Models.Core.TblEvent tblevent
@@ -97,8 +98,8 @@ namespace CoreRadzen.Pages
             }
         }
 
-        IEnumerable<AudienceTypesDropDown> _audienceTypeList;
-        protected IEnumerable<AudienceTypesDropDown> audienceTypeList
+        IEnumerable<CoreRadzen.Models.Core.AudienceTypesDropDown> _audienceTypeList;
+        protected IEnumerable<CoreRadzen.Models.Core.AudienceTypesDropDown> audienceTypeList
         {
             get
             {
@@ -154,6 +155,25 @@ namespace CoreRadzen.Pages
             }
         }
 
+        IEnumerable<CoreRadzen.Models.Core.TblCoreAttendance> _TblCoreAttendances;
+        protected IEnumerable<CoreRadzen.Models.Core.TblCoreAttendance> TblCoreAttendances
+        {
+            get
+            {
+                return _TblCoreAttendances;
+            }
+            set
+            {
+                if (!object.Equals(_TblCoreAttendances, value))
+                {
+                    var args = new PropertyChangedEventArgs(){ Name = "TblCoreAttendances", NewValue = value, OldValue = _TblCoreAttendances };
+                    _TblCoreAttendances = value;
+                    OnPropertyChanged(args);
+                    Reload();
+                }
+            }
+        }
+
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
             await Security.InitializeAsync(AuthenticationStateProvider);
@@ -174,12 +194,28 @@ namespace CoreRadzen.Pages
             var coreGetTblHospitalsResult = await Core.GetTblHospitals();
             getTblHospitalsForHospitalIDResult = coreGetTblHospitalsResult;
 
-            audienceTypeList = new List<AudienceTypesDropDown>(){new AudienceTypesDropDown(){Id=1,Name="a"}, new AudienceTypesDropDown(){Id=2,Name="b"}};
+            audienceTypeList = new List<AudienceTypesDropDown>(){
+    new AudienceTypesDropDown(){Id="1",Name="Clinical (Physicians/Nurses)"},
+    new AudienceTypesDropDown(){Id="2",Name="Hospital Administration"},
+    new AudienceTypesDropDown(){Id="3",Name="Students - High School, University or Trade School"},
+    new AudienceTypesDropDown(){Id="4",Name="Students - Graduate Level"},
+    new AudienceTypesDropDown(){Id="5",Name="Legislative"},
+    new AudienceTypesDropDown(){Id="6",Name="Funeral Directors/Mortuary Students"},
+    new AudienceTypesDropDown(){Id="7",Name="Municipal/Community Leaders"},
+    new AudienceTypesDropDown(){Id="8",Name="Faith-based/Multicultural"},
+    new AudienceTypesDropDown(){Id="9",Name="General Public"},
+    new AudienceTypesDropDown(){Id="10",Name="Info Table Only"}
+};
 
             selectedAudienceTypes = !string.IsNullOrEmpty(tblevent.AudienceTypes) ? tblevent.AudienceTypes.Split(';') : Enumerable.Empty<string>();;
 
             var coreGetTblVolunteerSpeakerRequestsResult = await Core.GetTblVolunteerSpeakerRequests(new Query() { Filter = $@"i => i.tblEvent_ID == {tblEvent_ID}" });
             TblVolunteerSpeakerRequests = coreGetTblVolunteerSpeakerRequestsResult;
+
+            tblevent.IsLocked = false;
+
+            var coreGetTblCoreAttendancesResult = await Core.GetTblCoreAttendances();
+            TblCoreAttendances = coreGetTblCoreAttendancesResult;
         }
 
         protected async System.Threading.Tasks.Task Form0Submit(CoreRadzen.Models.Core.TblEvent args)
@@ -236,7 +272,38 @@ namespace CoreRadzen.Pages
             tblevent.AudienceTypes = string.Join(';', selectedAudienceTypes);
         }
 
-        protected async System.Threading.Tasks.Task Button4Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task TblCoreAttendanceAddButtonClick(MouseEventArgs args)
+        {
+            var dialogResult = await DialogService.OpenAsync<AddTblCoreAttendance>("Add Tbl Core Attendance", new Dictionary<string, object>() { {"tblEvent_ID", tblEvent_ID} });
+            await grid1.Reload();
+        }
+
+        protected async System.Threading.Tasks.Task Grid1RowSelect(CoreRadzen.Models.Core.TblCoreAttendance args)
+        {
+            var dialogResult = await DialogService.OpenAsync<EditTblCoreAttendance>("Edit Tbl Core Attendance", new Dictionary<string, object>() { {"tblCOREAttendance_ID", args.tblCOREAttendance_ID} });
+            await grid1.Reload();
+        }
+
+        protected async System.Threading.Tasks.Task TblCoreAttendanceDeleteButtonClick(MouseEventArgs args, dynamic data)
+        {
+            try
+            {
+                if (await DialogService.Confirm("Are you sure you want to delete this record?") == true)
+                {
+                    var coreDeleteTblCoreAttendanceResult = await Core.DeleteTblCoreAttendance(data.tblCOREAttendance_ID);
+                    if (coreDeleteTblCoreAttendanceResult != null)
+                    {
+                        await grid1.Reload();
+                    }
+                }
+            }
+            catch (System.Exception coreDeleteTblCoreAttendanceException)
+            {
+                NotificationService.Notify(new NotificationMessage(){ Severity = NotificationSeverity.Error,Summary = $"Error",Detail = $"Unable to delete TblEvent" });
+            }
+        }
+
+        protected async System.Threading.Tasks.Task Button5Click(MouseEventArgs args)
         {
             UriHelper.NavigateTo("tbl-events");
         }
