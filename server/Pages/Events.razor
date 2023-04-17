@@ -31,7 +31,7 @@
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
               <Template Context="coreRadzenModelsCoreTblEvent">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, coreRadzenModelsCoreTblEvent))" @onclick:stopPropagation="true">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Small" style="color: #28363c" Variant="Variant.Text" Click="@((args) =>GridDeleteButtonClick(args, coreRadzenModelsCoreTblEvent))" @onclick:stopPropagation="true">
                 </RadzenButton>
               </Template>
             </RadzenDataGridColumn>
@@ -67,7 +67,7 @@
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
               <Template Context="coreRadzenModelsCoreTblVolunteerSpeakerRequest">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>TblVolunteerSpeakerRequestDeleteButtonClick(args, coreRadzenModelsCoreTblVolunteerSpeakerRequest))" @onclick:stopPropagation="true">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Small" style="color: #28363c" Variant="Variant.Text" Click="@((args) =>TblVolunteerSpeakerRequestDeleteButtonClick(args, coreRadzenModelsCoreTblVolunteerSpeakerRequest))" @onclick:stopPropagation="true">
                 </RadzenButton>
               </Template>
             </RadzenDataGridColumn>

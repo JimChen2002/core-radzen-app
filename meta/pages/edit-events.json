@@ -715,11 +715,15 @@
                                           }
                                         ]
                                       },
-                                      "icon": "close",
+                                      "icon": "delete",
                                       "name": "TblVolunteerSpeakerRequestDeleteButton",
                                       "size": "sm",
+                                      "style": {
+                                        "color": "#28363c"
+                                      },
                                       "text": "",
-                                      "type": "button"
+                                      "type": "button",
+                                      "variant": "Variant.Text"
                                     }
                                   ],
                                   "textAlign": "center",
@@ -1598,11 +1602,15 @@
                                           }
                                         ]
                                       },
-                                      "icon": "close",
+                                      "icon": "delete",
                                       "name": "TblCoreAttendanceDeleteButton",
                                       "size": "sm",
+                                      "style": {
+                                        "color": "#28363c"
+                                      },
                                       "text": "",
-                                      "type": "button"
+                                      "type": "button",
+                                      "variant": "Variant.Text"
                                     }
                                   ],
                                   "textAlign": "center",

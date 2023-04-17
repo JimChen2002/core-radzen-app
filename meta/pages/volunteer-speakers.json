@@ -106,11 +106,15 @@
                               }
                             ]
                           },
-                          "icon": "close",
+                          "icon": "delete",
                           "name": "gridDeleteButton",
                           "size": "sm",
+                          "style": {
+                            "color": "#28363c"
+                          },
                           "text": "",
-                          "type": "button"
+                          "type": "button",
+                          "variant": "Variant.Text"
                         }
                       ],
                       "textAlign": "center",
