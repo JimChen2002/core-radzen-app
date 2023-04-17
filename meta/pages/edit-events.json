@@ -1682,7 +1682,8 @@
                               "icon": "add_circle_outline",
                               "name": "TblCoreAttendanceAddButton",
                               "style": {
-                                "marginBottom": "10px"
+                                "marginBottom": "10px",
+                                "marginTop": "10px"
                               },
                               "text": "Add",
                               "type": "button"
