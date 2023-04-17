@@ -14,16 +14,6 @@
     </RadzenHeading>
     <div class="row">
       <div class="col-md-12">
-        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
-        </RadzenButton>
-        <RadzenSplitButton Icon="get_app" style="margin-bottom: 10px; margin-left: 10px" Text="Export" Click="@Splitbutton0Click">
-          <ChildContent>
-            <RadzenSplitButtonItem Text="Excel" Value="xlsx">
-            </RadzenSplitButtonItem>
-            <RadzenSplitButtonItem Text="CSV" Value="csv">
-            </RadzenSplitButtonItem>
-          </ChildContent>
-        </RadzenSplitButton>
         <RadzenTextBox Placeholder="Search ..." style="display: block; margin-bottom: 10px; width: 100%" Name="Textbox0" @oninput="@(async(args) => {search = $"{args.Value}";await grid0.GoToPage(0);await Load();})">
         </RadzenTextBox>
         <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getTblSpeakersResult" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblSpeaker" RowDoubleClick="@Grid0RowDoubleClick">
@@ -50,6 +40,16 @@
             </RadzenDataGridColumn>
           </Columns>
         </RadzenDataGrid>
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenSplitButton Icon="get_app" style="margin-bottom: 10px; margin-left: 10px" Text="Export" Click="@Splitbutton0Click">
+          <ChildContent>
+            <RadzenSplitButtonItem Text="Excel" Value="xlsx">
+            </RadzenSplitButtonItem>
+            <RadzenSplitButtonItem Text="CSV" Value="csv">
+            </RadzenSplitButtonItem>
+          </ChildContent>
+        </RadzenSplitButton>
       </div>
     </div>
   </ChildContent>

@@ -15,98 +15,6 @@
               "class": "col-md-12",
               "components": [
                 {
-                  "events": {
-                    "click": [
-                      {
-                        "path": "add-events",
-                        "type": "navigate"
-                      }
-                    ]
-                  },
-                  "icon": "add_circle_outline",
-                  "name": "button0",
-                  "style": {
-                    "marginBottom": "10px"
-                  },
-                  "text": "Add",
-                  "type": "button"
-                },
-                {
-                  "events": {
-                    "click": [
-                      {
-                        "condition": "${event?.Value == \"csv\"}",
-                        "fileName": "Tbl Events",
-                        "name": "CORE.getTblEvents",
-                        "parameters": [
-                          {
-                            "name": "$filter",
-                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
-                          },
-                          {
-                            "name": "$orderby",
-                            "value": "${grid0.Query.OrderBy}"
-                          },
-                          {
-                            "name": "$expand",
-                            "value": "TblHospital"
-                          },
-                          {
-                            "name": "$select",
-                            "value": "tblEvent_ID,EventDate,StartTime,EndTime,TblHospital.HospitalName as TblHospitalHospitalName,LocationDetails,EventType,EventDescription,EventDetails,SpeakerNeeds,LeadershipSpeakerRequested,LeadershipSpeaker,LeadershipSpeechLength,VolunteerSpeechLength,AudienceTypes,EstimatedAttendees,SocialMediaOrVideoNeeds,IsLegislatorsInvited,IsLegislatorsAttending,IsQuiltRequested,QuiltNumber,QuiltCoordinator,IsVehicleRequested,IsVehicleReserved,VehicleDriver,OnsiteContactName,OnsiteContactPhone,OnsiteContactEmail,IsLocked,PlaceToMeet,AdditionalInformation"
-                          }
-                        ],
-                        "type": "export"
-                      },
-                      {
-                        "condition": "${event == null || event.Value == \"xlsx\"}",
-                        "fileName": "Tbl Events",
-                        "format": "xlsx",
-                        "name": "CORE.getTblEvents",
-                        "parameters": [
-                          {
-                            "name": "$filter",
-                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
-                          },
-                          {
-                            "name": "$orderby",
-                            "value": "${grid0.Query.OrderBy}"
-                          },
-                          {
-                            "name": "$expand",
-                            "value": "TblHospital"
-                          },
-                          {
-                            "name": "$select",
-                            "value": "tblEvent_ID,EventDate,StartTime,EndTime,TblHospital.HospitalName as TblHospitalHospitalName,LocationDetails,EventType,EventDescription,EventDetails,SpeakerNeeds,LeadershipSpeakerRequested,LeadershipSpeaker,LeadershipSpeechLength,VolunteerSpeechLength,AudienceTypes,EstimatedAttendees,SocialMediaOrVideoNeeds,IsLegislatorsInvited,IsLegislatorsAttending,IsQuiltRequested,QuiltNumber,QuiltCoordinator,IsVehicleRequested,IsVehicleReserved,VehicleDriver,OnsiteContactName,OnsiteContactPhone,OnsiteContactEmail,IsLocked,PlaceToMeet,AdditionalInformation"
-                          }
-                        ],
-                        "type": "export"
-                      }
-                    ]
-                  },
-                  "icon": "get_app",
-                  "items": [
-                    {
-                      "icon": "",
-                      "text": "Excel",
-                      "value": "xlsx"
-                    },
-                    {
-                      "icon": "",
-                      "text": "CSV",
-                      "value": "csv"
-                    }
-                  ],
-                  "name": "splitbutton0",
-                  "style": {
-                    "marginBottom": "10px",
-                    "marginLeft": "10px"
-                  },
-                  "text": "Export",
-                  "type": "splitbutton"
-                },
-                {
                   "attributes": [
                     {
                       "name": "@oninput",
@@ -306,41 +214,118 @@
                   "type": "datagrid"
                 },
                 {
-                  "name": "heading2",
-                  "size": "H1",
-                  "text": "Volunteer Speaker Requests",
-                  "type": "heading"
-                },
-                {
-                  "disabled": "${this.master == null}",
                   "events": {
                     "click": [
                       {
-                        "parameters": [
-                          {
-                            "name": "tblEvent_ID",
-                            "type": "integer",
-                            "value": "${master.tblEvent_ID}"
-                          }
-                        ],
-                        "path": "add-tbl-volunteer-speaker-request",
-                        "then": [
-                          {
-                            "code": "await grid2.Reload();",
-                            "type": "execute"
-                          }
-                        ],
-                        "type": "popup"
+                        "path": "add-events",
+                        "type": "navigate"
                       }
                     ]
                   },
                   "icon": "add_circle_outline",
-                  "name": "TblVolunteerSpeakerRequestAddButton",
+                  "name": "button0",
                   "style": {
-                    "marginBottom": "10px"
+                    "marginBottom": "10px",
+                    "marginTop": "10px"
                   },
                   "text": "Add",
                   "type": "button"
+                },
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "condition": "${event?.Value == \"csv\"}",
+                        "fileName": "Tbl Events",
+                        "name": "CORE.getTblEvents",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "TblHospital"
+                          },
+                          {
+                            "name": "$select",
+                            "value": "tblEvent_ID,EventDate,StartTime,EndTime,TblHospital.HospitalName as TblHospitalHospitalName,LocationDetails,EventType,EventDescription,EventDetails,SpeakerNeeds,LeadershipSpeakerRequested,LeadershipSpeaker,LeadershipSpeechLength,VolunteerSpeechLength,AudienceTypes,EstimatedAttendees,SocialMediaOrVideoNeeds,IsLegislatorsInvited,IsLegislatorsAttending,IsQuiltRequested,QuiltNumber,QuiltCoordinator,IsVehicleRequested,IsVehicleReserved,VehicleDriver,OnsiteContactName,OnsiteContactPhone,OnsiteContactEmail,IsLocked,PlaceToMeet,AdditionalInformation"
+                          }
+                        ],
+                        "type": "export"
+                      },
+                      {
+                        "condition": "${event == null || event.Value == \"xlsx\"}",
+                        "fileName": "Tbl Events",
+                        "format": "xlsx",
+                        "name": "CORE.getTblEvents",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "TblHospital"
+                          },
+                          {
+                            "name": "$select",
+                            "value": "tblEvent_ID,EventDate,StartTime,EndTime,TblHospital.HospitalName as TblHospitalHospitalName,LocationDetails,EventType,EventDescription,EventDetails,SpeakerNeeds,LeadershipSpeakerRequested,LeadershipSpeaker,LeadershipSpeechLength,VolunteerSpeechLength,AudienceTypes,EstimatedAttendees,SocialMediaOrVideoNeeds,IsLegislatorsInvited,IsLegislatorsAttending,IsQuiltRequested,QuiltNumber,QuiltCoordinator,IsVehicleRequested,IsVehicleReserved,VehicleDriver,OnsiteContactName,OnsiteContactPhone,OnsiteContactEmail,IsLocked,PlaceToMeet,AdditionalInformation"
+                          }
+                        ],
+                        "type": "export"
+                      }
+                    ]
+                  },
+                  "icon": "get_app",
+                  "items": [
+                    {
+                      "icon": "",
+                      "text": "Excel",
+                      "value": "xlsx"
+                    },
+                    {
+                      "icon": "",
+                      "text": "CSV",
+                      "value": "csv"
+                    }
+                  ],
+                  "name": "splitbutton0",
+                  "style": {
+                    "marginBottom": "10px",
+                    "marginLeft": "10px"
+                  },
+                  "text": "Export",
+                  "type": "splitbutton"
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            },
+            {
+              "class": "col-md-12",
+              "name": "col1",
+              "style": {
+                "height": "50px"
+              },
+              "type": "col"
+            },
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "name": "heading2",
+                  "size": "H1",
+                  "text": "Volunteer Speaker Requests",
+                  "type": "heading"
                 },
                 {
                   "allowFiltering": true,
@@ -460,12 +445,6 @@
                   "type": "datagrid"
                 },
                 {
-                  "name": "heading1",
-                  "size": "H1",
-                  "text": "CORE Attendance",
-                  "type": "heading"
-                },
-                {
                   "disabled": "${this.master == null}",
                   "events": {
                     "click": [
@@ -477,10 +456,10 @@
                             "value": "${master.tblEvent_ID}"
                           }
                         ],
-                        "path": "add-tbl-core-attendance",
+                        "path": "add-tbl-volunteer-speaker-request",
                         "then": [
                           {
-                            "code": "await grid1.Reload();",
+                            "code": "await grid2.Reload();",
                             "type": "execute"
                           }
                         ],
@@ -489,12 +468,34 @@
                     ]
                   },
                   "icon": "add_circle_outline",
-                  "name": "TblCoreAttendanceAddButton",
+                  "name": "TblVolunteerSpeakerRequestAddButton",
                   "style": {
-                    "marginBottom": "10px"
+                    "marginBottom": "10px",
+                    "marginTop": "10px"
                   },
                   "text": "Add",
                   "type": "button"
+                }
+              ],
+              "name": "col2",
+              "type": "col"
+            },
+            {
+              "class": "col-md-12",
+              "name": "col3",
+              "style": {
+                "height": "50px"
+              },
+              "type": "col"
+            },
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "name": "heading1",
+                  "size": "H1",
+                  "text": "CORE Attendance",
+                  "type": "heading"
                 },
                 {
                   "allowFiltering": true,
@@ -553,8 +554,49 @@
                   "name": "grid1",
                   "responsive": true,
                   "type": "datagrid"
+                },
+                {
+                  "disabled": "${this.master == null}",
+                  "events": {
+                    "click": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "tblEvent_ID",
+                            "type": "integer",
+                            "value": "${master.tblEvent_ID}"
+                          }
+                        ],
+                        "path": "add-tbl-core-attendance",
+                        "then": [
+                          {
+                            "code": "await grid1.Reload();",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "popup"
+                      }
+                    ]
+                  },
+                  "icon": "add_circle_outline",
+                  "name": "TblCoreAttendanceAddButton",
+                  "style": {
+                    "marginBottom": "10px",
+                    "marginTop": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button"
                 }
               ],
+              "name": "col4",
+              "type": "col"
+            },
+            {
+              "class": "col-md-12",
+              "components": [],
+              "style": {
+                "height": "50px"
+              },
               "type": "col"
             }
           ],

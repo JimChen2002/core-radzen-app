@@ -194,26 +194,6 @@ namespace CoreRadzen.Pages
             getTblEventsResult = coreGetTblEventsResult;
         }
 
-        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
-        {
-            UriHelper.NavigateTo("add-events");
-        }
-
-        protected async System.Threading.Tasks.Task Splitbutton0Click(RadzenSplitButtonItem args)
-        {
-            if (args?.Value == "csv")
-            {
-                await Core.ExportTblEventsToCSV(new Query() { Filter = $@"{(string.IsNullOrEmpty(grid0.Query.Filter)? "true" : grid0.Query.Filter)}", OrderBy = $"{grid0.Query.OrderBy}", Expand = "TblHospital", Select = "tblEvent_ID,EventDate,StartTime,EndTime,TblHospital.HospitalName as TblHospitalHospitalName,LocationDetails,EventType,EventDescription,EventDetails,SpeakerNeeds,LeadershipSpeakerRequested,LeadershipSpeaker,LeadershipSpeechLength,VolunteerSpeechLength,AudienceTypes,EstimatedAttendees,SocialMediaOrVideoNeeds,IsLegislatorsInvited,IsLegislatorsAttending,IsQuiltRequested,QuiltNumber,QuiltCoordinator,IsVehicleRequested,IsVehicleReserved,VehicleDriver,OnsiteContactName,OnsiteContactPhone,OnsiteContactEmail,IsLocked,PlaceToMeet,AdditionalInformation" }, $"Tbl Events");
-
-            }
-
-            if (args == null || args.Value == "xlsx")
-            {
-                await Core.ExportTblEventsToExcel(new Query() { Filter = $@"{(string.IsNullOrEmpty(grid0.Query.Filter)? "true" : grid0.Query.Filter)}", OrderBy = $"{grid0.Query.OrderBy}", Expand = "TblHospital", Select = "tblEvent_ID,EventDate,StartTime,EndTime,TblHospital.HospitalName as TblHospitalHospitalName,LocationDetails,EventType,EventDescription,EventDetails,SpeakerNeeds,LeadershipSpeakerRequested,LeadershipSpeaker,LeadershipSpeechLength,VolunteerSpeechLength,AudienceTypes,EstimatedAttendees,SocialMediaOrVideoNeeds,IsLegislatorsInvited,IsLegislatorsAttending,IsQuiltRequested,QuiltNumber,QuiltCoordinator,IsVehicleRequested,IsVehicleReserved,VehicleDriver,OnsiteContactName,OnsiteContactPhone,OnsiteContactEmail,IsLocked,PlaceToMeet,AdditionalInformation" }, $"Tbl Events");
-
-            }
-        }
-
         protected async void Grid0Render(DataGridRenderEventArgs<CoreRadzen.Models.Core.TblEvent> args)
         {
             if (grid0.Query.Filter != lastFilter) {
@@ -273,10 +253,24 @@ namespace CoreRadzen.Pages
             }
         }
 
-        protected async System.Threading.Tasks.Task TblVolunteerSpeakerRequestAddButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
         {
-            var dialogResult = await DialogService.OpenAsync<AddTblVolunteerSpeakerRequest>("Add Tbl Volunteer Speaker Request", new Dictionary<string, object>() { {"tblEvent_ID", master.tblEvent_ID} });
-            await grid2.Reload();
+            UriHelper.NavigateTo("add-events");
+        }
+
+        protected async System.Threading.Tasks.Task Splitbutton0Click(RadzenSplitButtonItem args)
+        {
+            if (args?.Value == "csv")
+            {
+                await Core.ExportTblEventsToCSV(new Query() { Filter = $@"{(string.IsNullOrEmpty(grid0.Query.Filter)? "true" : grid0.Query.Filter)}", OrderBy = $"{grid0.Query.OrderBy}", Expand = "TblHospital", Select = "tblEvent_ID,EventDate,StartTime,EndTime,TblHospital.HospitalName as TblHospitalHospitalName,LocationDetails,EventType,EventDescription,EventDetails,SpeakerNeeds,LeadershipSpeakerRequested,LeadershipSpeaker,LeadershipSpeechLength,VolunteerSpeechLength,AudienceTypes,EstimatedAttendees,SocialMediaOrVideoNeeds,IsLegislatorsInvited,IsLegislatorsAttending,IsQuiltRequested,QuiltNumber,QuiltCoordinator,IsVehicleRequested,IsVehicleReserved,VehicleDriver,OnsiteContactName,OnsiteContactPhone,OnsiteContactEmail,IsLocked,PlaceToMeet,AdditionalInformation" }, $"Tbl Events");
+
+            }
+
+            if (args == null || args.Value == "xlsx")
+            {
+                await Core.ExportTblEventsToExcel(new Query() { Filter = $@"{(string.IsNullOrEmpty(grid0.Query.Filter)? "true" : grid0.Query.Filter)}", OrderBy = $"{grid0.Query.OrderBy}", Expand = "TblHospital", Select = "tblEvent_ID,EventDate,StartTime,EndTime,TblHospital.HospitalName as TblHospitalHospitalName,LocationDetails,EventType,EventDescription,EventDetails,SpeakerNeeds,LeadershipSpeakerRequested,LeadershipSpeaker,LeadershipSpeechLength,VolunteerSpeechLength,AudienceTypes,EstimatedAttendees,SocialMediaOrVideoNeeds,IsLegislatorsInvited,IsLegislatorsAttending,IsQuiltRequested,QuiltNumber,QuiltCoordinator,IsVehicleRequested,IsVehicleReserved,VehicleDriver,OnsiteContactName,OnsiteContactPhone,OnsiteContactEmail,IsLocked,PlaceToMeet,AdditionalInformation" }, $"Tbl Events");
+
+            }
         }
 
         protected async System.Threading.Tasks.Task Grid2RowSelect(CoreRadzen.Models.Core.TblVolunteerSpeakerRequest args)
@@ -304,15 +298,21 @@ namespace CoreRadzen.Pages
             }
         }
 
-        protected async System.Threading.Tasks.Task TblCoreAttendanceAddButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task TblVolunteerSpeakerRequestAddButtonClick(MouseEventArgs args)
         {
-            var dialogResult = await DialogService.OpenAsync<AddTblCoreAttendance>("Add Tbl Core Attendance", new Dictionary<string, object>() { {"tblEvent_ID", master.tblEvent_ID} });
-            await grid1.Reload();
+            var dialogResult = await DialogService.OpenAsync<AddTblVolunteerSpeakerRequest>("Add Tbl Volunteer Speaker Request", new Dictionary<string, object>() { {"tblEvent_ID", master.tblEvent_ID} });
+            await grid2.Reload();
         }
 
         protected async System.Threading.Tasks.Task Grid1RowSelect(CoreRadzen.Models.Core.TblCoreAttendance args)
         {
             var dialogResult = await DialogService.OpenAsync<EditTblCoreAttendance>("Edit Tbl Core Attendance", new Dictionary<string, object>() { {"tblCOREAttendance_ID", args.tblCOREAttendance_ID} });
+            await grid1.Reload();
+        }
+
+        protected async System.Threading.Tasks.Task TblCoreAttendanceAddButtonClick(MouseEventArgs args)
+        {
+            var dialogResult = await DialogService.OpenAsync<AddTblCoreAttendance>("Add Tbl Core Attendance", new Dictionary<string, object>() { {"tblEvent_ID", master.tblEvent_ID} });
             await grid1.Reload();
         }
     }

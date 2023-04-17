@@ -757,9 +757,7 @@
                         }
                       ],
                       "name": "row3",
-                      "style": {
-                        "marginBottom": "1rem"
-                      },
+                      "style": {},
                       "type": "row"
                     },
                     {
@@ -1532,58 +1530,6 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "disabled": "",
-                              "events": {
-                                "click": [
-                                  {
-                                    "parameters": [
-                                      {
-                                        "name": "tblEvent_ID",
-                                        "type": "integer",
-                                        "value": "${parameters.tblEvent_ID}"
-                                      }
-                                    ],
-                                    "path": "add-tbl-core-attendance",
-                                    "then": [
-                                      {
-                                        "code": "await grid1.Reload();",
-                                        "type": "execute"
-                                      }
-                                    ],
-                                    "type": "popup"
-                                  }
-                                ]
-                              },
-                              "icon": "add_circle_outline",
-                              "name": "TblCoreAttendanceAddButton",
-                              "style": {
-                                "marginBottom": "10px"
-                              },
-                              "text": "Add",
-                              "type": "button"
-                            }
-                          ],
-                          "name": "col7",
-                          "type": "col"
-                        }
-                      ],
-                      "name": "row4",
-                      "style": {
-                        "marginBottom": "1rem"
-                      },
-                      "type": "row"
-                    },
-                    {
-                      "components": [
-                        {
-                          "class": "col-md-2",
-                          "name": "col9",
-                          "type": "col"
-                        },
-                        {
-                          "class": "col-md-9",
-                          "components": [
-                            {
                               "allowFiltering": true,
                               "allowPaging": true,
                               "allowSorting": true,
@@ -1688,6 +1634,58 @@
                               "itemType": "CoreRadzen.Models.Core.TblCoreAttendance",
                               "name": "grid1",
                               "type": "datagrid"
+                            }
+                          ],
+                          "name": "col7",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row4",
+                      "style": {
+                        "marginBottom": "0rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-2",
+                          "name": "col9",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "disabled": "",
+                              "events": {
+                                "click": [
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "tblEvent_ID",
+                                        "type": "integer",
+                                        "value": "${parameters.tblEvent_ID}"
+                                      }
+                                    ],
+                                    "path": "add-tbl-core-attendance",
+                                    "then": [
+                                      {
+                                        "code": "await grid1.Reload();",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "popup"
+                                  }
+                                ]
+                              },
+                              "icon": "add_circle_outline",
+                              "name": "TblCoreAttendanceAddButton",
+                              "style": {
+                                "marginBottom": "10px"
+                              },
+                              "text": "Add",
+                              "type": "button"
                             }
                           ],
                           "name": "col10",
@@ -1874,6 +1872,9 @@
                     {
                       "class": "col-md-12",
                       "name": "col1",
+                      "style": {
+                        "height": "50px"
+                      },
                       "type": "col"
                     }
                   ],

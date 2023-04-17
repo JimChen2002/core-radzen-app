@@ -15,108 +15,6 @@
               "class": "col-md-12",
               "components": [
                 {
-                  "events": {
-                    "click": [
-                      {
-                        "path": "add-tbl-speaker",
-                        "then": [
-                          {
-                            "code": "await grid0.Reload();",
-                            "type": "execute"
-                          },
-                          {
-                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
-                            "type": "execute"
-                          }
-                        ],
-                        "type": "popup"
-                      }
-                    ]
-                  },
-                  "icon": "add_circle_outline",
-                  "name": "button0",
-                  "style": {
-                    "marginBottom": "10px"
-                  },
-                  "text": "Add",
-                  "type": "button"
-                },
-                {
-                  "events": {
-                    "click": [
-                      {
-                        "condition": "${event?.Value == \"csv\"}",
-                        "fileName": "Tbl Speaker",
-                        "name": "CORE.getTblSpeakers",
-                        "parameters": [
-                          {
-                            "name": "$filter",
-                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
-                          },
-                          {
-                            "name": "$orderby",
-                            "value": "${grid0.Query.OrderBy}"
-                          },
-                          {
-                            "name": "$expand",
-                            "value": "TblAdUser"
-                          },
-                          {
-                            "name": "$select",
-                            "value": "tblSpeaker_ID,Name,PhoneNumber,Email,Connection,Background,AccessibilityRequirements,Quote,TblAdUser.UserName as TblAdUserUserName"
-                          }
-                        ],
-                        "type": "export"
-                      },
-                      {
-                        "condition": "${event == null || event.Value == \"xlsx\"}",
-                        "fileName": "Tbl Speaker",
-                        "format": "xlsx",
-                        "name": "CORE.getTblSpeakers",
-                        "parameters": [
-                          {
-                            "name": "$filter",
-                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
-                          },
-                          {
-                            "name": "$orderby",
-                            "value": "${grid0.Query.OrderBy}"
-                          },
-                          {
-                            "name": "$expand",
-                            "value": "TblAdUser"
-                          },
-                          {
-                            "name": "$select",
-                            "value": "tblSpeaker_ID,Name,PhoneNumber,Email,Connection,Background,AccessibilityRequirements,Quote,TblAdUser.UserName as TblAdUserUserName"
-                          }
-                        ],
-                        "type": "export"
-                      }
-                    ]
-                  },
-                  "icon": "get_app",
-                  "items": [
-                    {
-                      "icon": "",
-                      "text": "Excel",
-                      "value": "xlsx"
-                    },
-                    {
-                      "icon": "",
-                      "text": "CSV",
-                      "value": "csv"
-                    }
-                  ],
-                  "name": "splitbutton0",
-                  "style": {
-                    "marginBottom": "10px",
-                    "marginLeft": "10px"
-                  },
-                  "text": "Export",
-                  "type": "splitbutton"
-                },
-                {
                   "attributes": [
                     {
                       "name": "@oninput",
@@ -250,6 +148,109 @@
                   "name": "grid0",
                   "title": "",
                   "type": "datagrid"
+                },
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-tbl-speaker",
+                        "then": [
+                          {
+                            "code": "await grid0.Reload();",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "popup"
+                      }
+                    ]
+                  },
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px",
+                    "marginTop": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button"
+                },
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "condition": "${event?.Value == \"csv\"}",
+                        "fileName": "Tbl Speaker",
+                        "name": "CORE.getTblSpeakers",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "TblAdUser"
+                          },
+                          {
+                            "name": "$select",
+                            "value": "tblSpeaker_ID,Name,PhoneNumber,Email,Connection,Background,AccessibilityRequirements,Quote,TblAdUser.UserName as TblAdUserUserName"
+                          }
+                        ],
+                        "type": "export"
+                      },
+                      {
+                        "condition": "${event == null || event.Value == \"xlsx\"}",
+                        "fileName": "Tbl Speaker",
+                        "format": "xlsx",
+                        "name": "CORE.getTblSpeakers",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "TblAdUser"
+                          },
+                          {
+                            "name": "$select",
+                            "value": "tblSpeaker_ID,Name,PhoneNumber,Email,Connection,Background,AccessibilityRequirements,Quote,TblAdUser.UserName as TblAdUserUserName"
+                          }
+                        ],
+                        "type": "export"
+                      }
+                    ]
+                  },
+                  "icon": "get_app",
+                  "items": [
+                    {
+                      "icon": "",
+                      "text": "Excel",
+                      "value": "xlsx"
+                    },
+                    {
+                      "icon": "",
+                      "text": "CSV",
+                      "value": "csv"
+                    }
+                  ],
+                  "name": "splitbutton0",
+                  "style": {
+                    "marginBottom": "10px",
+                    "marginLeft": "10px"
+                  },
+                  "text": "Export",
+                  "type": "splitbutton"
                 }
               ],
               "type": "col"

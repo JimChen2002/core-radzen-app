@@ -116,29 +116,6 @@ namespace CoreRadzen.Pages
             getTblSpeakersResult = coreGetTblSpeakersResult;
         }
 
-        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
-        {
-            var dialogResult = await DialogService.OpenAsync<AddTblSpeaker>("Add Tbl Speaker", null);
-            await grid0.Reload();
-
-            await InvokeAsync(() => { StateHasChanged(); });
-        }
-
-        protected async System.Threading.Tasks.Task Splitbutton0Click(RadzenSplitButtonItem args)
-        {
-            if (args?.Value == "csv")
-            {
-                await Core.ExportTblSpeakersToCSV(new Query() { Filter = $@"{(string.IsNullOrEmpty(grid0.Query.Filter)? "true" : grid0.Query.Filter)}", OrderBy = $"{grid0.Query.OrderBy}", Expand = "TblAdUser", Select = "tblSpeaker_ID,Name,PhoneNumber,Email,Connection,Background,AccessibilityRequirements,Quote,TblAdUser.UserName as TblAdUserUserName" }, $"Tbl Speaker");
-
-            }
-
-            if (args == null || args.Value == "xlsx")
-            {
-                await Core.ExportTblSpeakersToExcel(new Query() { Filter = $@"{(string.IsNullOrEmpty(grid0.Query.Filter)? "true" : grid0.Query.Filter)}", OrderBy = $"{grid0.Query.OrderBy}", Expand = "TblAdUser", Select = "tblSpeaker_ID,Name,PhoneNumber,Email,Connection,Background,AccessibilityRequirements,Quote,TblAdUser.UserName as TblAdUserUserName" }, $"Tbl Speaker");
-
-            }
-        }
-
         protected async System.Threading.Tasks.Task Grid0RowDoubleClick(DataGridRowMouseEventArgs<CoreRadzen.Models.Core.TblSpeaker> args)
         {
             var dialogResult = await DialogService.OpenAsync<EditTblSpeaker>("Edit Tbl Speaker", new Dictionary<string, object>() { {"tblSpeaker_ID", args.Data.tblSpeaker_ID} });
@@ -163,6 +140,29 @@ namespace CoreRadzen.Pages
             catch (System.Exception coreDeleteTblSpeakerException)
             {
                 NotificationService.Notify(new NotificationMessage(){ Severity = NotificationSeverity.Error,Summary = $"Error",Detail = $"Unable to delete TblSpeaker" });
+            }
+        }
+
+        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
+        {
+            var dialogResult = await DialogService.OpenAsync<AddTblSpeaker>("Add Tbl Speaker", null);
+            await grid0.Reload();
+
+            await InvokeAsync(() => { StateHasChanged(); });
+        }
+
+        protected async System.Threading.Tasks.Task Splitbutton0Click(RadzenSplitButtonItem args)
+        {
+            if (args?.Value == "csv")
+            {
+                await Core.ExportTblSpeakersToCSV(new Query() { Filter = $@"{(string.IsNullOrEmpty(grid0.Query.Filter)? "true" : grid0.Query.Filter)}", OrderBy = $"{grid0.Query.OrderBy}", Expand = "TblAdUser", Select = "tblSpeaker_ID,Name,PhoneNumber,Email,Connection,Background,AccessibilityRequirements,Quote,TblAdUser.UserName as TblAdUserUserName" }, $"Tbl Speaker");
+
+            }
+
+            if (args == null || args.Value == "xlsx")
+            {
+                await Core.ExportTblSpeakersToExcel(new Query() { Filter = $@"{(string.IsNullOrEmpty(grid0.Query.Filter)? "true" : grid0.Query.Filter)}", OrderBy = $"{grid0.Query.OrderBy}", Expand = "TblAdUser", Select = "tblSpeaker_ID,Name,PhoneNumber,Email,Connection,Background,AccessibilityRequirements,Quote,TblAdUser.UserName as TblAdUserUserName" }, $"Tbl Speaker");
+
             }
         }
     }

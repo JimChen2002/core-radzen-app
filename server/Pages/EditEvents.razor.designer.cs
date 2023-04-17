@@ -272,12 +272,6 @@ namespace CoreRadzen.Pages
             tblevent.AudienceTypes = string.Join(';', selectedAudienceTypes);
         }
 
-        protected async System.Threading.Tasks.Task TblCoreAttendanceAddButtonClick(MouseEventArgs args)
-        {
-            var dialogResult = await DialogService.OpenAsync<AddTblCoreAttendance>("Add Tbl Core Attendance", new Dictionary<string, object>() { {"tblEvent_ID", tblEvent_ID} });
-            await grid1.Reload();
-        }
-
         protected async System.Threading.Tasks.Task Grid1RowSelect(CoreRadzen.Models.Core.TblCoreAttendance args)
         {
             var dialogResult = await DialogService.OpenAsync<EditTblCoreAttendance>("Edit Tbl Core Attendance", new Dictionary<string, object>() { {"tblCOREAttendance_ID", args.tblCOREAttendance_ID} });
@@ -301,6 +295,12 @@ namespace CoreRadzen.Pages
             {
                 NotificationService.Notify(new NotificationMessage(){ Severity = NotificationSeverity.Error,Summary = $"Error",Detail = $"Unable to delete TblEvent" });
             }
+        }
+
+        protected async System.Threading.Tasks.Task TblCoreAttendanceAddButtonClick(MouseEventArgs args)
+        {
+            var dialogResult = await DialogService.OpenAsync<AddTblCoreAttendance>("Add Tbl Core Attendance", new Dictionary<string, object>() { {"tblEvent_ID", tblEvent_ID} });
+            await grid1.Reload();
         }
 
         protected async System.Threading.Tasks.Task Button5Click(MouseEventArgs args)

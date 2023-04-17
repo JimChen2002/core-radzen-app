@@ -154,7 +154,7 @@
                 </RadzenNumeric>
               </div>
             </div>
-            <div style="margin-bottom: 1rem" class="row">
+            <div  class="row">
               <div class="col-md-2" style="padding-right: 1px">
                 <RadzenLabel Component="LeadershipSpeechLength" style="width: 251.5px" Text="Volunteer Speakers Requested">
                 </RadzenLabel>
@@ -352,18 +352,10 @@
                 </RadzenTextBox>
               </div>
             </div>
-            <div style="margin-bottom: 1rem" class="row">
+            <div style="margin-bottom: 0rem" class="row">
               <div class="col-md-2" style="margin-right: 1px; padding-right: 1px">
                 <RadzenLabel Component="OnsiteContactEmail" style="width: 100%" Text="CORE Team Members Attending">
                 </RadzenLabel>
-              </div>
-              <div class="col-md-9">
-                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@TblCoreAttendanceAddButtonClick">
-                </RadzenButton>
-              </div>
-            </div>
-            <div style="margin-bottom: 1rem" class="row">
-              <div class="col-md-2">
               </div>
               <div class="col-md-9">
                 <RadzenDataGrid @ref="grid1" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblCoreAttendances" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblCoreAttendance" RowSelect="@Grid1RowSelect">
@@ -388,6 +380,14 @@
                     </RadzenDataGridColumn>
                   </Columns>
                 </RadzenDataGrid>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-2">
+              </div>
+              <div class="col-md-9">
+                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@TblCoreAttendanceAddButtonClick">
+                </RadzenButton>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
@@ -430,7 +430,7 @@
                 </RadzenButton>
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12" style="height: 50px">
             </div>
           </ChildContent>
         </RadzenTemplateForm>
