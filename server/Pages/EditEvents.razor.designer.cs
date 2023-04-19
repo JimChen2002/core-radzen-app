@@ -136,6 +136,63 @@ namespace CoreRadzen.Pages
             }
         }
 
+        IEnumerable<string> _eventTypeList;
+        protected IEnumerable<string> eventTypeList
+        {
+            get
+            {
+                return _eventTypeList;
+            }
+            set
+            {
+                if (!object.Equals(_eventTypeList, value))
+                {
+                    var args = new PropertyChangedEventArgs(){ Name = "eventTypeList", NewValue = value, OldValue = _eventTypeList };
+                    _eventTypeList = value;
+                    OnPropertyChanged(args);
+                    Reload();
+                }
+            }
+        }
+
+        List<string> _eventDescriptionList;
+        protected List<string> eventDescriptionList
+        {
+            get
+            {
+                return _eventDescriptionList;
+            }
+            set
+            {
+                if (!object.Equals(_eventDescriptionList, value))
+                {
+                    var args = new PropertyChangedEventArgs(){ Name = "eventDescriptionList", NewValue = value, OldValue = _eventDescriptionList };
+                    _eventDescriptionList = value;
+                    OnPropertyChanged(args);
+                    Reload();
+                }
+            }
+        }
+
+        List<string> _estimatedAttendeeList;
+        protected List<string> estimatedAttendeeList
+        {
+            get
+            {
+                return _estimatedAttendeeList;
+            }
+            set
+            {
+                if (!object.Equals(_estimatedAttendeeList, value))
+                {
+                    var args = new PropertyChangedEventArgs(){ Name = "estimatedAttendeeList", NewValue = value, OldValue = _estimatedAttendeeList };
+                    _estimatedAttendeeList = value;
+                    OnPropertyChanged(args);
+                    Reload();
+                }
+            }
+        }
+
         IEnumerable<CoreRadzen.Models.Core.TblVolunteerSpeakerRequest> _TblVolunteerSpeakerRequests;
         protected IEnumerable<CoreRadzen.Models.Core.TblVolunteerSpeakerRequest> TblVolunteerSpeakerRequests
         {
@@ -209,10 +266,14 @@ namespace CoreRadzen.Pages
 
             selectedAudienceTypes = !string.IsNullOrEmpty(tblevent.AudienceTypes) ? tblevent.AudienceTypes.Split(';') : Enumerable.Empty<string>();;
 
+            eventTypeList = new List<string>(){"Flag Raising","Donor Ceremony","Donor Designation Table","Other"};
+
+            eventDescriptionList = new List<string>(){"In-Person","Virtual","In-Person/Virtual"};
+
+            estimatedAttendeeList = new List<string>(){"1 - 10","11 - 25","26 - 50","51 - 100","101+"};
+
             var coreGetTblVolunteerSpeakerRequestsResult = await Core.GetTblVolunteerSpeakerRequests(new Query() { Filter = $@"i => i.tblEvent_ID == {tblEvent_ID}" });
             TblVolunteerSpeakerRequests = coreGetTblVolunteerSpeakerRequestsResult;
-
-            tblevent.IsLocked = false;
 
             var coreGetTblCoreAttendancesResult = await Core.GetTblCoreAttendances(new Query() { Filter = $@"i => i.tblEvent_ID == {tblEvent_ID}" });
             TblCoreAttendances = coreGetTblCoreAttendancesResult;

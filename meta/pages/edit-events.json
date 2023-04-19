@@ -313,15 +313,27 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${eventTypeList}",
+                              "name": "dropdown1",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "dropdown",
+                              "value": "${tblevent.EventType}",
+                              "valueType": "string"
+                            },
+                            {
                               "maxLength": 50,
                               "name": "EventType",
                               "style": {
                                 "display": "block",
-                                "width": "100%"
+                                "height": "14px",
+                                "width": "14.5px"
                               },
                               "type": "textbox",
                               "value": "${tblevent.EventType}",
-                              "valueType": "string"
+                              "valueType": "string",
+                              "visible": false
                             },
                             {
                               "component": "EventType",
@@ -365,15 +377,27 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${eventDescriptionList}",
+                              "name": "dropdown2",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "dropdown",
+                              "value": "${tblevent.EventDescription}",
+                              "valueType": "string"
+                            },
+                            {
                               "maxLength": 50,
                               "name": "EventDescription",
                               "style": {
                                 "display": "block",
-                                "width": "100%"
+                                "height": "15px",
+                                "width": "16.5px"
                               },
                               "type": "textbox",
                               "value": "${tblevent.EventDescription}",
-                              "valueType": "string"
+                              "valueType": "string",
+                              "visible": false
                             },
                             {
                               "component": "EventDescription",
@@ -983,15 +1007,27 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${estimatedAttendeeList}",
+                              "name": "dropdown3",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "dropdown",
+                              "value": "${tblevent.EstimatedAttendees}",
+                              "valueType": "string"
+                            },
+                            {
                               "maxLength": 50,
                               "name": "EstimatedAttendees",
                               "style": {
                                 "display": "block",
-                                "width": "100%"
+                                "height": "16px",
+                                "width": "15.5px"
                               },
                               "type": "textbox",
                               "value": "${tblevent.EstimatedAttendees}",
-                              "valueType": "string"
+                              "valueType": "string",
+                              "visible": false
                             },
                             {
                               "component": "EstimatedAttendees",
@@ -1985,6 +2021,24 @@
         "valueType": "IEnumerable<string>"
       },
       {
+        "name": "eventTypeList",
+        "type": "set",
+        "value": "new List<string>(){\"Flag Raising\",\"Donor Ceremony\",\"Donor Designation Table\",\"Other\"}",
+        "valueType": "IEnumerable<string>"
+      },
+      {
+        "name": "eventDescriptionList",
+        "type": "set",
+        "value": "new List<string>(){\"In-Person\",\"Virtual\",\"In-Person/Virtual\"}",
+        "valueType": "List<string>"
+      },
+      {
+        "name": "estimatedAttendeeList",
+        "type": "set",
+        "value": "new List<string>(){\"1 - 10\",\"11 - 25\",\"26 - 50\",\"51 - 100\",\"101+\"}",
+        "valueType": "List<string>"
+      },
+      {
         "name": "CORE.getTblVolunteerSpeakerRequests",
         "parameters": [
           {
@@ -2001,10 +2055,6 @@
           }
         ],
         "type": "invoke"
-      },
-      {
-        "code": "${tblevent.IsLocked} = false;",
-        "type": "execute"
       },
       {
         "name": "CORE.getTblCoreAttendances",

@@ -56,7 +56,9 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="display: block; width: 100%" @bind-Value="@(tblspeaker.Connection)" Name="Connection">
+                <RadzenDropDown Data="@connectionList" style="width: 100%" @bind-Value="@(tblspeaker.Connection)" Name="Dropdown0">
+                </RadzenDropDown>
+                <RadzenTextBox MaxLength="50" style="display: block; height: 19px; width: 16.5px" @bind-Value="@(tblspeaker.Connection)" Visible="false" Name="Connection">
                 </RadzenTextBox>
                 <RadzenRequiredValidator Component="Connection" style="position: absolute" Text="Connection is required">
                 </RadzenRequiredValidator>

@@ -96,6 +96,25 @@ namespace CoreRadzen.Pages
             }
         }
 
+        List<string> _connectionList;
+        protected List<string> connectionList
+        {
+            get
+            {
+                return _connectionList;
+            }
+            set
+            {
+                if (!object.Equals(_connectionList, value))
+                {
+                    var args = new PropertyChangedEventArgs(){ Name = "connectionList", NewValue = value, OldValue = _connectionList };
+                    _connectionList = value;
+                    OnPropertyChanged(args);
+                    Reload();
+                }
+            }
+        }
+
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
             await Security.InitializeAsync(AuthenticationStateProvider);
@@ -115,6 +134,8 @@ namespace CoreRadzen.Pages
 
             var coreGetTblAdUsersResult = await Core.GetTblAdUsers();
             getTblAdUsersFortblADUser_IDResult = coreGetTblAdUsersResult;
+
+            connectionList = new List<string>(){"Donor Family", "Waiting List Candidate", "Recipient", "Recipient Family"};
         }
 
         protected async System.Threading.Tasks.Task Form0Submit(CoreRadzen.Models.Core.TblSpeaker args)
