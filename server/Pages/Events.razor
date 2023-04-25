@@ -11,33 +11,43 @@
 @attribute [Authorize]
 <RadzenContent Container="main">
   <ChildContent>
-    <RadzenHeading Size="H1" Text="Events">
+    <RadzenHeading Size="H1" Text="Events Dashboard">
     </RadzenHeading>
     <div class="row">
       <div class="col-md-12">
         <RadzenTextBox Placeholder="Search ..." style="display: block; margin-bottom: 10px; width: 100%" Name="Textbox0" @oninput="@(async(args) => {search = $"{args.Value}";await grid0.GoToPage(0);await Load();})">
         </RadzenTextBox>
-        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getTblEventsResult" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblEvent" Responsive="true" Render="@Grid0Render" RowDoubleClick="@Grid0RowDoubleClick" RowSelect="@Grid0RowSelect">
+        <RadzenDataGrid @ref="grid0" AllowColumnResize="true" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getTblEventsResult" Density="Density.Compact" FilterMode="Radzen.FilterMode.Advanced" IsLoading="false" TItem="CoreRadzen.Models.Core.TblEvent" Responsive="true" Render="@Grid0Render" RowDoubleClick="@Grid0RowDoubleClick" RowSelect="@Grid0RowSelect">
           <Columns>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" FormatString="{0:d}" Property="EventDate" Title="Date">
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" FormatString="{0:t}" Property="StartTime" Title="Time">
+            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" FormatString="{0:d}" Property="StartTime" Title="Time">
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" Property="TblHospital.HospitalName" Title="Hospital Name">
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" Property="OnsiteContactName" Title="Onsite Contact Name">
+            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" MinWidth="40px" Title="Volunteer Speaker Status">
+              <Template Context="coreRadzenModelsCoreTblEvent">
+                <RadzenBadge IsPill="true" style="background-color: #b50909" Text="Volunteer Speaker Needed" Visible="@(!(coreRadzenModelsCoreTblEvent.TblVolunteerSpeakerRequests?.Any() ?? false))">
+                </RadzenBadge>
+              </Template>
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" Property="IsLocked" Title="Is Locked">
+            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" Property="LeadershipSpeaker" Title="Leadership Speaker">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" Property="LeadershipSpeakerRequested" Title="Leadership Speaker Requested">
+              <Template Context="coreRadzenModelsCoreTblEvent">
+                <RadzenBadge IsPill="true" style="background-color: #8c8c8c" Text="Requested" Visible="@(coreRadzenModelsCoreTblEvent.LeadershipSpeakerRequested)">
+                </RadzenBadge>
+              </Template>
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
               <Template Context="coreRadzenModelsCoreTblEvent">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Small" style="color: #28363c" Variant="Variant.Text" Click="@((args) =>GridDeleteButtonClick(args, coreRadzenModelsCoreTblEvent))" @onclick:stopPropagation="true">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, coreRadzenModelsCoreTblEvent))" @onclick:stopPropagation="true">
                 </RadzenButton>
               </Template>
             </RadzenDataGridColumn>
           </Columns>
         </RadzenDataGrid>
-        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add" Click="@Button0Click">
+        <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add Event" Click="@Button0Click">
         </RadzenButton>
         <RadzenSplitButton Icon="get_app" style="margin-bottom: 10px; margin-left: 10px" Text="Export" Click="@Splitbutton0Click">
           <ChildContent>
@@ -47,56 +57,54 @@
             </RadzenSplitButtonItem>
           </ChildContent>
         </RadzenSplitButton>
-      </div>
-      <div class="col-md-12" style="height: 50px">
-      </div>
-      <div class="col-md-12">
-        <RadzenHeading Size="H1" Text="Volunteer Speaker Requests">
-        </RadzenHeading>
-        <RadzenDataGrid @ref="grid2" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblVolunteerSpeakerRequests" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Responsive="true" RowSelect="@Grid2RowSelect">
-          <Columns>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" FormatString="{0:d}" Property="TblEvent.EventDate" Title="Date">
-            </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" FormatString="{0:t}" Property="TblEvent.StartTime" Title="Time">
-            </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="TblEvent.TblHospital.HospitalName" Title="Hospital Name">
-            </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="TblSpeaker.Name" Title="Volunteer Speaker">
-            </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="TblEvent.LeadershipSpeaker" Title="Leadership Speaker">
-            </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
-              <Template Context="coreRadzenModelsCoreTblVolunteerSpeakerRequest">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Small" style="color: #28363c" Variant="Variant.Text" Click="@((args) =>TblVolunteerSpeakerRequestDeleteButtonClick(args, coreRadzenModelsCoreTblVolunteerSpeakerRequest))" @onclick:stopPropagation="true">
-                </RadzenButton>
-              </Template>
-            </RadzenDataGridColumn>
-          </Columns>
-        </RadzenDataGrid>
-        <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add" Click="@TblVolunteerSpeakerRequestAddButtonClick">
-        </RadzenButton>
-      </div>
-      <div class="col-md-12" style="height: 50px">
-      </div>
-      <div class="col-md-12">
-        <RadzenHeading Size="H1" Text="CORE Attendance">
-        </RadzenHeading>
-        <RadzenDataGrid @ref="grid1" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblCoreAttendances" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblCoreAttendance" Responsive="true" RowSelect="@Grid1RowSelect">
-          <Columns>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" FormatString="{0:d}" Property="TblEvent.EventDate" Title="Date">
-            </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Property="TblEvent.TblHospital.HospitalName" Title="Hospital Name">
-            </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Property="TblAdUser.FirstName" Title="First Name">
-            </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Property="TblAdUser.LastName" Title="Last Name">
-            </RadzenDataGridColumn>
-          </Columns>
-        </RadzenDataGrid>
-        <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add" Click="@TblCoreAttendanceAddButtonClick">
-        </RadzenButton>
-      </div>
-      <div class="col-md-12" style="height: 50px">
+        <RadzenFieldset Text="Volunteer Speaker Requests">
+          <ChildContent>
+            <RadzenHeading Size="H1" Text="Volunteer Speakers">
+            </RadzenHeading>
+            <RadzenDataGrid @ref="grid2" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblVolunteerSpeakerRequests" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" RowSelect="@Grid2RowSelect">
+              <Columns>
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="TblSpeaker.Name" Title="Volunteer Speaker">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="TblSpeaker.PhoneNumber" Title="Phone Number">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="TblSpeaker.Email" Title="Email">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="TblSpeaker.Connection" Title="Connection">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="TblSpeaker.Background" Title="Background">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="TblSpeaker.AccessibilityRequirements" Title="Accessibility Requirements">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="TblSpeaker.Quote" Title="Quote">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+                  <Template Context="coreRadzenModelsCoreTblVolunteerSpeakerRequest">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>TblVolunteerSpeakerRequestDeleteButtonClick(args, coreRadzenModelsCoreTblVolunteerSpeakerRequest))" @onclick:stopPropagation="true">
+                    </RadzenButton>
+                  </Template>
+                </RadzenDataGridColumn>
+              </Columns>
+            </RadzenDataGrid>
+            <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add Speaker" Click="@TblVolunteerSpeakerRequestAddButtonClick">
+            </RadzenButton>
+          </ChildContent>
+        </RadzenFieldset>
+        <RadzenFieldset Text="CORE Attendance">
+          <ChildContent>
+            <RadzenHeading Size="H1" Text="CORE Attendance">
+            </RadzenHeading>
+            <RadzenDataGrid @ref="grid1" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblCoreAttendances" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblCoreAttendance" RowSelect="@Grid1RowSelect">
+              <Columns>
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Property="TblAdUser.FirstName" Title="First Name">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Property="TblAdUser.LastName" Title="Last Name">
+                </RadzenDataGridColumn>
+              </Columns>
+            </RadzenDataGrid>
+            <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add CORE Member" Click="@TblCoreAttendanceAddButtonClick">
+            </RadzenButton>
+          </ChildContent>
+        </RadzenFieldset>
       </div>
     </div>
   </ChildContent>

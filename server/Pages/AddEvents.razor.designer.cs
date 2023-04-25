@@ -55,6 +55,9 @@ namespace CoreRadzen.Pages
         [Inject]
         protected CoreService Core { get; set; }
 
+        [Parameter]
+        public dynamic tblEvent_ID { get; set; }
+
         IEnumerable<CoreRadzen.Models.Core.TblHospital> _getTblHospitalsForHospitalIDResult;
         protected IEnumerable<CoreRadzen.Models.Core.TblHospital> getTblHospitalsForHospitalIDResult
         {

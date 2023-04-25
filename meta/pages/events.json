@@ -6,7 +6,7 @@
         {
           "name": "pageTitle",
           "size": "H1",
-          "text": "Events",
+          "text": "Events Dashboard",
           "type": "heading"
         },
         {
@@ -32,6 +32,7 @@
                   "value": ""
                 },
                 {
+                  "allowColumnResize": true,
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
@@ -45,7 +46,7 @@
                       "type": "string"
                     },
                     {
-                      "formatString": "{0:t}",
+                      "formatString": "{0:d}",
                       "property": "StartTime",
                       "title": "Time"
                     },
@@ -56,12 +57,47 @@
                       "type": "string"
                     },
                     {
-                      "property": "OnsiteContactName",
-                      "title": "Onsite Contact Name"
+                      "minWidth": "40px",
+                      "template": [
+                        {
+                          "isPill": true,
+                          "name": "badge1",
+                          "style": {
+                            "backgroundColor": "#b50909"
+                          },
+                          "text": "Volunteer Speaker Needed",
+                          "type": "badge",
+                          "visible": "${!(data.TblVolunteerSpeakerRequests?.Any() ?? false)}"
+                        }
+                      ],
+                      "title": "Volunteer Speaker Status",
+                      "width": ""
                     },
                     {
-                      "property": "IsLocked",
-                      "title": "Is Locked"
+                      "format": "",
+                      "property": "LeadershipSpeaker",
+                      "template": "",
+                      "title": "Leadership Speaker",
+                      "type": "string",
+                      "visible": true
+                    },
+                    {
+                      "format": "",
+                      "property": "LeadershipSpeakerRequested",
+                      "template": [
+                        {
+                          "isPill": true,
+                          "name": "badge0",
+                          "style": {
+                            "backgroundColor": "#8c8c8c"
+                          },
+                          "text": "Requested",
+                          "type": "badge",
+                          "visible": "${data.LeadershipSpeakerRequested}"
+                        }
+                      ],
+                      "title": "Leadership Speaker Requested",
+                      "type": "boolean"
                     },
                     {
                       "filterable": false,
@@ -105,22 +141,20 @@
                               }
                             ]
                           },
-                          "icon": "delete",
+                          "icon": "close",
                           "name": "gridDeleteButton",
                           "size": "sm",
-                          "style": {
-                            "color": "#28363c"
-                          },
                           "text": "",
-                          "type": "button",
-                          "variant": "Variant.Text"
+                          "type": "button"
                         }
                       ],
                       "textAlign": "center",
                       "width": "70px"
                     }
                   ],
+                  "count": "",
                   "data": "${getTblEventsResult}",
+                  "density": "Density.Compact",
                   "events": {
                     "loadData": [],
                     "render": [
@@ -144,6 +178,7 @@
                         "valueType": "string"
                       }
                     ],
+                    "rowClick": [],
                     "rowDoubleClick": [
                       {
                         "parameters": [
@@ -211,28 +246,43 @@
                     ]
                   },
                   "filterMode": "advanced",
+                  "isLoading": false,
                   "itemType": "CoreRadzen.Models.Core.TblEvent",
+                  "keyProperty": "",
                   "name": "grid0",
                   "responsive": true,
                   "title": "",
                   "type": "datagrid"
                 },
                 {
+                  "disabled": "${this.master == null}",
                   "events": {
                     "click": [
                       {
+                        "parameters": [
+                          {
+                            "name": "tblEvent_ID",
+                            "type": "integer",
+                            "value": "${master.tblEvent_ID}"
+                          }
+                        ],
                         "path": "add-events",
-                        "type": "navigate"
+                        "then": [
+                          {
+                            "code": "await grid2.Reload();",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "popup"
                       }
                     ]
                   },
                   "icon": "add_circle_outline",
                   "name": "button0",
                   "style": {
-                    "marginBottom": "10px",
-                    "marginTop": "10px"
+                    "marginBottom": "10px"
                   },
-                  "text": "Add",
+                  "text": "Add Event",
                   "type": "button"
                 },
                 {
@@ -309,302 +359,266 @@
                   },
                   "text": "Export",
                   "type": "splitbutton"
-                }
-              ],
-              "name": "col0",
-              "type": "col"
-            },
-            {
-              "class": "col-md-12",
-              "name": "col1",
-              "style": {
-                "height": "50px"
-              },
-              "type": "col"
-            },
-            {
-              "class": "col-md-12",
-              "components": [
-                {
-                  "name": "heading2",
-                  "size": "H1",
-                  "text": "Volunteer Speaker Requests",
-                  "type": "heading"
                 },
                 {
-                  "allowFiltering": true,
-                  "allowPaging": true,
-                  "allowSorting": true,
-                  "columns": [
+                  "components": [
                     {
-                      "format": "date-time",
-                      "formatString": "{0:d}",
-                      "property": "TblEvent.EventDate",
-                      "title": "Date",
-                      "type": "string"
+                      "name": "heading2",
+                      "size": "H1",
+                      "text": "Volunteer Speakers",
+                      "type": "heading"
                     },
                     {
-                      "format": "date-time",
-                      "formatString": "{0:t}",
-                      "property": "TblEvent.StartTime",
-                      "title": "Time",
-                      "type": "string"
-                    },
-                    {
-                      "format": "",
-                      "property": "TblEvent.TblHospital.HospitalName",
-                      "title": "Hospital Name",
-                      "type": "string"
-                    },
-                    {
-                      "format": "",
-                      "property": "TblSpeaker.Name",
-                      "title": "Volunteer Speaker",
-                      "type": "string"
-                    },
-                    {
-                      "format": "",
-                      "property": "TblEvent.LeadershipSpeaker",
-                      "title": "Leadership Speaker",
-                      "type": "string"
-                    },
-                    {
-                      "filterable": false,
-                      "sortable": false,
-                      "template": [
+                      "allowFiltering": true,
+                      "allowPaging": true,
+                      "allowSorting": true,
+                      "columns": [
                         {
-                          "attributes": [
+                          "format": "",
+                          "property": "TblSpeaker.Name",
+                          "title": "Volunteer Speaker",
+                          "type": "string"
+                        },
+                        {
+                          "format": "",
+                          "property": "TblSpeaker.PhoneNumber",
+                          "title": "Phone Number",
+                          "type": "string"
+                        },
+                        {
+                          "format": "",
+                          "property": "TblSpeaker.Email",
+                          "title": "Email",
+                          "type": "string"
+                        },
+                        {
+                          "format": "",
+                          "property": "TblSpeaker.Connection",
+                          "title": "Connection",
+                          "type": "string"
+                        },
+                        {
+                          "format": "",
+                          "property": "TblSpeaker.Background",
+                          "title": "Background",
+                          "type": "string"
+                        },
+                        {
+                          "format": "",
+                          "property": "TblSpeaker.AccessibilityRequirements",
+                          "title": "Accessibility Requirements",
+                          "type": "string"
+                        },
+                        {
+                          "format": "",
+                          "property": "TblSpeaker.Quote",
+                          "title": "Quote",
+                          "type": "string"
+                        },
+                        {
+                          "filterable": false,
+                          "sortable": false,
+                          "template": [
                             {
-                              "name": "@onclick:stopPropagation",
-                              "value": true
+                              "attributes": [
+                                {
+                                  "name": "@onclick:stopPropagation",
+                                  "value": true
+                                }
+                              ],
+                              "buttonStyle": "danger",
+                              "events": {
+                                "click": [
+                                  {
+                                    "condition": "await DialogService.Confirm(\"Are you sure you want to delete this record?\") == true",
+                                    "error": [
+                                      {
+                                        "detail": "Unable to delete TblEvent",
+                                        "severity": "error",
+                                        "summary": "Error",
+                                        "type": "notify"
+                                      }
+                                    ],
+                                    "name": "CORE.deleteTblVolunteerSpeakerRequest",
+                                    "parameters": [
+                                      {
+                                        "name": "tblVolunteerSpeakerRequests_ID",
+                                        "value": "${data.tblVolunteerSpeakerRequests_ID}"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "code": "await grid2.Reload();",
+                                        "condition": "result != null",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ]
+                              },
+                              "icon": "close",
+                              "name": "TblVolunteerSpeakerRequestDeleteButton",
+                              "size": "sm",
+                              "text": "",
+                              "type": "button"
                             }
                           ],
-                          "buttonStyle": "danger",
-                          "events": {
-                            "click": [
-                              {
-                                "condition": "await DialogService.Confirm(\"Are you sure you want to delete this record?\") == true",
-                                "error": [
-                                  {
-                                    "detail": "Unable to delete TblEvent",
-                                    "severity": "error",
-                                    "summary": "Error",
-                                    "type": "notify"
-                                  }
-                                ],
-                                "name": "CORE.deleteTblVolunteerSpeakerRequest",
-                                "parameters": [
-                                  {
-                                    "name": "tblVolunteerSpeakerRequests_ID",
-                                    "value": "${data.tblVolunteerSpeakerRequests_ID}"
-                                  }
-                                ],
-                                "then": [
-                                  {
-                                    "code": "await grid2.Reload();",
-                                    "condition": "result != null",
-                                    "type": "execute"
-                                  }
-                                ],
-                                "type": "invoke"
-                              }
-                            ]
-                          },
-                          "icon": "delete",
-                          "name": "TblVolunteerSpeakerRequestDeleteButton",
-                          "size": "sm",
-                          "style": {
-                            "color": "#28363c"
-                          },
-                          "text": "",
-                          "type": "button",
-                          "variant": "Variant.Text"
+                          "textAlign": "center",
+                          "width": "70px"
                         }
                       ],
-                      "textAlign": "center",
-                      "width": "70px"
+                      "data": "${TblVolunteerSpeakerRequests}",
+                      "events": {
+                        "rowSelect": [
+                          {
+                            "parameters": [
+                              {
+                                "name": "tblVolunteerSpeakerRequests_ID",
+                                "value": "${event.tblVolunteerSpeakerRequests_ID}"
+                              }
+                            ],
+                            "path": "edit-tbl-volunteer-speaker-request",
+                            "then": [
+                              {
+                                "code": "await grid2.Reload();",
+                                "type": "execute"
+                              }
+                            ],
+                            "type": "popup"
+                          }
+                        ]
+                      },
+                      "filterMode": "advanced",
+                      "itemType": "CoreRadzen.Models.Core.TblVolunteerSpeakerRequest",
+                      "name": "grid2",
+                      "type": "datagrid"
+                    },
+                    {
+                      "disabled": "${this.master == null}",
+                      "events": {
+                        "click": [
+                          {
+                            "parameters": [
+                              {
+                                "name": "tblEvent_ID",
+                                "type": "integer",
+                                "value": "${master.tblEvent_ID}"
+                              }
+                            ],
+                            "path": "add-tbl-volunteer-speaker-request",
+                            "then": [
+                              {
+                                "code": "await grid2.Reload();",
+                                "type": "execute"
+                              }
+                            ],
+                            "type": "popup"
+                          }
+                        ]
+                      },
+                      "icon": "add_circle_outline",
+                      "name": "TblVolunteerSpeakerRequestAddButton",
+                      "style": {
+                        "marginBottom": "10px"
+                      },
+                      "text": "Add Speaker",
+                      "type": "button"
                     }
                   ],
-                  "data": "${TblVolunteerSpeakerRequests}",
-                  "events": {
-                    "rowSelect": [
-                      {
-                        "parameters": [
-                          {
-                            "name": "tblVolunteerSpeakerRequests_ID",
-                            "value": "${event.tblVolunteerSpeakerRequests_ID}"
-                          }
-                        ],
-                        "path": "edit-tbl-volunteer-speaker-request",
-                        "then": [
-                          {
-                            "code": "await grid2.Reload();",
-                            "type": "execute"
-                          }
-                        ],
-                        "type": "popup"
-                      }
-                    ]
-                  },
-                  "filterMode": "advanced",
-                  "itemType": "CoreRadzen.Models.Core.TblVolunteerSpeakerRequest",
-                  "name": "grid2",
-                  "responsive": true,
-                  "type": "datagrid"
+                  "name": "fieldset0",
+                  "text": "Volunteer Speaker Requests",
+                  "type": "fieldset"
                 },
                 {
-                  "disabled": "${this.master == null}",
-                  "events": {
-                    "click": [
-                      {
-                        "parameters": [
+                  "components": [
+                    {
+                      "name": "heading1",
+                      "size": "H1",
+                      "text": "CORE Attendance",
+                      "type": "heading"
+                    },
+                    {
+                      "allowFiltering": true,
+                      "allowPaging": true,
+                      "allowSorting": true,
+                      "columns": [
+                        {
+                          "format": "",
+                          "property": "TblAdUser.FirstName",
+                          "title": "First Name",
+                          "type": "string"
+                        },
+                        {
+                          "format": "",
+                          "property": "TblAdUser.LastName",
+                          "title": "Last Name",
+                          "type": "string"
+                        }
+                      ],
+                      "data": "${TblCoreAttendances}",
+                      "events": {
+                        "rowSelect": [
                           {
-                            "name": "tblEvent_ID",
-                            "type": "integer",
-                            "value": "${master.tblEvent_ID}"
+                            "parameters": [
+                              {
+                                "name": "tblCOREAttendance_ID",
+                                "value": "${event.tblCOREAttendance_ID}"
+                              }
+                            ],
+                            "path": "edit-tbl-core-attendance",
+                            "then": [
+                              {
+                                "code": "await grid1.Reload();",
+                                "type": "execute"
+                              }
+                            ],
+                            "type": "popup"
                           }
-                        ],
-                        "path": "add-tbl-volunteer-speaker-request",
-                        "then": [
+                        ]
+                      },
+                      "filterMode": "advanced",
+                      "itemType": "CoreRadzen.Models.Core.TblCoreAttendance",
+                      "name": "grid1",
+                      "type": "datagrid"
+                    },
+                    {
+                      "disabled": "${this.master == null}",
+                      "events": {
+                        "click": [
                           {
-                            "code": "await grid2.Reload();",
-                            "type": "execute"
+                            "parameters": [
+                              {
+                                "name": "tblEvent_ID",
+                                "type": "integer",
+                                "value": "${master.tblEvent_ID}"
+                              }
+                            ],
+                            "path": "add-tbl-core-attendance",
+                            "then": [
+                              {
+                                "code": "await grid1.Reload();",
+                                "type": "execute"
+                              }
+                            ],
+                            "type": "popup"
                           }
-                        ],
-                        "type": "popup"
-                      }
-                    ]
-                  },
-                  "icon": "add_circle_outline",
-                  "name": "TblVolunteerSpeakerRequestAddButton",
-                  "style": {
-                    "marginBottom": "10px",
-                    "marginTop": "10px"
-                  },
-                  "text": "Add",
-                  "type": "button"
-                }
-              ],
-              "name": "col2",
-              "type": "col"
-            },
-            {
-              "class": "col-md-12",
-              "name": "col3",
-              "style": {
-                "height": "50px"
-              },
-              "type": "col"
-            },
-            {
-              "class": "col-md-12",
-              "components": [
-                {
-                  "name": "heading1",
-                  "size": "H1",
+                        ]
+                      },
+                      "icon": "add_circle_outline",
+                      "name": "TblCoreAttendanceAddButton",
+                      "style": {
+                        "marginBottom": "10px"
+                      },
+                      "text": "Add CORE Member",
+                      "type": "button"
+                    }
+                  ],
+                  "name": "fieldset1",
                   "text": "CORE Attendance",
-                  "type": "heading"
-                },
-                {
-                  "allowFiltering": true,
-                  "allowPaging": true,
-                  "allowSorting": true,
-                  "columns": [
-                    {
-                      "format": "date-time",
-                      "formatString": "{0:d}",
-                      "property": "TblEvent.EventDate",
-                      "title": "Date",
-                      "type": "string"
-                    },
-                    {
-                      "format": "",
-                      "property": "TblEvent.TblHospital.HospitalName",
-                      "title": "Hospital Name",
-                      "type": "string"
-                    },
-                    {
-                      "format": "",
-                      "property": "TblAdUser.FirstName",
-                      "title": "First Name",
-                      "type": "string"
-                    },
-                    {
-                      "format": "",
-                      "property": "TblAdUser.LastName",
-                      "title": "Last Name",
-                      "type": "string"
-                    }
-                  ],
-                  "data": "${TblCoreAttendances}",
-                  "events": {
-                    "rowSelect": [
-                      {
-                        "parameters": [
-                          {
-                            "name": "tblCOREAttendance_ID",
-                            "value": "${event.tblCOREAttendance_ID}"
-                          }
-                        ],
-                        "path": "edit-tbl-core-attendance",
-                        "then": [
-                          {
-                            "code": "await grid1.Reload();",
-                            "type": "execute"
-                          }
-                        ],
-                        "type": "popup"
-                      }
-                    ]
-                  },
-                  "filterMode": "advanced",
-                  "itemType": "CoreRadzen.Models.Core.TblCoreAttendance",
-                  "name": "grid1",
-                  "responsive": true,
-                  "type": "datagrid"
-                },
-                {
-                  "disabled": "${this.master == null}",
-                  "events": {
-                    "click": [
-                      {
-                        "parameters": [
-                          {
-                            "name": "tblEvent_ID",
-                            "type": "integer",
-                            "value": "${master.tblEvent_ID}"
-                          }
-                        ],
-                        "path": "add-tbl-core-attendance",
-                        "then": [
-                          {
-                            "code": "await grid1.Reload();",
-                            "type": "execute"
-                          }
-                        ],
-                        "type": "popup"
-                      }
-                    ]
-                  },
-                  "icon": "add_circle_outline",
-                  "name": "TblCoreAttendanceAddButton",
-                  "style": {
-                    "marginBottom": "10px",
-                    "marginTop": "10px"
-                  },
-                  "text": "Add",
-                  "type": "button"
+                  "type": "fieldset"
                 }
               ],
-              "name": "col4",
-              "type": "col"
-            },
-            {
-              "class": "col-md-12",
-              "components": [],
-              "style": {
-                "height": "50px"
-              },
               "type": "col"
             }
           ],
@@ -742,6 +756,24 @@
             "type": "set",
             "value": "${result}",
             "valueType": "IEnumerable<CoreRadzen.Models.Core.TblEvent>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "CORE.getTblVolunteerSpeakerRequests",
+        "parameters": [
+          {
+            "name": "$expand",
+            "value": "TblAdUser,TblHospital,TblEvent,TblSpeaker"
+          }
+        ],
+        "then": [
+          {
+            "name": "getTblVolunteerSpeakerRequestsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CoreRadzen.Models.Core.TblVolunteerSpeakerRequest>"
           }
         ],
         "type": "invoke"

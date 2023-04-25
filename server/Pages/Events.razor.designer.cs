@@ -96,6 +96,25 @@ namespace CoreRadzen.Pages
             }
         }
 
+        IEnumerable<CoreRadzen.Models.Core.TblVolunteerSpeakerRequest> _getTblVolunteerSpeakerRequestsResult;
+        protected IEnumerable<CoreRadzen.Models.Core.TblVolunteerSpeakerRequest> getTblVolunteerSpeakerRequestsResult
+        {
+            get
+            {
+                return _getTblVolunteerSpeakerRequestsResult;
+            }
+            set
+            {
+                if (!object.Equals(_getTblVolunteerSpeakerRequestsResult, value))
+                {
+                    var args = new PropertyChangedEventArgs(){ Name = "getTblVolunteerSpeakerRequestsResult", NewValue = value, OldValue = _getTblVolunteerSpeakerRequestsResult };
+                    _getTblVolunteerSpeakerRequestsResult = value;
+                    OnPropertyChanged(args);
+                    Reload();
+                }
+            }
+        }
+
         CoreRadzen.Models.Core.TblEvent _master;
         protected CoreRadzen.Models.Core.TblEvent master
         {
@@ -192,6 +211,9 @@ namespace CoreRadzen.Pages
 
             var coreGetTblEventsResult = await Core.GetTblEvents(new Query() { Filter = $@"i => i.LocationDetails.Contains(@0) || i.EventType.Contains(@1) || i.EventDescription.Contains(@2) || i.EventDetails.Contains(@3) || i.SpeakerNeeds.Contains(@4) || i.LeadershipSpeaker.Contains(@5) || i.AudienceTypes.Contains(@6) || i.EstimatedAttendees.Contains(@7) || i.SocialMediaOrVideoNeeds.Contains(@8) || i.QuiltNumber.Contains(@9) || i.QuiltCoordinator.Contains(@10) || i.VehicleDriver.Contains(@11) || i.OnsiteContactName.Contains(@12) || i.OnsiteContactPhone.Contains(@13) || i.OnsiteContactEmail.Contains(@14) || i.PlaceToMeet.Contains(@15) || i.AdditionalInformation.Contains(@16)", FilterParameters = new object[] { search, search, search, search, search, search, search, search, search, search, search, search, search, search, search, search, search } });
             getTblEventsResult = coreGetTblEventsResult;
+
+            var coreGetTblVolunteerSpeakerRequestsResult = await Core.GetTblVolunteerSpeakerRequests(new Query() { Expand = "TblAdUser,TblHospital,TblEvent,TblSpeaker" });
+            getTblVolunteerSpeakerRequestsResult = coreGetTblVolunteerSpeakerRequestsResult;
         }
 
         protected async void Grid0Render(DataGridRenderEventArgs<CoreRadzen.Models.Core.TblEvent> args)
@@ -255,7 +277,8 @@ namespace CoreRadzen.Pages
 
         protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
         {
-            UriHelper.NavigateTo("add-events");
+            var dialogResult = await DialogService.OpenAsync<AddEvents>("Add Events", new Dictionary<string, object>() { {"tblEvent_ID", master.tblEvent_ID} });
+            await grid2.Reload();
         }
 
         protected async System.Threading.Tasks.Task Splitbutton0Click(RadzenSplitButtonItem args)
