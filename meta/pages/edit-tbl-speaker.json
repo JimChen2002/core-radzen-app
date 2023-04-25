@@ -366,7 +366,7 @@
                               "style": {
                                 "width": "100%"
                               },
-                              "text": "ADUser",
+                              "text": "Requested By",
                               "type": "label"
                             }
                           ],
@@ -408,7 +408,8 @@
                               "buttonType": "submit",
                               "icon": "save",
                               "text": "Save",
-                              "type": "button"
+                              "type": "button",
+                              "visible": "${isAdmin}"
                             },
                             {
                               "buttonStyle": "light",
@@ -521,6 +522,24 @@
         "type": "set",
         "value": "new List<string>(){\"Donor Family\", \"Waiting List Candidate\", \"Recipient\", \"Recipient Family\"}",
         "valueType": "List<string>"
+      },
+      {
+        "name": "CORE.getTblAdminUsers",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "i => string.Equals(i.UserName, \"${Security.User?.Name}\")"
+          }
+        ],
+        "then": [
+          {
+            "name": "isAdmin",
+            "type": "set",
+            "value": "${result}.Count() > 0",
+            "valueType": "bool"
+          }
+        ],
+        "type": "invoke"
       }
     ]
   },

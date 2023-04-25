@@ -18,7 +18,8 @@
   "namespaces": [],
   "navigation": [
     "Volunteer Speakers",
-    "Events"
+    "Events",
+    "Become Admin"
   ],
   "pages": [
     "Add Events",
@@ -31,7 +32,8 @@
     "Add Tbl Core Attendance",
     "Edit Tbl Core Attendance",
     "Add Tbl Volunteer Speaker Request",
-    "Edit Tbl Volunteer Speaker Request"
+    "Edit Tbl Volunteer Speaker Request",
+    "Become Admin"
   ],
   "port": 8000,
   "security": {

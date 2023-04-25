@@ -1,0 +1,27 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Become Admin",
+          "type": "heading"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "code": "${Security.User.Name} = \"Katelynn Metz\"",
+        "type": "execute"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Become Admin"
+}

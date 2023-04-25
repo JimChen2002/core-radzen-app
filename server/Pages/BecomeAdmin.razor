@@ -1,0 +1,16 @@
+﻿@page "/become-admin"
+@layout MainLayout
+@inherits CoreRadzen.Pages.BecomeAdminComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using CoreRadzen.Models.Core
+@using CoreRadzen.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Become Admin">
+    </RadzenHeading>
+  </ChildContent>
+</RadzenContent>

@@ -41,6 +41,19 @@ namespace CoreRadzen
         {
             return ToExcel(ApplyQuery(await service.GetTblAdUsers(), Request.Query), fileName);
         }
+        [HttpGet("/export/Core/tbladminusers/csv")]
+        [HttpGet("/export/Core/tbladminusers/csv(fileName='{fileName}')")]
+        public async System.Threading.Tasks.Task<FileStreamResult> ExportTblAdminUsersToCSV(string fileName = null)
+        {
+            return ToCSV(ApplyQuery(await service.GetTblAdminUsers(), Request.Query), fileName);
+        }
+
+        [HttpGet("/export/Core/tbladminusers/excel")]
+        [HttpGet("/export/Core/tbladminusers/excel(fileName='{fileName}')")]
+        public async System.Threading.Tasks.Task<FileStreamResult> ExportTblAdminUsersToExcel(string fileName = null)
+        {
+            return ToExcel(ApplyQuery(await service.GetTblAdminUsers(), Request.Query), fileName);
+        }
         [HttpGet("/export/Core/tblcoreattendances/csv")]
         [HttpGet("/export/Core/tblcoreattendances/csv(fileName='{fileName}')")]
         public async System.Threading.Tasks.Task<FileStreamResult> ExportTblCoreAttendancesToCSV(string fileName = null)

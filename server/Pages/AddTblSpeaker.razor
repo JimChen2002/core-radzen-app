@@ -100,7 +100,7 @@
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3" style="padding-right: 1px">
-                <RadzenLabel Component="tblADUser_ID" style="width: 100%" Text="ADUser">
+                <RadzenLabel Component="tblADUser_ID" style="width: 100%" Text="Requested By">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
@@ -110,7 +110,7 @@
             </div>
             <div class="row">
               <div class="col offset-sm-3">
-                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Visible="@isAdmin">
                 </RadzenButton>
                 <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@Button2Click">
                 </RadzenButton>

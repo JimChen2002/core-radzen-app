@@ -250,6 +250,38 @@
         }
       }
     },
+    "TblAdminUser": {
+      "x-table": "dbo.tblAdminUsers",
+      "resource": "TblAdminUsers",
+      "required": [
+        "tblADUser_ID",
+        "UserName"
+      ],
+      "properties": {
+        "tblAdminUser_ID": {
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int",
+          "x-key": true,
+          "x-virtual": true
+        },
+        "tblADUser_ID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "dbType": "int"
+        },
+        "UserName": {
+          "x-nullable": false,
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 250
+        }
+      },
+      "x-view": true
+    },
     "TblCoreAttendance": {
       "x-table": "dbo.tblCOREAttendance",
       "resource": "TblCoreAttendances",
@@ -939,6 +971,63 @@
           "201": {
             "schema": {
               "$ref": "#/definitions/TblAdUser"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblAdminUsers": {
+      "get": {
+        "operationId": "getTblAdminUsers",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/TblAdminUser"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
             }
           },
           "default": {

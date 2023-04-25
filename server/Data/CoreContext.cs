@@ -27,6 +27,7 @@ namespace CoreRadzen.Data
         base.OnModelCreating(builder);
 
         builder.Entity<CoreRadzen.Models.Core.SpEventStartNewEvent>().HasNoKey();
+        builder.Entity<CoreRadzen.Models.Core.TblAdminUser>().HasNoKey();
         builder.Entity<CoreRadzen.Models.Core.TblCoreAttendance>()
               .HasOne(i => i.TblEvent)
               .WithMany(i => i.TblCoreAttendances)
@@ -89,6 +90,12 @@ namespace CoreRadzen.Data
     }
 
     public DbSet<CoreRadzen.Models.Core.TblAdUser> TblAdUsers
+    {
+      get;
+      set;
+    }
+
+    public DbSet<CoreRadzen.Models.Core.TblAdminUser> TblAdminUsers
     {
       get;
       set;
