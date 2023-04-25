@@ -574,7 +574,8 @@
                                 "width": "100%"
                               },
                               "text": "Leadership Speaker",
-                              "type": "label"
+                              "type": "label",
+                              "visible": true
                             }
                           ],
                           "style": {
@@ -588,12 +589,14 @@
                             {
                               "maxLength": 500,
                               "name": "LeadershipSpeaker",
+                              "readOnly": "${isNotAdmin}",
                               "style": {
                                 "width": "100%"
                               },
                               "type": "textbox",
                               "value": "${tblevent.LeadershipSpeaker}",
-                              "valueType": "string"
+                              "valueType": "string",
+                              "visible": true
                             }
                           ],
                           "type": "col"
@@ -828,7 +831,8 @@
                                 "marginTop": "10px"
                               },
                               "text": "Add",
-                              "type": "button"
+                              "type": "button",
+                              "visible": "${isAdmin}"
                             },
                             {
                               "events": {
@@ -852,7 +856,8 @@
                                 "marginBottom": "10px"
                               },
                               "text": "Add New Speaker",
-                              "type": "button"
+                              "type": "button",
+                              "visible": "${isAdmin}"
                             }
                           ],
                           "name": "col8",
@@ -1126,6 +1131,7 @@
                           "components": [
                             {
                               "name": "IsLegislatorsInvited",
+                              "readOnly": "${isNotAdmin}",
                               "type": "checkbox",
                               "value": "${tblevent.IsLegislatorsInvited}",
                               "valueType": "bool"
@@ -1164,6 +1170,7 @@
                           "components": [
                             {
                               "name": "IsLegislatorsAttending",
+                              "readOnly": "${isNotAdmin}",
                               "type": "checkbox",
                               "value": "${tblevent.IsLegislatorsAttending}",
                               "valueType": "bool"
@@ -1241,6 +1248,7 @@
                             {
                               "maxLength": 500,
                               "name": "QuiltNumber",
+                              "readOnly": "${isNotAdmin}",
                               "style": {
                                 "width": "100%"
                               },
@@ -1283,6 +1291,7 @@
                             {
                               "maxLength": 500,
                               "name": "QuiltCoordinator",
+                              "readOnly": "${isNotAdmin}",
                               "style": {
                                 "width": "100%"
                               },
@@ -1362,6 +1371,7 @@
                           "components": [
                             {
                               "name": "IsVehicleReserved",
+                              "readOnly": "${isNotAdmin}",
                               "triState": true,
                               "type": "checkbox",
                               "value": "${tblevent.IsVehicleReserved}",
@@ -1402,6 +1412,7 @@
                             {
                               "maxLength": 500,
                               "name": "VehicleDriver",
+                              "readOnly": "${isNotAdmin}",
                               "style": {
                                 "width": "100%"
                               },
@@ -1444,6 +1455,7 @@
                             {
                               "maxLength": 500,
                               "name": "OnsiteContactName",
+                              "readOnly": "${isNotAdmin}",
                               "style": {
                                 "width": "100%"
                               },
@@ -1486,6 +1498,7 @@
                             {
                               "maxLength": 50,
                               "name": "OnsiteContactPhone",
+                              "readOnly": "${isNotAdmin}",
                               "style": {
                                 "width": "100%"
                               },
@@ -1528,6 +1541,7 @@
                             {
                               "maxLength": 500,
                               "name": "OnsiteContactEmail",
+                              "readOnly": "${isNotAdmin}",
                               "style": {
                                 "width": "100%"
                               },
@@ -1730,7 +1744,8 @@
                                 "marginTop": "10px"
                               },
                               "text": "Add",
-                              "type": "button"
+                              "type": "button",
+                              "visible": "${isAdmin}"
                             }
                           ],
                           "name": "col10",
@@ -2070,6 +2085,30 @@
             "type": "set",
             "value": "${result}",
             "valueType": "IEnumerable<CoreRadzen.Models.Core.TblCoreAttendance>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "CORE.getTblAdminUsers",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "i => string.Equals(i.UserName, \"${Security.User?.Name}\")"
+          }
+        ],
+        "then": [
+          {
+            "name": "isAdmin",
+            "type": "set",
+            "value": "${result}.Count() > 0",
+            "valueType": "bool"
+          },
+          {
+            "name": "isNotAdmin",
+            "type": "set",
+            "value": "!${isAdmin}",
+            "valueType": "bool"
           }
         ],
         "type": "invoke"

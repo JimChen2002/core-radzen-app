@@ -144,7 +144,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="500" style="width: 100%" @bind-Value="@(tblevent.LeadershipSpeaker)" Name="LeadershipSpeaker">
+                <RadzenTextBox MaxLength="500" ReadOnly="@isNotAdmin" style="width: 100%" @bind-Value="@(tblevent.LeadershipSpeaker)" Name="LeadershipSpeaker">
                 </RadzenTextBox>
               </div>
             </div>
@@ -192,9 +192,9 @@
               <div class="col-md-2">
               </div>
               <div class="col-md-9">
-                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-right: 10px; margin-top: 10px" Text="Add" Click="@Button0Click">
+                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-right: 10px; margin-top: 10px" Text="Add" Visible="@isAdmin" Click="@Button0Click">
                 </RadzenButton>
-                <RadzenButton Icon="add_circle_outline" Size="ButtonSize.Medium" style="margin-bottom: 10px" Text="Add New Speaker" Click="@Button3Click">
+                <RadzenButton Icon="add_circle_outline" Size="ButtonSize.Medium" style="margin-bottom: 10px" Text="Add New Speaker" Visible="@isAdmin" Click="@Button3Click">
                 </RadzenButton>
               </div>
             </div>
@@ -254,7 +254,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenCheckBox @bind-Value="@(tblevent.IsLegislatorsInvited)" Name="IsLegislatorsInvited">
+                <RadzenCheckBox ReadOnly="@isNotAdmin" @bind-Value="@(tblevent.IsLegislatorsInvited)" Name="IsLegislatorsInvited">
                 </RadzenCheckBox>
               </div>
             </div>
@@ -264,7 +264,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenCheckBox @bind-Value="@(tblevent.IsLegislatorsAttending)" Name="IsLegislatorsAttending">
+                <RadzenCheckBox ReadOnly="@isNotAdmin" @bind-Value="@(tblevent.IsLegislatorsAttending)" Name="IsLegislatorsAttending">
                 </RadzenCheckBox>
               </div>
             </div>
@@ -284,7 +284,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="500" style="width: 100%" @bind-Value="@(tblevent.QuiltNumber)" Name="QuiltNumber">
+                <RadzenTextBox MaxLength="500" ReadOnly="@isNotAdmin" style="width: 100%" @bind-Value="@(tblevent.QuiltNumber)" Name="QuiltNumber">
                 </RadzenTextBox>
               </div>
             </div>
@@ -294,7 +294,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="500" style="width: 100%" @bind-Value="@(tblevent.QuiltCoordinator)" Name="QuiltCoordinator">
+                <RadzenTextBox MaxLength="500" ReadOnly="@isNotAdmin" style="width: 100%" @bind-Value="@(tblevent.QuiltCoordinator)" Name="QuiltCoordinator">
                 </RadzenTextBox>
               </div>
             </div>
@@ -314,7 +314,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenCheckBox TriState="true" @bind-Value="@(tblevent.IsVehicleReserved)" Name="IsVehicleReserved">
+                <RadzenCheckBox ReadOnly="@isNotAdmin" TriState="true" @bind-Value="@(tblevent.IsVehicleReserved)" Name="IsVehicleReserved">
                 </RadzenCheckBox>
               </div>
             </div>
@@ -324,7 +324,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="500" style="width: 100%" @bind-Value="@(tblevent.VehicleDriver)" Name="VehicleDriver">
+                <RadzenTextBox MaxLength="500" ReadOnly="@isNotAdmin" style="width: 100%" @bind-Value="@(tblevent.VehicleDriver)" Name="VehicleDriver">
                 </RadzenTextBox>
               </div>
             </div>
@@ -334,7 +334,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="500" style="width: 100%" @bind-Value="@(tblevent.OnsiteContactName)" Name="OnsiteContactName">
+                <RadzenTextBox MaxLength="500" ReadOnly="@isNotAdmin" style="width: 100%" @bind-Value="@(tblevent.OnsiteContactName)" Name="OnsiteContactName">
                 </RadzenTextBox>
               </div>
             </div>
@@ -344,7 +344,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblevent.OnsiteContactPhone)" Name="OnsiteContactPhone">
+                <RadzenTextBox MaxLength="50" ReadOnly="@isNotAdmin" style="width: 100%" @bind-Value="@(tblevent.OnsiteContactPhone)" Name="OnsiteContactPhone">
                 </RadzenTextBox>
               </div>
             </div>
@@ -354,7 +354,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="500" style="width: 100%" @bind-Value="@(tblevent.OnsiteContactEmail)" Name="OnsiteContactEmail">
+                <RadzenTextBox MaxLength="500" ReadOnly="@isNotAdmin" style="width: 100%" @bind-Value="@(tblevent.OnsiteContactEmail)" Name="OnsiteContactEmail">
                 </RadzenTextBox>
               </div>
             </div>
@@ -392,7 +392,7 @@
               <div class="col-md-2">
               </div>
               <div class="col-md-9">
-                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add" Click="@TblCoreAttendanceAddButtonClick">
+                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add" Visible="@isAdmin" Click="@TblCoreAttendanceAddButtonClick">
                 </RadzenButton>
               </div>
             </div>
