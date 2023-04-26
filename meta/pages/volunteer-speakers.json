@@ -110,7 +110,7 @@
                           "name": "gridDeleteButton",
                           "size": "sm",
                           "style": {
-                            "color": "#28363c"
+                            "color": "#a9adaf"
                           },
                           "text": "",
                           "type": "button",
