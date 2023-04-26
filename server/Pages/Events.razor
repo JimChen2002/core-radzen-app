@@ -21,7 +21,7 @@
           <Columns>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" FormatString="{0:d}" Property="EventDate" Title="Date">
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" FormatString="{0:d}" Property="StartTime" Title="Time">
+            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" FormatString="{0:t}" Property="StartTime" Title="Time">
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" Property="TblHospital.HospitalName" Title="Hospital Name">
             </RadzenDataGridColumn>
@@ -41,13 +41,13 @@
             </RadzenDataGridColumn>
             <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
               <Template Context="coreRadzenModelsCoreTblEvent">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, coreRadzenModelsCoreTblEvent))" @onclick:stopPropagation="true">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Small" style="color: #a9adaf" Variant="Variant.Text" Click="@((args) =>GridDeleteButtonClick(args, coreRadzenModelsCoreTblEvent))" @onclick:stopPropagation="true">
                 </RadzenButton>
               </Template>
             </RadzenDataGridColumn>
           </Columns>
         </RadzenDataGrid>
-        <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add Event" Click="@Button0Click">
+        <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add Event" Click="@Button0Click">
         </RadzenButton>
         <RadzenSplitButton Icon="get_app" style="margin-bottom: 10px; margin-left: 10px" Text="Export" Click="@Splitbutton0Click">
           <ChildContent>
@@ -79,13 +79,13 @@
                 </RadzenDataGridColumn>
                 <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
                   <Template Context="coreRadzenModelsCoreTblVolunteerSpeakerRequest">
-                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>TblVolunteerSpeakerRequestDeleteButtonClick(args, coreRadzenModelsCoreTblVolunteerSpeakerRequest))" @onclick:stopPropagation="true">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Small" style="color: #a9adaf" Variant="Variant.Text" Click="@((args) =>TblVolunteerSpeakerRequestDeleteButtonClick(args, coreRadzenModelsCoreTblVolunteerSpeakerRequest))" @onclick:stopPropagation="true">
                     </RadzenButton>
                   </Template>
                 </RadzenDataGridColumn>
               </Columns>
             </RadzenDataGrid>
-            <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add Speaker" Click="@TblVolunteerSpeakerRequestAddButtonClick">
+            <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add Speaker" Click="@TblVolunteerSpeakerRequestAddButtonClick">
             </RadzenButton>
           </ChildContent>
         </RadzenFieldset>
@@ -101,7 +101,7 @@
                 </RadzenDataGridColumn>
               </Columns>
             </RadzenDataGrid>
-            <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add CORE Member" Click="@TblCoreAttendanceAddButtonClick">
+            <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add CORE Member" Click="@TblCoreAttendanceAddButtonClick">
             </RadzenButton>
           </ChildContent>
         </RadzenFieldset>

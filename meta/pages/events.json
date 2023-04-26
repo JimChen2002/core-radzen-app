@@ -46,7 +46,7 @@
                       "type": "string"
                     },
                     {
-                      "formatString": "{0:d}",
+                      "formatString": "{0:t}",
                       "property": "StartTime",
                       "title": "Time"
                     },
@@ -141,11 +141,15 @@
                               }
                             ]
                           },
-                          "icon": "close",
+                          "icon": "delete",
                           "name": "gridDeleteButton",
                           "size": "sm",
+                          "style": {
+                            "color": "#a9adaf"
+                          },
                           "text": "",
-                          "type": "button"
+                          "type": "button",
+                          "variant": "Variant.Text"
                         }
                       ],
                       "textAlign": "center",
@@ -280,7 +284,8 @@
                   "icon": "add_circle_outline",
                   "name": "button0",
                   "style": {
-                    "marginBottom": "10px"
+                    "marginBottom": "10px",
+                    "marginTop": "10px"
                   },
                   "text": "Add Event",
                   "type": "button"
@@ -457,11 +462,15 @@
                                   }
                                 ]
                               },
-                              "icon": "close",
+                              "icon": "delete",
                               "name": "TblVolunteerSpeakerRequestDeleteButton",
                               "size": "sm",
+                              "style": {
+                                "color": "#a9adaf"
+                              },
                               "text": "",
-                              "type": "button"
+                              "type": "button",
+                              "variant": "Variant.Text"
                             }
                           ],
                           "textAlign": "center",
@@ -520,7 +529,8 @@
                       "icon": "add_circle_outline",
                       "name": "TblVolunteerSpeakerRequestAddButton",
                       "style": {
-                        "marginBottom": "10px"
+                        "marginBottom": "10px",
+                        "marginTop": "10px"
                       },
                       "text": "Add Speaker",
                       "type": "button"
@@ -608,7 +618,8 @@
                       "icon": "add_circle_outline",
                       "name": "TblCoreAttendanceAddButton",
                       "style": {
-                        "marginBottom": "10px"
+                        "marginBottom": "10px",
+                        "marginTop": "10px"
                       },
                       "text": "Add CORE Member",
                       "type": "button"
