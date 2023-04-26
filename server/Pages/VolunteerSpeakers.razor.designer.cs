@@ -94,6 +94,25 @@ namespace CoreRadzen.Pages
             }
         }
 
+        bool _isAdmin;
+        protected bool isAdmin
+        {
+            get
+            {
+                return _isAdmin;
+            }
+            set
+            {
+                if (!object.Equals(_isAdmin, value))
+                {
+                    var args = new PropertyChangedEventArgs(){ Name = "isAdmin", NewValue = value, OldValue = _isAdmin };
+                    _isAdmin = value;
+                    OnPropertyChanged(args);
+                    Reload();
+                }
+            }
+        }
+
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
             await Security.InitializeAsync(AuthenticationStateProvider);
@@ -114,11 +133,14 @@ namespace CoreRadzen.Pages
 
             var coreGetTblSpeakersResult = await Core.GetTblSpeakers(new Query() { Filter = $@"i => i.Name.Contains(@0) || i.PhoneNumber.Contains(@1) || i.Email.Contains(@2) || i.Connection.Contains(@3) || i.Background.Contains(@4) || i.AccessibilityRequirements.Contains(@5) || i.Quote.Contains(@6)", FilterParameters = new object[] { search, search, search, search, search, search, search } });
             getTblSpeakersResult = coreGetTblSpeakersResult;
+
+            var coreGetTblAdminUsersResult = await Core.GetTblAdminUsers(new Query() { Filter = $@"i => string.Equals(i.UserName, ""{Security.User?.Name}"")" });
+            isAdmin = coreGetTblAdminUsersResult.Count() > 0;
         }
 
         protected async System.Threading.Tasks.Task Grid0RowDoubleClick(DataGridRowMouseEventArgs<CoreRadzen.Models.Core.TblSpeaker> args)
         {
-            var dialogResult = await DialogService.OpenAsync<EditTblSpeaker>("Edit Tbl Speaker", new Dictionary<string, object>() { {"tblSpeaker_ID", args.Data.tblSpeaker_ID} });
+            var dialogResult = await DialogService.OpenAsync<EditTblSpeaker>($"Edit Speaker", new Dictionary<string, object>() { {"tblSpeaker_ID", args.Data.tblSpeaker_ID} });
             await grid0.Reload();
 
             await InvokeAsync(() => { StateHasChanged(); });

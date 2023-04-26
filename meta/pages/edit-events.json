@@ -754,6 +754,7 @@
                                     }
                                   ],
                                   "textAlign": "center",
+                                  "visible": "${isAdmin}",
                                   "width": "70px"
                                 }
                               ],
@@ -768,8 +769,14 @@
                                       }
                                     ],
                                     "path": "edit-tbl-volunteer-speaker-request",
-                                    "then": [],
-                                    "type": "navigate"
+                                    "then": [
+                                      {
+                                        "code": "await grid2.Reload();",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "title": "Edit Speaker Request",
+                                    "type": "popup"
                                   }
                                 ]
                               },
@@ -819,6 +826,7 @@
                                         "type": "execute"
                                       }
                                     ],
+                                    "title": "Add Speaker Request",
                                     "type": "popup"
                                   }
                                 ]
@@ -830,7 +838,7 @@
                                 "marginRight": "10px",
                                 "marginTop": "10px"
                               },
-                              "text": "Add",
+                              "text": "Add Speaker Request",
                               "type": "button",
                               "visible": "${isAdmin}"
                             },
@@ -845,6 +853,7 @@
                                         "type": "execute"
                                       }
                                     ],
+                                    "title": "Add Speaker",
                                     "type": "popup"
                                   }
                                 ]
@@ -1569,7 +1578,7 @@
                               "style": {
                                 "width": "100%"
                               },
-                              "text": "CORE Team Members Attending",
+                              "text": "CORE Members Attending",
                               "type": "label"
                             }
                           ],
@@ -1608,7 +1617,7 @@
                                   "property": "tblADUser_ID",
                                   "sortProperty": "TblAdUser.UserName",
                                   "template": "${data.TblAdUser?.UserName}",
-                                  "title": "CORE Team Members"
+                                  "title": "Username"
                                 },
                                 {
                                   "filterable": false,
@@ -1664,6 +1673,7 @@
                                     }
                                   ],
                                   "textAlign": "center",
+                                  "visible": "${isAdmin}",
                                   "width": "70px"
                                 }
                               ],
@@ -1684,6 +1694,7 @@
                                         "type": "execute"
                                       }
                                     ],
+                                    "title": "Edit CORE Member",
                                     "type": "popup"
                                   }
                                 ]
@@ -1733,6 +1744,7 @@
                                         "type": "execute"
                                       }
                                     ],
+                                    "title": "Add CORE Member",
                                     "type": "popup"
                                   }
                                 ]
@@ -1743,7 +1755,7 @@
                                 "marginBottom": "10px",
                                 "marginTop": "10px"
                               },
-                              "text": "Add",
+                              "text": "Add CORE Member",
                               "type": "button",
                               "visible": "${isAdmin}"
                             }

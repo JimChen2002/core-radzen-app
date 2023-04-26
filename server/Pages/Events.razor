@@ -39,7 +39,7 @@
                 </RadzenBadge>
               </Template>
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+            <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblEvent" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Visible="@isAdmin" Width="70px">
               <Template Context="coreRadzenModelsCoreTblEvent">
                 <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Small" style="color: #a9adaf" Variant="Variant.Text" Click="@((args) =>GridDeleteButtonClick(args, coreRadzenModelsCoreTblEvent))" @onclick:stopPropagation="true">
                 </RadzenButton>
@@ -59,7 +59,7 @@
         </RadzenSplitButton>
         <RadzenFieldset Text="Volunteer Speaker Requests">
           <ChildContent>
-            <RadzenHeading Size="H1" Text="Volunteer Speakers">
+            <RadzenHeading Size="H1" Text="Volunteer Speakers Requests">
             </RadzenHeading>
             <RadzenDataGrid @ref="grid2" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblVolunteerSpeakerRequests" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" RowSelect="@Grid2RowSelect">
               <Columns>
@@ -77,7 +77,7 @@
                 </RadzenDataGridColumn>
                 <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Property="TblSpeaker.Quote" Title="Quote">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Visible="@isAdmin" Width="70px">
                   <Template Context="coreRadzenModelsCoreTblVolunteerSpeakerRequest">
                     <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Small" style="color: #a9adaf" Variant="Variant.Text" Click="@((args) =>TblVolunteerSpeakerRequestDeleteButtonClick(args, coreRadzenModelsCoreTblVolunteerSpeakerRequest))" @onclick:stopPropagation="true">
                     </RadzenButton>
@@ -85,23 +85,37 @@
                 </RadzenDataGridColumn>
               </Columns>
             </RadzenDataGrid>
-            <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add Speaker" Click="@TblVolunteerSpeakerRequestAddButtonClick">
+            <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add Speaker Request" Visible="@isAdmin" Click="@TblVolunteerSpeakerRequestAddButtonClick">
             </RadzenButton>
           </ChildContent>
         </RadzenFieldset>
-        <RadzenFieldset Text="CORE Attendance">
+        <RadzenFieldset Text="CORE Members Attending">
           <ChildContent>
-            <RadzenHeading Size="H1" Text="CORE Attendance">
+            <RadzenHeading Size="H1" Text="CORE Members Attending">
             </RadzenHeading>
             <RadzenDataGrid @ref="grid1" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@TblCoreAttendances" FilterMode="Radzen.FilterMode.Advanced" TItem="CoreRadzen.Models.Core.TblCoreAttendance" RowSelect="@Grid1RowSelect">
               <Columns>
-                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Property="TblAdUser.FirstName" Title="First Name">
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Property="tblCOREAttendance_ID" Title="Tbl CORE Attendance ID" Visible="false">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Property="TblAdUser.LastName" Title="Last Name">
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" FilterProperty="TblEvent.LocationDetails" GroupProperty="TblEvent.LocationDetails" Property="tblEvent_ID" SortProperty="TblEvent.LocationDetails" Title="Tbl Event" Visible="false">
+                  <Template Context="data">
+                  @(data.TblEvent?.LocationDetails)
+                  </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" FilterProperty="TblAdUser.UserName" GroupProperty="TblAdUser.UserName" Property="tblADUser_ID" SortProperty="TblAdUser.UserName" Title="Username">
+                  <Template Context="data">
+                  @(data.TblAdUser?.UserName)
+                  </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Visible="@isAdmin" Width="70px">
+                  <Template Context="coreRadzenModelsCoreTblCoreAttendance">
+                    <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Small" style="color: #a9adaf" Variant="Variant.Text" Click="@((args) =>TblCoreAttendanceDeleteButtonClick(args, coreRadzenModelsCoreTblCoreAttendance))" @onclick:stopPropagation="true">
+                    </RadzenButton>
+                  </Template>
                 </RadzenDataGridColumn>
               </Columns>
             </RadzenDataGrid>
-            <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add CORE Member" Click="@TblCoreAttendanceAddButtonClick">
+            <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add CORE Member" Visible="@isAdmin" Click="@TblCoreAttendanceAddButtonClick">
             </RadzenButton>
           </ChildContent>
         </RadzenFieldset>

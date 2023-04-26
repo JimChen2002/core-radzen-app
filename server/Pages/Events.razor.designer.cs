@@ -115,6 +115,25 @@ namespace CoreRadzen.Pages
             }
         }
 
+        bool _isAdmin;
+        protected bool isAdmin
+        {
+            get
+            {
+                return _isAdmin;
+            }
+            set
+            {
+                if (!object.Equals(_isAdmin, value))
+                {
+                    var args = new PropertyChangedEventArgs(){ Name = "isAdmin", NewValue = value, OldValue = _isAdmin };
+                    _isAdmin = value;
+                    OnPropertyChanged(args);
+                    Reload();
+                }
+            }
+        }
+
         CoreRadzen.Models.Core.TblEvent _master;
         protected CoreRadzen.Models.Core.TblEvent master
         {
@@ -214,6 +233,9 @@ namespace CoreRadzen.Pages
 
             var coreGetTblVolunteerSpeakerRequestsResult = await Core.GetTblVolunteerSpeakerRequests(new Query() { Expand = "TblAdUser,TblHospital,TblEvent,TblSpeaker" });
             getTblVolunteerSpeakerRequestsResult = coreGetTblVolunteerSpeakerRequestsResult;
+
+            var coreGetTblAdminUsersResult = await Core.GetTblAdminUsers(new Query() { Filter = $@"i => string.Equals(i.UserName, ""{Security.User?.Name}"")" });
+            isAdmin = coreGetTblAdminUsersResult.Count() > 0;
         }
 
         protected async void Grid0Render(DataGridRenderEventArgs<CoreRadzen.Models.Core.TblEvent> args)
@@ -298,7 +320,7 @@ namespace CoreRadzen.Pages
 
         protected async System.Threading.Tasks.Task Grid2RowSelect(CoreRadzen.Models.Core.TblVolunteerSpeakerRequest args)
         {
-            var dialogResult = await DialogService.OpenAsync<EditTblVolunteerSpeakerRequest>("Edit Tbl Volunteer Speaker Request", new Dictionary<string, object>() { {"tblVolunteerSpeakerRequests_ID", args.tblVolunteerSpeakerRequests_ID} });
+            var dialogResult = await DialogService.OpenAsync<EditTblVolunteerSpeakerRequest>($"Edit Speaker Request", new Dictionary<string, object>() { {"tblVolunteerSpeakerRequests_ID", args.tblVolunteerSpeakerRequests_ID} });
             await grid2.Reload();
         }
 
@@ -323,19 +345,38 @@ namespace CoreRadzen.Pages
 
         protected async System.Threading.Tasks.Task TblVolunteerSpeakerRequestAddButtonClick(MouseEventArgs args)
         {
-            var dialogResult = await DialogService.OpenAsync<AddTblVolunteerSpeakerRequest>("Add Tbl Volunteer Speaker Request", new Dictionary<string, object>() { {"tblEvent_ID", master.tblEvent_ID} });
+            var dialogResult = await DialogService.OpenAsync<AddTblVolunteerSpeakerRequest>($"Add Speaker Request", new Dictionary<string, object>() { {"tblEvent_ID", master.tblEvent_ID} });
             await grid2.Reload();
         }
 
         protected async System.Threading.Tasks.Task Grid1RowSelect(CoreRadzen.Models.Core.TblCoreAttendance args)
         {
-            var dialogResult = await DialogService.OpenAsync<EditTblCoreAttendance>("Edit Tbl Core Attendance", new Dictionary<string, object>() { {"tblCOREAttendance_ID", args.tblCOREAttendance_ID} });
+            var dialogResult = await DialogService.OpenAsync<EditTblCoreAttendance>($"Edit CORE Member", new Dictionary<string, object>() { {"tblCOREAttendance_ID", args.tblCOREAttendance_ID} });
             await grid1.Reload();
+        }
+
+        protected async System.Threading.Tasks.Task TblCoreAttendanceDeleteButtonClick(MouseEventArgs args, dynamic data)
+        {
+            try
+            {
+                if (await DialogService.Confirm("Are you sure you want to delete this record?") == true)
+                {
+                    var coreDeleteTblCoreAttendanceResult = await Core.DeleteTblCoreAttendance(data.tblCOREAttendance_ID);
+                    if (coreDeleteTblCoreAttendanceResult != null)
+                    {
+                        await grid1.Reload();
+                    }
+                }
+            }
+            catch (System.Exception coreDeleteTblCoreAttendanceException)
+            {
+                NotificationService.Notify(new NotificationMessage(){ Severity = NotificationSeverity.Error,Summary = $"Error",Detail = $"Unable to delete TblEvent" });
+            }
         }
 
         protected async System.Threading.Tasks.Task TblCoreAttendanceAddButtonClick(MouseEventArgs args)
         {
-            var dialogResult = await DialogService.OpenAsync<AddTblCoreAttendance>("Add Tbl Core Attendance", new Dictionary<string, object>() { {"tblEvent_ID", master.tblEvent_ID} });
+            var dialogResult = await DialogService.OpenAsync<AddTblCoreAttendance>($"Add CORE Member", new Dictionary<string, object>() { {"tblEvent_ID", master.tblEvent_ID} });
             await grid1.Reload();
         }
     }

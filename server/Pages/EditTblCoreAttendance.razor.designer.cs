@@ -96,6 +96,25 @@ namespace CoreRadzen.Pages
             }
         }
 
+        bool _isAdmin;
+        protected bool isAdmin
+        {
+            get
+            {
+                return _isAdmin;
+            }
+            set
+            {
+                if (!object.Equals(_isAdmin, value))
+                {
+                    var args = new PropertyChangedEventArgs(){ Name = "isAdmin", NewValue = value, OldValue = _isAdmin };
+                    _isAdmin = value;
+                    OnPropertyChanged(args);
+                    Reload();
+                }
+            }
+        }
+
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
             await Security.InitializeAsync(AuthenticationStateProvider);
@@ -115,6 +134,9 @@ namespace CoreRadzen.Pages
 
             var coreGetTblAdUsersResult = await Core.GetTblAdUsers();
             getTblAdUsersResult = coreGetTblAdUsersResult;
+
+            var coreGetTblAdminUsersResult = await Core.GetTblAdminUsers(new Query() { Filter = $@"i => string.Equals(i.UserName, ""{Security.User?.Name}"")" });
+            isAdmin = coreGetTblAdminUsersResult.Count() > 0;
         }
 
         protected async System.Threading.Tasks.Task Form0Submit(CoreRadzen.Models.Core.TblCoreAttendance args)

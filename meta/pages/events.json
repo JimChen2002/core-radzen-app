@@ -153,6 +153,7 @@
                         }
                       ],
                       "textAlign": "center",
+                      "visible": "${isAdmin}",
                       "width": "70px"
                     }
                   ],
@@ -370,7 +371,7 @@
                     {
                       "name": "heading2",
                       "size": "H1",
-                      "text": "Volunteer Speakers",
+                      "text": "Volunteer Speakers Requests",
                       "type": "heading"
                     },
                     {
@@ -474,6 +475,7 @@
                             }
                           ],
                           "textAlign": "center",
+                          "visible": "${isAdmin}",
                           "width": "70px"
                         }
                       ],
@@ -494,6 +496,7 @@
                                 "type": "execute"
                               }
                             ],
+                            "title": "Edit Speaker Request",
                             "type": "popup"
                           }
                         ]
@@ -522,6 +525,7 @@
                                 "type": "execute"
                               }
                             ],
+                            "title": "Add Speaker Request",
                             "type": "popup"
                           }
                         ]
@@ -532,8 +536,9 @@
                         "marginBottom": "10px",
                         "marginTop": "10px"
                       },
-                      "text": "Add Speaker",
-                      "type": "button"
+                      "text": "Add Speaker Request",
+                      "type": "button",
+                      "visible": "${isAdmin}"
                     }
                   ],
                   "name": "fieldset0",
@@ -545,7 +550,7 @@
                     {
                       "name": "heading1",
                       "size": "H1",
-                      "text": "CORE Attendance",
+                      "text": "CORE Members Attending",
                       "type": "heading"
                     },
                     {
@@ -554,16 +559,83 @@
                       "allowSorting": true,
                       "columns": [
                         {
-                          "format": "",
-                          "property": "TblAdUser.FirstName",
-                          "title": "First Name",
-                          "type": "string"
+                          "property": "tblCOREAttendance_ID",
+                          "title": "Tbl CORE Attendance ID",
+                          "visible": false
                         },
                         {
-                          "format": "",
-                          "property": "TblAdUser.LastName",
-                          "title": "Last Name",
-                          "type": "string"
+                          "filterProperty": "TblEvent.LocationDetails",
+                          "groupProperty": "TblEvent.LocationDetails",
+                          "property": "tblEvent_ID",
+                          "sortProperty": "TblEvent.LocationDetails",
+                          "template": "${data.TblEvent?.LocationDetails}",
+                          "title": "Tbl Event",
+                          "visible": false
+                        },
+                        {
+                          "filterProperty": "TblAdUser.UserName",
+                          "groupProperty": "TblAdUser.UserName",
+                          "property": "tblADUser_ID",
+                          "sortProperty": "TblAdUser.UserName",
+                          "template": "${data.TblAdUser?.UserName}",
+                          "title": "Username"
+                        },
+                        {
+                          "filterable": false,
+                          "sortable": false,
+                          "template": [
+                            {
+                              "attributes": [
+                                {
+                                  "name": "@onclick:stopPropagation",
+                                  "value": true
+                                }
+                              ],
+                              "buttonStyle": "danger",
+                              "events": {
+                                "click": [
+                                  {
+                                    "condition": "await DialogService.Confirm(\"Are you sure you want to delete this record?\") == true",
+                                    "error": [
+                                      {
+                                        "detail": "Unable to delete TblEvent",
+                                        "severity": "error",
+                                        "summary": "Error",
+                                        "type": "notify"
+                                      }
+                                    ],
+                                    "name": "CORE.deleteTblCoreAttendance",
+                                    "parameters": [
+                                      {
+                                        "name": "tblCOREAttendance_ID",
+                                        "value": "${data.tblCOREAttendance_ID}"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "code": "await grid1.Reload();",
+                                        "condition": "result != null",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ]
+                              },
+                              "icon": "delete",
+                              "name": "TblCoreAttendanceDeleteButton",
+                              "size": "sm",
+                              "style": {
+                                "color": "#a9adaf"
+                              },
+                              "text": "",
+                              "type": "button",
+                              "variant": "Variant.Text"
+                            }
+                          ],
+                          "textAlign": "center",
+                          "visible": "${isAdmin}",
+                          "width": "70px"
                         }
                       ],
                       "data": "${TblCoreAttendances}",
@@ -583,6 +655,7 @@
                                 "type": "execute"
                               }
                             ],
+                            "title": "Edit CORE Member",
                             "type": "popup"
                           }
                         ]
@@ -611,6 +684,7 @@
                                 "type": "execute"
                               }
                             ],
+                            "title": "Add CORE Member",
                             "type": "popup"
                           }
                         ]
@@ -622,11 +696,12 @@
                         "marginTop": "10px"
                       },
                       "text": "Add CORE Member",
-                      "type": "button"
+                      "type": "button",
+                      "visible": "${isAdmin}"
                     }
                   ],
                   "name": "fieldset1",
-                  "text": "CORE Attendance",
+                  "text": "CORE Members Attending",
                   "type": "fieldset"
                 }
               ],
@@ -785,6 +860,24 @@
             "type": "set",
             "value": "${result}",
             "valueType": "IEnumerable<CoreRadzen.Models.Core.TblVolunteerSpeakerRequest>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "CORE.getTblAdminUsers",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "i => string.Equals(i.UserName, \"${Security.User?.Name}\")"
+          }
+        ],
+        "then": [
+          {
+            "name": "isAdmin",
+            "type": "set",
+            "value": "${result}.Count() > 0",
+            "valueType": "bool"
           }
         ],
         "type": "invoke"

@@ -178,7 +178,7 @@
                       @(data.TblSpeaker?.Name)
                       </Template>
                     </RadzenDataGridColumn>
-                    <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+                    <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblVolunteerSpeakerRequest" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Visible="@isAdmin" Width="70px">
                       <Template Context="coreRadzenModelsCoreTblVolunteerSpeakerRequest">
                         <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Small" style="color: #a9adaf" Variant="Variant.Text" Click="@((args) =>TblVolunteerSpeakerRequestDeleteButtonClick(args, coreRadzenModelsCoreTblVolunteerSpeakerRequest))" @onclick:stopPropagation="true">
                         </RadzenButton>
@@ -192,7 +192,7 @@
               <div class="col-md-2">
               </div>
               <div class="col-md-9">
-                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-right: 10px; margin-top: 10px" Text="Add" Visible="@isAdmin" Click="@Button0Click">
+                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-right: 10px; margin-top: 10px" Text="Add Speaker Request" Visible="@isAdmin" Click="@Button0Click">
                 </RadzenButton>
                 <RadzenButton Icon="add_circle_outline" Size="ButtonSize.Medium" style="margin-bottom: 10px" Text="Add New Speaker" Visible="@isAdmin" Click="@Button3Click">
                 </RadzenButton>
@@ -360,7 +360,7 @@
             </div>
             <div style="margin-bottom: 0rem" class="row">
               <div class="col-md-2" style="margin-right: 1px; padding-right: 1px">
-                <RadzenLabel Component="OnsiteContactEmail" style="width: 100%" Text="CORE Team Members Attending">
+                <RadzenLabel Component="OnsiteContactEmail" style="width: 100%" Text="CORE Members Attending">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
@@ -373,12 +373,12 @@
                       @(data.TblEvent?.LocationDetails)
                       </Template>
                     </RadzenDataGridColumn>
-                    <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" FilterProperty="TblAdUser.UserName" GroupProperty="TblAdUser.UserName" Property="tblADUser_ID" SortProperty="TblAdUser.UserName" Title="CORE Team Members">
+                    <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" FilterProperty="TblAdUser.UserName" GroupProperty="TblAdUser.UserName" Property="tblADUser_ID" SortProperty="TblAdUser.UserName" Title="Username">
                       <Template Context="data">
                       @(data.TblAdUser?.UserName)
                       </Template>
                     </RadzenDataGridColumn>
-                    <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+                    <RadzenDataGridColumn TItem="CoreRadzen.Models.Core.TblCoreAttendance" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Visible="@isAdmin" Width="70px">
                       <Template Context="coreRadzenModelsCoreTblCoreAttendance">
                         <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Small" style="color: #a9adaf" Variant="Variant.Text" Click="@((args) =>TblCoreAttendanceDeleteButtonClick(args, coreRadzenModelsCoreTblCoreAttendance))" @onclick:stopPropagation="true">
                         </RadzenButton>
@@ -392,7 +392,7 @@
               <div class="col-md-2">
               </div>
               <div class="col-md-9">
-                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add" Visible="@isAdmin" Click="@TblCoreAttendanceAddButtonClick">
+                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Add CORE Member" Visible="@isAdmin" Click="@TblCoreAttendanceAddButtonClick">
                 </RadzenButton>
               </div>
             </div>

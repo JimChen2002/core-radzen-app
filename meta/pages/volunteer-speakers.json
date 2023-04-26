@@ -118,6 +118,7 @@
                         }
                       ],
                       "textAlign": "center",
+                      "visible": "${isAdmin}",
                       "width": "70px"
                     }
                   ],
@@ -143,6 +144,7 @@
                             "type": "execute"
                           }
                         ],
+                        "title": "Edit Speaker",
                         "type": "popup"
                       }
                     ]
@@ -179,7 +181,8 @@
                     "marginTop": "10px"
                   },
                   "text": "Add",
-                  "type": "button"
+                  "type": "button",
+                  "visible": "${isAdmin}"
                 },
                 {
                   "events": {
@@ -334,6 +337,24 @@
             "type": "set",
             "value": "${result}",
             "valueType": "IEnumerable<CoreRadzen.Models.Core.TblSpeaker>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "CORE.getTblAdminUsers",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "i => string.Equals(i.UserName, \"${Security.User?.Name}\")"
+          }
+        ],
+        "then": [
+          {
+            "name": "isAdmin",
+            "type": "set",
+            "value": "${result}.Count() > 0",
+            "valueType": "bool"
           }
         ],
         "type": "invoke"

@@ -337,7 +337,8 @@ namespace CoreRadzen.Pages
 
         protected async System.Threading.Tasks.Task Grid2RowSelect(CoreRadzen.Models.Core.TblVolunteerSpeakerRequest args)
         {
-            UriHelper.NavigateTo($"edit-tbl-volunteer-speaker-request/{args.tblVolunteerSpeakerRequests_ID}");
+            var dialogResult = await DialogService.OpenAsync<EditTblVolunteerSpeakerRequest>($"Edit Speaker Request", new Dictionary<string, object>() { {"tblVolunteerSpeakerRequests_ID", args.tblVolunteerSpeakerRequests_ID} });
+            await grid2.Reload();
         }
 
         protected async System.Threading.Tasks.Task TblVolunteerSpeakerRequestDeleteButtonClick(MouseEventArgs args, dynamic data)
@@ -361,13 +362,13 @@ namespace CoreRadzen.Pages
 
         protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
         {
-            var dialogResult = await DialogService.OpenAsync<AddTblVolunteerSpeakerRequest>("Add Tbl Volunteer Speaker Request", new Dictionary<string, object>() { {"tblEvent_ID", tblEvent_ID} });
+            var dialogResult = await DialogService.OpenAsync<AddTblVolunteerSpeakerRequest>($"Add Speaker Request", new Dictionary<string, object>() { {"tblEvent_ID", tblEvent_ID} });
             await grid2.Reload();
         }
 
         protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
-            var dialogResult = await DialogService.OpenAsync<AddTblSpeaker>("Add Tbl Speaker", null);
+            var dialogResult = await DialogService.OpenAsync<AddTblSpeaker>($"Add Speaker", null);
             await InvokeAsync(() => { StateHasChanged(); });
         }
 
@@ -378,7 +379,7 @@ namespace CoreRadzen.Pages
 
         protected async System.Threading.Tasks.Task Grid1RowSelect(CoreRadzen.Models.Core.TblCoreAttendance args)
         {
-            var dialogResult = await DialogService.OpenAsync<EditTblCoreAttendance>("Edit Tbl Core Attendance", new Dictionary<string, object>() { {"tblCOREAttendance_ID", args.tblCOREAttendance_ID} });
+            var dialogResult = await DialogService.OpenAsync<EditTblCoreAttendance>($"Edit CORE Member", new Dictionary<string, object>() { {"tblCOREAttendance_ID", args.tblCOREAttendance_ID} });
             await grid1.Reload();
         }
 
@@ -403,7 +404,7 @@ namespace CoreRadzen.Pages
 
         protected async System.Threading.Tasks.Task TblCoreAttendanceAddButtonClick(MouseEventArgs args)
         {
-            var dialogResult = await DialogService.OpenAsync<AddTblCoreAttendance>("Add Tbl Core Attendance", new Dictionary<string, object>() { {"tblEvent_ID", tblEvent_ID} });
+            var dialogResult = await DialogService.OpenAsync<AddTblCoreAttendance>($"Add CORE Member", new Dictionary<string, object>() { {"tblEvent_ID", tblEvent_ID} });
             await grid1.Reload();
         }
 
