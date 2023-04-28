@@ -175,5 +175,10 @@ namespace CoreRadzen.Models.Core
       get;
       set;
     }
+    public string Notes
+    {
+      get;
+      set;
+    }
   }
 }

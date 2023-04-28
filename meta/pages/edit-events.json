@@ -1889,19 +1889,61 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "maxLength": 500,
                               "name": "AdditionalInformation",
                               "style": {
                                 "width": "100%"
                               },
-                              "type": "textbox",
-                              "value": "${tblevent.AdditionalInformation}",
-                              "valueType": "string"
+                              "type": "textarea",
+                              "value": "${tblevent.AdditionalInformation}"
                             }
                           ],
                           "type": "col"
                         }
                       ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-2",
+                          "components": [
+                            {
+                              "component": "AdditionalInformation",
+                              "name": "NotesLable",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Notes",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col11",
+                          "style": {
+                            "marginRight": "1px",
+                            "paddingRight": "1px"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Notes",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textarea",
+                              "value": "${tblevent.Notes}"
+                            }
+                          ],
+                          "name": "col12",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row0",
                       "style": {
                         "marginBottom": "1rem"
                       },

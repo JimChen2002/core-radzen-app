@@ -424,8 +424,18 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="500" style="width: 100%" @bind-Value="@(tblevent.AdditionalInformation)" Name="AdditionalInformation">
-                </RadzenTextBox>
+                <RadzenTextArea style="width: 100%" @bind-Value="@(tblevent.AdditionalInformation)" Name="AdditionalInformation">
+                </RadzenTextArea>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-2" style="margin-right: 1px; padding-right: 1px">
+                <RadzenLabel Component="AdditionalInformation" style="width: 100%" Text="Notes">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextArea style="width: 100%" @bind-Value="@(tblevent.Notes)" Name="Notes">
+                </RadzenTextArea>
               </div>
             </div>
             <div class="row">

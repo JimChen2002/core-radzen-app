@@ -563,6 +563,11 @@
           "dbType": "nvarchar",
           "length": 500
         },
+        "Notes": {
+          "type": "string",
+          "dbType": "nvarchar",
+          "length": 1000
+        },
         "TblCoreAttendances": {
           "type": "array",
           "items": {
