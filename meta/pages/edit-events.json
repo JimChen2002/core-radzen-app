@@ -1783,7 +1783,7 @@
                               },
                               "text": "Is Locked?",
                               "type": "label",
-                              "visible": false
+                              "visible": "${isAdmin}"
                             }
                           ],
                           "style": {
@@ -1800,7 +1800,7 @@
                               "type": "checkbox",
                               "value": "${tblevent.IsLocked}",
                               "valueType": "bool",
-                              "visible": false
+                              "visible": "${isAdmin}"
                             }
                           ],
                           "type": "col"
@@ -1915,6 +1915,7 @@
                             {
                               "buttonStyle": "primary",
                               "buttonType": "submit",
+                              "disabled": "${tblevent.IsLocked && isNotAdmin}",
                               "icon": "save",
                               "text": "Save",
                               "type": "button"
